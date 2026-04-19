@@ -1,0 +1,18 @@
+output=eDP-2
+layer=overlay
+anchor=top-center
+
+background-color=#1e0032
+text-color=#FFFFFF
+font=monospace 10
+
+width=300
+height=100
+
+border-size=4
+border-color=#8800ed
+border-radius=15
+
+on-button-left=dismiss
+on-button-right=invoke-default-action
+on-button-middle=dismiss-all

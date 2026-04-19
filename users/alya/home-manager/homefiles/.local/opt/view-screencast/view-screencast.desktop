@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=View Screencast
+Icon=vokoscreenNG
+Exec=/home/alya/.local/opt/view-screencast/view-screencast.sh
+Categories=Office;
+

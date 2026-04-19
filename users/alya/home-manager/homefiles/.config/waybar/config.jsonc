@@ -1,0 +1,115 @@
+// -*- mode: jsonc -*-
+{
+    "layer": "top", // Waybar at top layer
+    "position": "top", // Waybar position (top|bottom|left|right)
+    "height": 32, // Waybar height (to be removed for auto height)
+    "spacing": 4, // Gaps between modules (4px)
+    
+    // Choose the order of the modules
+    "modules-left": [
+        "niri/workspaces",
+        "niri/window"
+    ],
+    "modules-center": [
+        "clock"
+    ],
+    "modules-right": [
+        "tray",
+        "power-profiles-daemon",
+        "idle_inhibitor",
+        "backlight",
+        "battery",
+        "custom/power"
+    ],
+    
+    
+    
+    
+
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "☕",
+            "deactivated": "💤",
+        }
+    },
+    
+    "tray": {
+        "show-passive-items": true,
+        "spacing": 10,
+        "reverse-direction": true
+    },
+    
+    "clock": {
+        "locale": "en_DK",
+        "format": "{:%a. %d.%m.%Y %R}",
+        "tooltip-format": "<tt><span size=\"larger\">{calendar}</span></tt>",
+        "calendar": {
+                    "mode"          : "year",
+                    "mode-mon-col"  : 3,
+                    "weeks-pos"     : "right",
+                    "format": {
+                              "months":     "<span color='#ffead3'><b>{}</b></span>",
+                              "days":       "<span color='#ecc6d9'><b>{}</b></span>",
+                              "weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
+                              "weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
+                              "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
+                              }
+                    },
+    },
+
+    "backlight": {
+        // "device": "acpi_video1",
+        "format": "{icon}",
+        // "format-icons": ["🌑", "🌘", "🌗", "🌖", "🌕"]
+        // "format-icons": ["🌤️", "☀️", "🌞"]
+        // "format-icons": ["🌃", "🌆", "🌇", "🌄", "🌅"]
+        "format-icons": ["🌃", "🌆", "🌇", "🌄", "🌅", "☀️", "🌞"]
+    },
+    
+    "battery": {
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{capacity}% {icon}",
+        "format-full": "{capacity}% {icon}",
+        "format-charging": "{capacity}% ",
+        "format-plugged": "{capacity}% ",
+        "format-alt": "{time} {icon}",
+        "format-icons": [" ", " ", " ", " ", " "]
+    },
+
+    "power-profiles-daemon": {
+      "format": "{icon}",
+      "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+      "tooltip": true,
+      "format-icons": {
+        "default": "",
+        "performance": "🔥",
+        "balanced": " ",
+        "power-saver": " "
+      }
+    },
+    
+    "custom/power": {
+        "format" : "⏻ ",
+		"tooltip": false,
+		"menu": "on-click",
+		"menu-file": "$HOME/.config/waybar/power_menu.xml",
+		"menu-actions": {
+			"shutdown": "poweroff",
+			"reboot": "reboot",
+			"suspend": "systemctl suspend",
+			"hibernate": "systemctl hibernate"
+		}
+    },
+    
+    "niri/workspaces": {
+        "hide-empty": true
+    },
+    
+    "niri/window": {
+        "icon": true
+    }
+}

@@ -1,0 +1,14 @@
+diff -rupN linux-6.17.13/drivers/iommu/iommu.c linux-6.17.13_iommu/drivers/iommu/iommu.c
+--- linux-6.17.13/drivers/iommu/iommu.c	2025-12-18 14:00:17.000000000 +0100
++++ linux-6.17.13_iommu/drivers/iommu/iommu.c	2025-12-19 16:21:45.612665501 +0100
+@@ -2299,8 +2299,8 @@ static int __iommu_device_set_domain(str
+ 	    (new_domain->type == IOMMU_DOMAIN_BLOCKED ||
+ 	     new_domain == group->blocking_domain)) {
+ 		dev_warn(dev,
+-			 "Firmware has requested this device have a 1:1 IOMMU mapping, rejecting configuring the device without a 1:1 mapping. Contact your platform vendor.\n");
+-		return -EINVAL;
++			 "Firmware has requested this device have a 1:1 IOMMU mapping. I dont care though! **Patches out probably very important safety check :-D**\n");
++		// return -EINVAL;
+ 	}
+ 
+ 	if (dev->iommu->attach_deferred) {
