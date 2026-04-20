@@ -3,6 +3,10 @@
 
 {
 
+  hardware = {
+    tuxedo-drivers.enable = true;
+  };
+
   nixpkgs.overlays = [
     ### Tuxedo Sirius 16 dual speaker patch ###
     (final: prev: {
@@ -19,20 +23,13 @@
   ];
 
 
-#  boot.kernelPatches = [
-#    {
-#      ### Tuxedo Sirius 16 Gen 2 allow GPU passtrough patch ###
-#      name = "disable-IOMMU-direct-mappings-check";
-#      patch = ./patches/kernel/my_probably_extremely_stupid_IOMMU_direct_mappings.patch;
-#    }
-#  ];
-
   
   specialisation = {
     gpu-passtrough = {
       inheritParentConfig = true;
       configuration = {
         system.nixos.tags = [ "GPU-Passtrough" ];
+        environment.etc."specialisation".text = "gpu-passtrough"; # for nh so it runs the correct activation script
 
         boot = {
           kernelPatches = [

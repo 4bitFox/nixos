@@ -28,6 +28,7 @@
     ./systemd.nix
     ./home-manager.nix
     ./declarative-flatpak.nix
+    ./impermanence.nix
   ];
 
 

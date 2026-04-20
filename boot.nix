@@ -7,7 +7,7 @@
     initrd = {
       enable = true;
       kernelModules = [  ];
-       preDeviceCommands = ''
+      preDeviceCommands = ''
         # Clear
         printf "\033[2J"
         # Move cursor to top left
