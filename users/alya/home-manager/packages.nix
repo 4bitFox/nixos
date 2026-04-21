@@ -40,13 +40,13 @@
 #      winboat
       easyeffects
       alpaca
-#      vesktop
+      vesktop
       woeusb-ng
-#      freecad
-#      geogebra6
-#      kdePackages.kdenlive
-#      openscad
-#      tor-browser
+      freecad
+      geogebra6
+      kdePackages.kdenlive
+      openscad
+      tor-browser
       gimp
       hyprpicker
       wl-clip-persist

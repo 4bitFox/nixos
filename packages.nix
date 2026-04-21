@@ -138,12 +138,12 @@
       enable = true;
       binfmt = true;
     };
-    nh = {
-      enable = true;
-      clean.enable = true;
-      clean.extraArgs = "--keep-since 30d --keep 15";
-      flake = "";
-    };
+    # nh = {
+    #   enable = true;
+    #   clean.enable = true;
+    #   clean.extraArgs = "--keep-since 30d --keep 15";
+    #   flake = "";
+    # };
     bash = {
       enable = true;
       shellAliases = {
