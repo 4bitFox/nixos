@@ -33,7 +33,7 @@
       prismlauncher
       osu-lazer
       zoom
-#      snapshot
+      snapshot
       gnome-logs
       gnome-calculator
       geany
