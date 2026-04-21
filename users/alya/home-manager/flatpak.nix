@@ -14,8 +14,8 @@
 
     packages = [
       "flathub:app/org.spyder_ide.spyder/x86_64/stable"
-      #"flathub:app/moe.launcher.the-honkers-railway-launcher/x86_64/stable"
-      #"flathub:app/moe.launcher.an-anime-game-launcher/x86_64/stable"
+      "flathub:app/moe.launcher.the-honkers-railway-launcher/x86_64/stable"
+      "flathub:app/moe.launcher.an-anime-game-launcher/x86_64/stable"
       #"flathub:app/org.gnome.Evince/x86_64/stable"
       
       #"flathub:app/com.belmoussaoui.Authenticator/x86_64/stable"
