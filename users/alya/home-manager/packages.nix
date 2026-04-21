@@ -39,7 +39,7 @@
       geany
 #      winboat
       easyeffects
-#      alpaca
+      alpaca
 #      vesktop
       woeusb-ng
 #      freecad
