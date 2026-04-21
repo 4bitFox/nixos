@@ -15,16 +15,31 @@
     enable = false; #####
     hideMounts = true;
     directories = [
+      "/etc/group"
+      "/etc/passwd"
+      "/etc/shadow"
       "/etc/nixos"
       "/var/lib/bluetooth"
       "/var/lib/nixos"
       "/var/lib/systemd/coredump"
       "/etc/NetworkManager/system-connections"
-      { directory = "/var/lib/colord"; user = "colord"; group = "colord"; mode = "u=rwx,g=rx,o="; }
+      "/var/lib/docker"
+      "/var/lib/btrfs"
+      "/var/lib/upower"
+      "/var/lib/waydroid"
+      "/var/lib/ollama"
+      "/var/lib/private"
+      "/var/lib/libvirt"
+      "/var/lib/flatpak"
     ];
     files = [
       "/etc/machine-id"
-      { file = "/var/keys/secret_file"; parentDirectory = { mode = "u=rwx,g=,o="; }; }
+      "/etc/ssh/ssh_host_rsa_key"
+      "/etc/ssh/ssh_host_rsa_key.pub"
+      "/etc/ssh/ssh_host_ed25519_key"
+      "/etc/ssh/ssh_host_ed25519_key.pub"
+      "/var/lib/cups/printers.conf"
+      "/var/lib/logrotate.status"
     ];
   };
 

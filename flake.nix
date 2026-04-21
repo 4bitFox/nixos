@@ -11,10 +11,10 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     ### declarative-flatpak ###
     declarative-flatpak.url = "github:in-a-dil-emma/declarative-flatpak/latest";
-    ### impermanence ###
-    impermanence.url = "github:nix-community/impermanence";
-    impermanence.inputs.nixpkgs.follows = "";
-    impermanence.inputs.home-manager.follows = "";
+    # ### impermanence ###
+    # impermanence.url = "github:nix-community/impermanence";
+    # impermanence.inputs.nixpkgs.follows = "";
+    # impermanence.inputs.home-manager.follows = "";
   };
 
 
