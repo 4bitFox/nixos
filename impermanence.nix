@@ -12,23 +12,19 @@
   };
 
   environment.persistence."/persist" = {
-    enable = false; #####
+    enable = true;
     hideMounts = true;
     directories = [
-      "/etc/group"
-      "/etc/passwd"
-      "/etc/shadow"
       "/etc/nixos"
       "/var/lib/bluetooth"
       "/var/lib/nixos"
       "/var/lib/systemd/coredump"
       "/etc/NetworkManager/system-connections"
+      "/var/lib/NetworkManager"
       "/var/lib/docker"
-      "/var/lib/btrfs"
       "/var/lib/upower"
       "/var/lib/waydroid"
       "/var/lib/ollama"
-      "/var/lib/private"
       "/var/lib/libvirt"
       "/var/lib/flatpak"
     ];
@@ -72,22 +68,55 @@
         echo "                                              "
         echo "                                              "
         echo "                                              "
-      ### DANGER !!! ### I have to set up persist first before uncommenting! (note to self lol}
-      #  echo "DELETING ROOT..."
-      #  mkdir /mnt
-      #  mount -t btrfs /dev/mapper/GLaDOS_lvm-GLaDOS_rootfs /mnt
-      #  btrfs subvolume delete /mnt/@
-      #  btrfs subvolume snapshot /mnt/@fresh /mnt/@
-      #  echo "POPULATING ROOT FOR MOUNTPOINTS..."
-      #  mkdir /mnt/@/home
-      #  mkdir /mnt/@/nix
-      #  mkdir /mnt/@/persist
-      #  mkdir /mnt/@/var
-      #  mkdir /mnt/@/var/log
-      #  mkdir /mnt/@/boot
-      #  mkdir /mnt/@/boot/efi
-      #  mkdir /mnt/@/mnt #optional but I like to have it :-)
+        echo "DELETING ROOT..."
+        mkdir /mnt
+        mount -t btrfs /dev/mapper/GLaDOS_lvm-GLaDOS_rootfs /mnt
+        btrfs subvolume delete /mnt/@
+        btrfs subvolume snapshot /mnt/@fresh /mnt/@
+        echo "POPULATING ROOT FOR MOUNTPOINTS..."
+        mkdir /mnt/@/home
+        mkdir /mnt/@/nix
+        mkdir /mnt/@/persist
+        mkdir /mnt/@/var
+        mkdir /mnt/@/var/log
+        mkdir /mnt/@/boot
+        mkdir /mnt/@/boot/efi
+        mkdir /mnt/@/mnt #optional but I like to have this directory :-)
       '';
     };
   };
+
+
+  ### /etc/shadow ### hacky code snippet from thundertheidiot on Sep 30, 2024; thank you! :D : https://github.com/nix-community/impermanence/issues/120#issuecomment-2382674299
+  system.activationScripts = {
+    etc_shadow = ''
+      [ -f "/etc/shadow" ] && cp /etc/shadow /persist/etc/shadow
+      [ -f "/persist/etc/shadow" ] && cp /persist/etc/shadow /etc/shadow
+    '';
+
+    users.deps = ["etc_shadow"];
+  };
+
+  systemd = {
+    services."etc_shadow_persistence" = {
+      enable = true;
+      description = "Persist /etc/shadow on shutdown.";
+      wantedBy = ["multi-user.target"];
+      path = [pkgs.util-linux];
+      unitConfig.defaultDependencies = true;
+      serviceConfig = {
+        Type = "oneshot";
+        RemainAfterExit = true;
+        # Service is stopped before shutdown
+        ExecStop = pkgs.writeShellScript "persist_etc_shadow" ''
+          cp /etc/shadow /persist/etc/shadow
+        '';
+      };
+    };
+    tmpfiles.rules = [
+      "d /persist/rootfs/etc/ 0755 root root -" # make sure /persist/etc exists
+    ];
+  };
+  ### /etc/shadow (end) ###
+
 }

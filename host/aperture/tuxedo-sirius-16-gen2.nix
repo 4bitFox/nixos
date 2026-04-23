@@ -28,8 +28,7 @@
     gpu-passtrough = {
       inheritParentConfig = true;
       configuration = {
-        system.nixos.tags = [ "GPU-Passtrough" ];
-        environment.etc."specialisation".text = "gpu-passtrough"; # for nh so it runs the correct activation script
+        system.nixos.tags = [ "gpu-passthrough" ];
 
         boot = {
           kernelPatches = [
