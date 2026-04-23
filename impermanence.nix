@@ -71,7 +71,7 @@
         echo "DELETING ROOT..."
         mkdir /mnt
         mount -t btrfs /dev/mapper/GLaDOS_lvm-GLaDOS_rootfs /mnt
-        btrfs subvolume delete /mnt/@
+        btrfs subvolume delete -R /mnt/@
         btrfs subvolume snapshot /mnt/@fresh /mnt/@
         echo "POPULATING ROOT FOR MOUNTPOINTS..."
         mkdir /mnt/@/home
