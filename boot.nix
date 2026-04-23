@@ -87,7 +87,7 @@
         gfxpayloadEfi = "keep";
         fsIdentifier = "uuid";
       };
-      timeout = 1;
+      timeout = 3;
     };
   };
 }

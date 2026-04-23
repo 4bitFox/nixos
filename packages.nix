@@ -150,9 +150,9 @@
         ll = "ls -l";
         # glados-rebuild = "nh os switch -f '<nixpkgs/nixos>'"; # Standard-Setup without flakes
         # glados-rebuild = "nh os switch /etc/nixos"; # Setup with flakes
-        glados-rebuild-switch = "git -C /etc/nixos add . && git -C /etc/nixos commit -m 'nixos-rebuild switch' ; sudo sh -c 'nixos-rebuild switch --log-format internal-json |& nom --json'";
-        glados-rebuild-boot = "git -C /etc/nixos add . && git -C /etc/nixos commit -m 'nixos-rebuild boot' ; sudo sh -c 'nixos-rebuild boot --log-format internal-json |& nom --json'";
-        glados-rebuild-test = "git -C /etc/nixos add . && git -C /etc/nixos commit -m 'nixos-rebuild test' ; sudo sh -c 'nixos-rebuild test --log-format internal-json |& nom --json'";
+        glados-rebuild-switch = "git -C /etc/nixos add . ; git -C /etc/nixos commit -m 'nixos-rebuild switch' ; sudo sh -c 'nixos-rebuild switch --log-format internal-json |& nom --json'";
+        glados-rebuild-boot = "git -C /etc/nixos add . ; git -C /etc/nixos commit -m 'nixos-rebuild boot' ; sudo sh -c 'nixos-rebuild boot --log-format internal-json |& nom --json'";
+        glados-rebuild-test = "git -C /etc/nixos add . ; git -C /etc/nixos commit -m 'nixos-rebuild test' ; sudo sh -c 'nixos-rebuild test --log-format internal-json |& nom --json'";
         # glados-clean = "nh clean all";
         glados-clean = "sudo nix-collect-garbage --delete-older-than 30d";
         glados-status-flatpak = "systemctl --user status manage-flatpaks-activation.service";
