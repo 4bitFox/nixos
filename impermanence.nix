@@ -76,13 +76,14 @@
         mkdir /mnt
         mount -t btrfs /dev/mapper/GLaDOS_lvm-GLaDOS_rootfs /mnt
         echo "DELETING ROOT..."
-        btrfs subvolume delete -q /mnt/@/srv
-        btrfs subvolume delete -q /mnt/@/var/lib/portables
-        btrfs subvolume delete -q /mnt/@/var/lib/machines
-        btrfs subvolume delete -q /mnt/@/var/tmp
-        btrfs subvolume delete -q /mnt/@
+        btrfs subvolume delete /mnt/@/srv > /dev/null
+        btrfs subvolume delete /mnt/@/var/lib/portables > /dev/null
+        btrfs subvolume delete /mnt/@/var/lib/machines > /dev/null
+        btrfs subvolume delete /mnt/@/var/tmp > /dev/null
+        btrfs subvolume delete /mnt/@/@fresh 2>/dev/null > /dev/null # for when deleting fails and this gets created here...
+        btrfs subvolume delete /mnt/@ > /dev/null
         echo "RECREATING ROOT..."
-        btrfs subvolume snapshot -q /mnt/@fresh /mnt/@
+        btrfs subvolume snapshot /mnt/@fresh /mnt/@
         echo "POPULATING ROOT FOR MOUNTPOINTS..."
         mkdir /mnt/@/home
         mkdir /mnt/@/nix
