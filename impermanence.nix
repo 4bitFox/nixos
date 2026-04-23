@@ -42,27 +42,7 @@
   boot = {
     initrd = {
       postDeviceCommands = lib.mkAfter ''
-        echo "                                              "
-        echo "                                              "
-        echo "                                              "
-        echo "                                              "
-        echo "                                              "
-        echo "                                              "
-        echo "                                              "
-        echo "                                              "
-        echo "                                              "
-        echo "                                              "
-        echo "                                              "
-        echo "                                              "
-        echo "                                              "
-        echo "                                              "
-        echo "                                              "
-        echo "                                              "
-        echo "                                              "
-        echo "                                              "
-        echo "                                              "
-        echo "                                              "
-        echo "                                              "
+        clear
         echo "                                              "
         echo "                                              "
         echo "                                              "
