@@ -72,15 +72,17 @@
         echo "                                              "
         echo "                                              "
         echo "                                              "
-        echo "DELETING ROOT..."
+        echo "MOUNTING ROOTFS..."
         mkdir /mnt
         mount -t btrfs /dev/mapper/GLaDOS_lvm-GLaDOS_rootfs /mnt
-        btrfs subvolume delete /mnt/@/srv
-        btrfs subvolume delete /mnt/@/var/lib/portables
-        btrfs subvolume delete /mnt/@/var/lib/machines
-        btrfs subvolume delete /mnt/@/var/tmp
-        btrfs subvolume delete /mnt/@
-        btrfs subvolume snapshot /mnt/@fresh /mnt/@
+        echo "DELETING ROOT..."
+        btrfs subvolume delete -q /mnt/@/srv
+        btrfs subvolume delete -q /mnt/@/var/lib/portables
+        btrfs subvolume delete -q /mnt/@/var/lib/machines
+        btrfs subvolume delete -q /mnt/@/var/tmp
+        btrfs subvolume delete -q /mnt/@
+        echo "RECREATING ROOT..."
+        btrfs subvolume snapshot -q /mnt/@fresh /mnt/@
         echo "POPULATING ROOT FOR MOUNTPOINTS..."
         mkdir /mnt/@/home
         mkdir /mnt/@/nix
@@ -91,7 +93,7 @@
         mkdir /mnt/@/boot/efi
         mkdir /mnt/@/mnt #optional but I like to have this directory :-)
         echo "SYSTEM IS FRESH"
-        sleep 20
+        echo ""
       '';
     };
   };
