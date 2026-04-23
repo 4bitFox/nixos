@@ -163,14 +163,6 @@
   nixpkgs = {
     config.allowUnfree = true;
     overlays = [
-      ### Disable Python checks that keep failing left and right... ###
-      (final: prev: {
-        python3Packages = prev.python3Packages // {
-          django = prev.python3Packages.django.overrideAttrs (_: {
-            doCheck = false;
-          });
-        };
-      })
     ];
   };
 
