@@ -86,6 +86,7 @@
         gfxmodeEfi = "auto";
         gfxpayloadEfi = "keep";
         fsIdentifier = "uuid";
+        default = "saved";
       };
       timeout = 3;
     };
