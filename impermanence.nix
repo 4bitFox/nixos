@@ -90,7 +90,7 @@
         mkdir /mnt/@/boot/efi
         mkdir /mnt/@/mnt #optional but I like to have this directory :-)
         echo "SYSTEM IS FRESH"
-        sleep 5
+        sleep 20
       '';
     };
   };
