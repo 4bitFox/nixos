@@ -24,7 +24,7 @@
       "/var/lib/docker"
       "/var/lib/upower"
       "/var/lib/waydroid"
-      "/var/lib/ollama"
+      "/var/lib/private/ollama"
       "/var/lib/libvirt"
       "/var/lib/flatpak"
     ];
