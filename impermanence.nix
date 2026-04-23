@@ -45,6 +45,7 @@
         echo "                                              "
         echo "                                              "
         echo "                                              "
+        printf "\033[31m"
         echo "                          -\$-                 "
         echo "                         .H##H,               "
         echo "                        +######+              "
@@ -62,16 +63,22 @@
         echo "                      ..                      "
         echo "       -/;:-,.              ,,-==+M########H  "
         echo "      -##################@HX%%+%%$%%%+:,,     "
+        printf "\033[0m"
         echo "         .-/H%%%+%%\$H@###############M@+=:/+: "
         echo "     /XHX%:#####MH%=    ,---:;;;;/&&XHM,:###$ "
         echo "     \$@#MX %+;-                               "
+        printf "\033[0m"
         echo "                                              "
         echo "                                              "
         echo "                                              "
         echo "DELETING ROOT..."
         mkdir /mnt
         mount -t btrfs /dev/mapper/GLaDOS_lvm-GLaDOS_rootfs /mnt
-        btrfs subvolume delete -R /mnt/@
+        btrfs subvolume delete /mnt/@/srv
+        btrfs subvolume delete /mnt/@/var/lib/portables
+        btrfs subvolume delete /mnt/@/var/lib/machines
+        btrfs subvolume delete /mnt/@/var/tmp
+        btrfs subvolume delete /mnt/@
         btrfs subvolume snapshot /mnt/@fresh /mnt/@
         echo "POPULATING ROOT FOR MOUNTPOINTS..."
         mkdir /mnt/@/home
@@ -82,6 +89,8 @@
         mkdir /mnt/@/boot
         mkdir /mnt/@/boot/efi
         mkdir /mnt/@/mnt #optional but I like to have this directory :-)
+        echo "SYSTEM IS FRESH"
+        sleep 5
       '';
     };
   };
