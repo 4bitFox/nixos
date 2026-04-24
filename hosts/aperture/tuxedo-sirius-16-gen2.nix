@@ -2,6 +2,10 @@
 
 
 {
+  imports = [
+    ./hardware-configuration.nix
+  ];
+
 
   hardware = {
     tuxedo-drivers.enable = true;

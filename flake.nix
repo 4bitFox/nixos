@@ -25,7 +25,6 @@
       inherit system;
       specialArgs = attrs;
       modules = [
-        ./hardware-configuration.nix
         ./modules/fonts.nix
         ./modules/keyboard.nix
         ./modules/datetime.nix
