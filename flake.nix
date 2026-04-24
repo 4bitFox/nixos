@@ -25,7 +25,26 @@
       inherit system;
       specialArgs = attrs;
       modules = [
-        ./configuration.nix
+        ./hardware-configuration.nix
+        ./fonts.nix
+        ./keyboard.nix
+        ./datetime.nix
+        ./services.nix
+        ./virtualisation.nix
+        ./networking.nix
+        ./users/alya/user.nix
+        ./nix.nix
+        ./locales.nix
+        ./boot.nix
+        ./packages.nix
+        ./hardware.nix
+        ./graphical/niri.nix
+        ./audio.nix
+        ./printing.nix
+        ./home-manager.nix
+        ./declarative-flatpak.nix
+        ./impermanence.nix
+        ./partitions.nix
       ] ++ hostModules;
     };
   in {
