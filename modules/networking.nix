@@ -51,4 +51,6 @@
     };
     enableIPv6 = true;
   };
+
+  systemd.network.wait-online.enable = false;
 }
