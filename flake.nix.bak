@@ -18,21 +18,13 @@
   };
 
 
-  outputs = { self, nixpkgs, ... } @attrs: 
-
-  let
-    mkHost = { system, hostModules}: nixpkgs.lib.nixosSystem {
-      inherit system;
-      specialArgs = attrs;
-      modules = [
-        ./configuration.nix
-      ] ++ hostModules;
-    };
-  in {
+  outputs = { self, nixpkgs, ... } @attrs: {
     nixosConfigurations = {
-      aperture = mkHost {
+      aperture = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        hostModules = [
+        specialArgs = attrs;
+        modules = [
+          ./configuration.nix
           ./host/aperture/tuxedo-sirius-16-gen2.nix
         ];
       };
