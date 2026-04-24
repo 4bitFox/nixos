@@ -22,7 +22,6 @@
     ./packages.nix
     ./hardware.nix
     ./graphical/niri.nix
-    ./patches.nix
     ./audio.nix
     ./printing.nix
     ./home-manager.nix
