@@ -27,7 +27,8 @@
     ./printing.nix
     ./home-manager.nix
     ./declarative-flatpak.nix
-    ./impermanence.nix # Maybe later, I'm good for now xD
+    ./impermanence.nix
+    ./partitions.nix
   ];
 
 

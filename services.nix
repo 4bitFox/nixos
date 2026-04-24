@@ -9,6 +9,7 @@
     dbus.enable = true;
     libinput.enable = true;
     udev = {
+      ### HDD spindown ###
       extraRules = 
         let
           mkRule = as: lib.concatStringsSep ", " as;
@@ -20,6 +21,7 @@
           ''ATTR{queue/rotational}=="1"''
           ''RUN+="${pkgs.hdparm}/bin/hdparm -B 90 -S 41 /dev/%k"''
       ])]);
+      ### HDD spindown (end) ###
     };
     btrfs.autoScrub = {
       enable = true;
