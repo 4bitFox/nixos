@@ -48,6 +48,7 @@
     };
   in {
     nixosConfigurations = {
+      ### aperture: to build run 'nixos-rebuild switch --flake /etc/nixos#aperture' ###
       aperture = mkHost {
         system = "x86_64-linux";
         hostModules = [

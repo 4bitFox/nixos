@@ -39,8 +39,12 @@
     },
     "impermanence": {
       "inputs": {
-        "home-manager": [],
-        "nixpkgs": []
+        "home-manager": [
+          "home-manager"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
       },
       "locked": {
         "lastModified": 1769548169,
