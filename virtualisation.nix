@@ -28,4 +28,6 @@
     };
     waydroid.enable = true;
   };
+
+  networking.firewall.trustedInterfaces = [ "virbr0" ];
 }
