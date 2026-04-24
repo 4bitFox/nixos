@@ -26,25 +26,25 @@
       specialArgs = attrs;
       modules = [
         ./hardware-configuration.nix
-        ./fonts.nix
-        ./keyboard.nix
-        ./datetime.nix
-        ./services.nix
-        ./virtualisation.nix
-        ./networking.nix
+        ./modules/fonts.nix
+        ./modules/keyboard.nix
+        ./modules/datetime.nix
+        ./modules/services.nix
+        ./modules/virtualisation.nix
+        ./modules/networking.nix
         ./users/alya/user.nix
-        ./nix.nix
-        ./locales.nix
-        ./boot.nix
-        ./packages.nix
-        ./hardware.nix
-        ./graphical/niri.nix
-        ./audio.nix
-        ./printing.nix
-        ./home-manager.nix
-        ./declarative-flatpak.nix
-        ./impermanence.nix
-        ./partitions.nix
+        ./modules/nix.nix
+        ./modules/locales.nix
+        ./modules/boot.nix
+        ./modules/packages.nix
+        ./modules/hardware.nix
+        ./modules/graphical/niri.nix
+        ./modules/audio.nix
+        ./modules/printing.nix
+        ./modules/home-manager.nix
+        ./modules/declarative-flatpak.nix
+        ./modules/impermanence.nix
+        ./modules/partitions.nix
       ] ++ hostModules;
     };
   in {
@@ -52,7 +52,7 @@
       aperture = mkHost {
         system = "x86_64-linux";
         hostModules = [
-          ./host/aperture/tuxedo-sirius-16-gen2.nix
+          ./hosts/aperture/tuxedo-sirius-16-gen2.nix
           {
             # This value determines the NixOS release from which the default
             # settings for stateful data, like file locations and database versions
