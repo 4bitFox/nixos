@@ -7,6 +7,12 @@
     tuxedo-drivers.enable = true;
   };
 
+  systemd = {
+    sleep.extraConfig = ''
+      SuspendState=freeze
+    '';
+  };
+
   nixpkgs.overlays = [
     ### Tuxedo Sirius 16 dual speaker patch ###
     (final: prev: {
