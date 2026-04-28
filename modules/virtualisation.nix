@@ -9,9 +9,6 @@
       qemu = {
         package = pkgs.qemu_kvm;
         runAsRoot = true;
-        vhostUserPackages = with pkgs; [
-          virtiofsd
-        ];
         swtpm.enable = true;
       };
       onBoot = "ignore";
@@ -28,6 +25,11 @@
     };
     waydroid.enable = true;
   };
+
+  environment.systemPackages = with pkgs; [
+    guestfs-tools
+    virtiofsd
+  ];
 
   networking.firewall.trustedInterfaces = [ "virbr0" ];
 }
