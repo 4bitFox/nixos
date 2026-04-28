@@ -49,7 +49,7 @@ in
       geany
 #      winboat
       easyeffects
-      alpaca # broken python
+      # alpaca # broken python
       vesktop
       woeusb-ng
       freecad
