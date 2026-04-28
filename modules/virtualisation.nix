@@ -10,6 +10,9 @@
         package = pkgs.qemu_kvm;
         runAsRoot = true;
         swtpm.enable = true;
+        vhostUserPackages = with pkgs; [
+          virtiofsd
+        ];
       };
       onBoot = "ignore";
       onShutdown = "shutdown";
@@ -28,7 +31,6 @@
 
   environment.systemPackages = with pkgs; [
     guestfs-tools
-    virtiofsd
   ];
 
   networking.firewall.trustedInterfaces = [ "virbr0" ];
