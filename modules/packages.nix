@@ -167,4 +167,6 @@
   };
 
   documentation.nixos.enable = false;
+
+  systemd.extraConfig = "DefaultLimitNOFILE=1024:1048576"; # TEST!!!!
 }
