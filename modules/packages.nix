@@ -168,5 +168,10 @@
 
   documentation.nixos.enable = false;
 
-  systemd.extraConfig = "DefaultLimitNOFILE=1024:1048576"; # TEST!!!!
+  ### fix ulimit 'too many open files' ###
+  security.pam.loginLimits = [
+    { domain = "*"; type = "soft"; item = "nofile"; value = "65536"; }
+    { domain = "*"; type = "hard"; item = "nofile"; value = "1048576"; }
+  ];
+
 }
