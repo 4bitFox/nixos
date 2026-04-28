@@ -44,6 +44,7 @@
         ./modules/declarative-flatpak.nix
         ./modules/impermanence.nix
         ./modules/partitions.nix
+        ./modules/security.nix
       ] ++ hostModules;
     };
   in {
