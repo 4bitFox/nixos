@@ -34,9 +34,6 @@
       android-tools # replaces "programs.adb.enable = true;"
       nix-output-monitor
     ];
-    variables = {
-      RUSTICL_ENABLE = "radeonsi";
-    };
   };
 
   programs = {

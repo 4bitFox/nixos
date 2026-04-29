@@ -35,6 +35,13 @@
     };
   };
 
+  environment = {
+    systemPackages = with pkgs; [   ];
+    variables = {
+      RUSTICL_ENABLE = "radeonsi";
+    };
+  };
+
   nixpkgs.overlays = [
     ### Tuxedo Sirius 16 dual speaker patch ###
     (final: prev: {
