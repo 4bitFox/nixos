@@ -82,7 +82,7 @@
               "vfio"
               "vfio_iommu_type1"
               "kvmfr" # for looking-glass
-            ];
+            ]
           );
           kernelParams = [
             "amd_iommu=on"
