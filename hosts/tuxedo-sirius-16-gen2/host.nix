@@ -66,7 +66,6 @@
       inheritParentConfig = true;
       configuration = {
         system.nixos.tags = [ "gpu-passthrough" ];
-        environment.etc."specialisation".text = "gpu-passthrough";
 
         boot = {
           kernelPatches = [
@@ -77,12 +76,14 @@
             }
           ];
 
-          initrd.kernelModules = lib.filter (m: m != "amdgpu") config.boot.initrd.kernelModules ++ [
-            "vfio_pci"
-            "vfio"
-            "vfio_iommu_type1"
-            "kvmfr" # for looking-glass
-          ];
+          initrd.kernelModules = lib.mkForce (
+            lib.filter (m: m != "amdgpu") config.boot.initrd.kernelModules ++ [ # throw out amdgpu but otherwise inherit kernelModules
+              "vfio_pci"
+              "vfio"
+              "vfio_iommu_type1"
+              "kvmfr" # for looking-glass
+            ];
+          );
           kernelParams = [
             "amd_iommu=on"
             "iommu=pt"
