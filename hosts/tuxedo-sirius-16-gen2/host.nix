@@ -32,6 +32,8 @@
     };
   };
 
+  boot.initrd.kernelModules = [ "amdgpu" ];
+
   environment = {
     systemPackages = with pkgs; [
       radeontop
@@ -75,7 +77,7 @@
             }
           ];
 
-          initrd.kernelModules = [
+          initrd.kernelModules = lib.filter (m: m != "amdgpu") config.boot.initrd.kernelModules [
             "vfio_pci"
             "vfio"
             "vfio_iommu_type1"
