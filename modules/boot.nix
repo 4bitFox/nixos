@@ -6,7 +6,7 @@
   boot = {
     initrd = {
       enable = true;
-      kernelModules = [  ];
+      kernelModules = [ amdgpu ];
       preDeviceCommands = ''
         # Clear
         printf "\033[2J"
