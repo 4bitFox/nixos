@@ -17,7 +17,23 @@
     '';
   };
 
-  services.ollama.package = pkgs.ollama-rocm; # Use AMD GPU for ollama
+  services = {
+    ollama = {
+      enable = true;
+      package = pkgs.ollama-rocm; # Use AMD GPU for ollama
+      loadModels = [
+        # general
+        "llama3.1:8b"
+        "llama3.1:70b"
+        # reasoning
+        "deepseek-r1:32b"
+        "deepseek-r1:70b"
+        # coding
+        "qwen3-coder:30b"
+      ];
+      syncModels = true;
+    };
+  };
 
   nixpkgs.overlays = [
     ### Tuxedo Sirius 16 dual speaker patch ###

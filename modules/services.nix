@@ -32,6 +32,5 @@
       enable = true;
       interval = "weekly";
     };
-    ollama.enable = true;
   };
 }
