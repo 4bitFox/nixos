@@ -32,13 +32,14 @@
         "qwen3-coder:30b"
       ];
       syncModels = true;
-      rocmOverrideGfx = "11.0.3";
+      rocmOverrideGfx = "11.0.2";
     };
   };
 
   environment = {
     systemPackages = with pkgs; [
       radeontop
+      rocmPackages.rocminfo
     ];
     variables = {
       RUSTICL_ENABLE = "radeonsi";
