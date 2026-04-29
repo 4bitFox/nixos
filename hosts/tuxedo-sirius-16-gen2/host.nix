@@ -41,6 +41,7 @@
       inheritParentConfig = true;
       configuration = {
         system.nixos.tags = [ "gpu-passthrough" ];
+        environment.etc."specialisation".text = "gpu-passthrough";
 
         boot = {
           kernelPatches = [
