@@ -26,10 +26,8 @@
       input-remapper
       lynx
       mc
-      radeontop
       screen
       unrar
-      timeshift
       tree
       android-tools # replaces "programs.adb.enable = true;"
       nix-output-monitor
@@ -37,7 +35,6 @@
   };
 
   programs = {
-    virt-manager.enable = true;
     steam = {
       enable = true;
       remotePlay.openFirewall = true;

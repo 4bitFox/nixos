@@ -36,7 +36,9 @@
   };
 
   environment = {
-    systemPackages = with pkgs; [   ];
+    systemPackages = with pkgs; [
+      radeontop
+    ];
     variables = {
       RUSTICL_ENABLE = "radeonsi";
     };
