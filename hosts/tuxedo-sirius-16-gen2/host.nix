@@ -17,7 +17,7 @@
     '';
   };
 
-  services.ollama.package = with pkgs; [ ollama-rocm ]; # Use AMD GPU for ollama
+  services.ollama.package = pkgs.ollama-rocm; # Use AMD GPU for ollama
 
   nixpkgs.overlays = [
     ### Tuxedo Sirius 16 dual speaker patch ###
