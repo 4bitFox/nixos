@@ -24,12 +24,8 @@
       loadModels = [
         # general
         "llama3.1:8b"
-        "llama3.1:70b"
         # reasoning
-        "deepseek-r1:32b"
-        "deepseek-r1:70b"
-        # coding
-        "qwen3-coder:30b"
+        "deepseek-r1:8b"
       ];
       syncModels = true;
       rocmOverrideGfx = "11.0.2";
