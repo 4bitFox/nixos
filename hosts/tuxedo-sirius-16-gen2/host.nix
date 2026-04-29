@@ -32,6 +32,7 @@
         "qwen3-coder:30b"
       ];
       syncModels = true;
+      rocmOverrideGfx = "11.0.3";
     };
   };
 
