@@ -31,6 +31,7 @@
       tree
       android-tools # replaces "programs.adb.enable = true;"
       nix-output-monitor
+      simple-scan
     ];
   };
 
