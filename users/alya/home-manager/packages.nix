@@ -37,7 +37,7 @@ in
       gnome-mahjongg
       vitetris
       quadrapassel
-      luanti
+      # luanti
       parabolic
       soundconverter
       prismlauncher
