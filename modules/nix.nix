@@ -14,7 +14,7 @@
       substitute = true;
       fallback = true;
       # max-jobs = "auto";
-      max-jobs = 1;
+      max-jobs = 4;
       cores = 2;
       keep-going = true;
       sandbox = true;
