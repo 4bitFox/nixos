@@ -13,7 +13,9 @@
       show-trace = true;
       substitute = true;
       fallback = true;
-      max-jobs = "auto";
+      # max-jobs = "auto";
+      max-jobs = 1;
+      cores = 2;
       keep-going = true;
       sandbox = true;
     };
