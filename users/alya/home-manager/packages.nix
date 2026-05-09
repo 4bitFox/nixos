@@ -60,6 +60,7 @@ in
      # gimp
      # hyprpicker
      # wl-clip-persist
+     vulnix
       (python3.withPackages (python-pkgs: with python-pkgs; [
         rich
         numpy
