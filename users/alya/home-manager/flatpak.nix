@@ -24,25 +24,19 @@
       "flathub:app/com.github.jeromerobert.pdfarranger/x86_64/stable"
       "flathub:app/com.github.k4zmu2a.spacecadetpinball/x86_64/stable"
 #      "flathub:app/com.github.tchx84.Flatseal/x86_64/stable"
-#      "flathub:app/com.github.wwmm.easyeffects/x86_64/stable"
-#      "flathub:app/com.github.xournalpp.xournalpp/x86_64/stable"
 #      "flathub:app/com.google.AndroidStudio/x86_64/stable"
 
-      #"flathub:app/com.jeffser.Alpaca/x86_64/stable"
-      #"flathub:app/com.jeffser.Alpaca.Plugins.AMD/x86_64/stable"
-      #"flathub:app/com.jeffser.Alpaca.Plugins.Ollama/x86_64/stable"
 
-      #"flathub:app/com.obsproject.Studio/x86_64/stable"
-      #"flathub:app/com.thincast.client/x86_64/stable"
+      "flathub:app/com.obsproject.Studio/x86_64/stable"
+      "flathub:app/com.thincast.client/x86_64/stable"
 #      "flathub:app/com.valvesoftware.Steam/x86_64/stable"
 
 #      "flathub:app/dev.lasheen.qr/x86_64/stable"
-#      "flathub:app/dev.qwery.AddWater/x86_64/stable"
       "flathub:app/dev.vencord.Vesktop/x86_64/stable"
 
-      #"flathub:app/io.github.ec_.Quake3e.OpenArena/x86_64/stable"
+      "flathub:app/io.github.ec_.Quake3e.OpenArena/x86_64/stable"
 #      "flathub:app/io.github.quodlibet.QuodLibet/x86_64/stable"
-      #"flathub:app/io.github.ungoogled_software.ungoogled_chromium/x86_64/stable"
+      "flathub:app/io.github.ungoogled_software.ungoogled_chromium/x86_64/stable"
 
       #"flathub:app/moe.launcher.sleepy-launcher/x86_64/stable"
 
