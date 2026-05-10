@@ -17,7 +17,6 @@
       "flathub:app/moe.launcher.the-honkers-railway-launcher/x86_64/stable"
       "flathub:app/moe.launcher.an-anime-game-launcher/x86_64/stable"
       "flathub:app/us.zoom.Zoom/x86_64/stable"
-      #"flathub:app/org.gnome.Evince/x86_64/stable"
       
       "flathub:app/com.belmoussaoui.Authenticator/x86_64/stable"
       "flathub:app/com.belmoussaoui.Decoder/x86_64/stable"
@@ -29,27 +28,23 @@
 
       "flathub:app/com.obsproject.Studio/x86_64/stable"
       "flathub:app/com.thincast.client/x86_64/stable"
-#      "flathub:app/com.valvesoftware.Steam/x86_64/stable"
 
 #      "flathub:app/dev.lasheen.qr/x86_64/stable"
       "flathub:app/dev.vencord.Vesktop/x86_64/stable"
 
       "flathub:app/io.github.ec_.Quake3e.OpenArena/x86_64/stable"
-#      "flathub:app/io.github.quodlibet.QuodLibet/x86_64/stable"
       "flathub:app/io.github.ungoogled_software.ungoogled_chromium/x86_64/stable"
 
-      #"flathub:app/moe.launcher.sleepy-launcher/x86_64/stable"
+      "flathub:app/moe.launcher.sleepy-launcher/x86_64/stable"
 
-      #"flathub:app/net.lutris.Lutris/x86_64/stable"
-#      "flathub:app/net.nokyan.Resources/x86_64/stable"
 
-      #"flathub:app/org.blender.Blender/x86_64/stable"
-      #"flathub:app/org.darktable.Darktable/x86_64/stable"
-      #"flathub:app/org.fedoraproject.MediaWriter/x86_64/stable"
-      #"flathub:app/org.freecad.FreeCAD/x86_64/stable"
+      "flathub:app/org.blender.Blender/x86_64/stable"
+      "flathub:app/org.darktable.Darktable/x86_64/stable"
+      "flathub:app/org.fedoraproject.MediaWriter/x86_64/stable"
+      "flathub:app/org.freecad.FreeCAD/x86_64/stable"
 
-      #"flathub:app/org.geogebra.GeoGebra/x86_64/stable"
-      #"flathub:app/org.gimp.GIMP/x86_64/stable"
+      "flathub:app/org.geogebra.GeoGebra/x86_64/stable"
+      "flathub:app/org.gimp.GIMP/x86_64/stable"
 
 #      "flathub:app/org.gnome.Calculator/x86_64/stable"
 #      "flathub:app/org.gnome.Calendar/x86_64/stable"
