@@ -38,7 +38,7 @@
 
 #      "flathub:app/dev.lasheen.qr/x86_64/stable"
 #      "flathub:app/dev.qwery.AddWater/x86_64/stable"
-      #"flathub:app/dev.vencord.Vesktop/x86_64/stable"
+      "flathub:app/dev.vencord.Vesktop/x86_64/stable"
 
       #"flathub:app/io.github.ec_.Quake3e.OpenArena/x86_64/stable"
 #      "flathub:app/io.github.quodlibet.QuodLibet/x86_64/stable"
