@@ -13,10 +13,10 @@
       show-trace = true;
       substitute = true;
       fallback = true;
-      max-jobs = "auto";
-      # max-jobs = 4;
-      cores = 0;
-      # cores = 2;
+      # max-jobs = "auto";
+      max-jobs = 4;
+      # cores = 0;
+      cores = 2;
       keep-going = true;
       sandbox = true;
     };

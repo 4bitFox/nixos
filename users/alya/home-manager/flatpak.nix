@@ -44,7 +44,7 @@
       "flathub:app/org.freecad.FreeCAD/x86_64/stable"
 
       "flathub:app/org.geogebra.GeoGebra/x86_64/stable"
-      "flathub:app/org.gimp.GIMP/x86_64/stable"
+      # "flathub:app/org.gimp.GIMP/x86_64/stable"
 
       "flathub:app/org.gnome.Chess/x86_64/stable"
       "flathub:app/org.gnome.Mahjongg/x86_64/stable"
