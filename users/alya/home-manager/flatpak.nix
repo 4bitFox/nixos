@@ -46,9 +46,6 @@
       "flathub:app/org.geogebra.GeoGebra/x86_64/stable"
       "flathub:app/org.gimp.GIMP/x86_64/stable"
 
-#      "flathub:app/org.gnome.Calculator/x86_64/stable"
-#      "flathub:app/org.gnome.Calendar/x86_64/stable"
-#      "flathub:app/org.gnome.Characters/x86_64/stable"
 #      "flathub:app/org.gnome.Chess/x86_64/stable"
 #      "flathub:app/org.gnome.Connections/x86_64/stable"
 #      "flathub:app/org.gnome.Contacts/x86_64/stable"
@@ -71,22 +68,19 @@
 #      "flathub:app/org.gnome.clocks/x86_64/stable"
 #      "flathub:app/org.gnome.font-viewer/x86_64/stable"
 
-      #"flathub:app/org.kde.kdenlive/x86_64/stable"
+      "flathub:app/org.kde.kdenlive/x86_64/stable"
       #"flathub:app/org.kde.krita/x86_64/stable"
 
-      #"flathub:app/org.luanti.luanti/x86_64/stable"
+      "flathub:app/org.luanti.luanti/x86_64/stable"
       #"flathub:app/org.mozilla.Thunderbird/x86_64/stable"
-      #"flathub:app/org.nickvision.tubeconverter/x86_64/stable"
+      "flathub:app/org.nickvision.tubeconverter/x86_64/stable"
       #"flathub:app/org.octave.Octave/x86_64/stable"
-      #"flathub:app/org.onlyoffice.desktopeditors/x86_64/stable"
-      #"flathub:app/org.openscad.OpenSCAD/x86_64/stable"
-      #"flathub:app/org.prismlauncher.PrismLauncher/x86_64/stable"
-      #"flathub:app/org.soundconverter.SoundConverter/x86_64/stable"
-      #"flathub:app/org.texstudio.TeXstudio/x86_64/stable"
-      #"flathub:app/org.torproject.torbrowser-launcher/x86_64/stable"
-#      "flathub:app/org.videolan.VLC/x86_64/stable"
+      "flathub:app/org.openscad.OpenSCAD/x86_64/stable"
+      "flathub:app/org.prismlauncher.PrismLauncher/x86_64/stable"
+      "flathub:app/org.soundconverter.SoundConverter/x86_64/stable"
+      "flathub:app/org.torproject.torbrowser-launcher/x86_64/stable"
 
-      #"flathub:app/sh.ppy.osu/x86_64/stable"
+      "flathub:app/sh.ppy.osu/x86_64/stable"
     ];
   };
 
