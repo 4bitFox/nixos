@@ -6,6 +6,13 @@
     ./hardware-configuration.nix
   ];
 
+  nix = {
+    settings = {
+      max-jobs = 4;
+      cores = 2;
+    };
+  };
+
 
   hardware = {
     tuxedo-drivers.enable = true;
