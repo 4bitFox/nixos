@@ -43,6 +43,12 @@
     initrd = {
       postDeviceCommands = lib.mkAfter ''
         clear
+
+        if [ -e /sys/power/resume ] && [ "$(cat /sys/power/resume)" != "0:0" ]; then
+          echo "HIBERNATION RESUME DETECTED, SKIPPING ROOT RESET"
+          sleep 10
+        fi
+
         echo "                                              "
         echo "                                              "
         echo "                                              "
