@@ -33,7 +33,6 @@
       "flathub:app/dev.vencord.Vesktop/x86_64/stable"
 
       "flathub:app/io.github.ec_.Quake3e.OpenArena/x86_64/stable"
-      "flathub:app/io.github.ungoogled_software.ungoogled_chromium/x86_64/stable"
 
       "flathub:app/moe.launcher.sleepy-launcher/x86_64/stable"
 

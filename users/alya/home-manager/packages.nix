@@ -31,10 +31,11 @@ in
       easyeffects
       alpaca
       woeusb-ng
-     kdePackages.kdenlive
+      ungoogled-chromium
+      kdePackages.kdenlive
      # openscad
      # tor-browser
-     gimp
+      gimp
       hyprpicker
       wl-clip-persist
       (python3.withPackages (python-pkgs: with python-pkgs; [
