@@ -95,12 +95,16 @@
         mkdir /mnt/@/boot
         mkdir /mnt/@/boot/efi
         mkdir /mnt/@/mnt #optional but I like to have this directory :-)
+        echo "SYSTEM IS FRESH! :-D"
+        
+        else
+          echo "ROOT WAS NOT MARKED FOR DELETION AND WILL THEREFORE NOT BE WIPED!"
+
+        fi
+
         echo "UNMOUNTING ROOTFS..."
         umount /mnt
-        echo "SYSTEM IS FRESH! :-D"
         echo ""
-        
-        fi
       '';
     };
   };
