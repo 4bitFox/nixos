@@ -42,13 +42,12 @@
   boot = {
     initrd = {
       postDeviceCommands = lib.mkAfter ''
-        clear
-
-        if [ -e /sys/power/resume ] && [ "$(cat /sys/power/resume)" != "0:0" ]; then
-          echo "HIBERNATION RESUME DETECTED, SKIPPING ROOT RESET"
-          sleep 10
-        fi
-
+        echo "MOUNTING ROOTFS..."
+        mkdir /mnt
+        mount -t btrfs /dev/mapper/GLaDOS_lvm-GLaDOS_rootfs /mnt
+        
+        if [ -f /mnt/__WIPE_ROOT_ON_BOOT ]; then
+        
         echo "                                              "
         echo "                                              "
         echo "                                              "
@@ -78,9 +77,6 @@
         echo "                                              "
         echo "                                              "
         echo "                                              "
-        echo "MOUNTING ROOTFS..."
-        mkdir /mnt
-        mount -t btrfs /dev/mapper/GLaDOS_lvm-GLaDOS_rootfs /mnt
         echo "DELETING ROOT..."
         btrfs subvolume delete /mnt/@/srv
         btrfs subvolume delete /mnt/@/var/lib/portables
@@ -103,6 +99,8 @@
         umount /mnt
         echo "SYSTEM IS FRESH! :-D"
         echo ""
+        
+        fi
       '';
     };
   };
