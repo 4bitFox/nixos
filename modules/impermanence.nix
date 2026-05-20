@@ -139,8 +139,10 @@
       };
       wipe_root_on_next_boot_marker = {
         enable = true;
-        description = "Mars root for deletion on poweroff or reboot";
+        description = "Mark root for deletion on poweroff or reboot";
         wantedBy = ["multi-user.target"];
+        path = [pkgs.util-linux];
+        unitConfig.defaultDependencies = true;
         serviceConfig = {
           Type = "oneshot";
           RemainAfterExit = true;
