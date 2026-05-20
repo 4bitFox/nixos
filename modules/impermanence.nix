@@ -47,59 +47,59 @@
         mount -t btrfs /dev/mapper/GLaDOS_lvm-GLaDOS_rootfs /mnt
         
         if [ -f /mnt/__WIPE_ROOT_ON_BOOT ]; then
-        
-        echo "                                              "
-        echo "                                              "
-        echo "                                              "
-        printf "\033[93m"
-        echo "                          -\$-                 "
-        echo "                         .H##H,               "
-        echo "                        +######+              "
-        echo "                     .+#########H.            "
-        echo "                   -\$############@.           "
-        echo "                 =H###############@  -X:      "
-        echo "               .\$##################:  @#@-    "
-        echo "          ,;  .M###################;  H###;   "
-        echo "        ;@#:  @###################@  ,#####:  "
-        echo "      -M###.  M#################@.  ;######H  "
-        echo "      M####-  +###############$   =@#######X  "
-        echo "      H####$   -M###########+   :#########M,  "
-        echo "       /####X-   =########%   :M########@/.   "
-        echo "         ,;%H@X;   .\$###X   :##MM@%+;:-       "
-        echo "                      ..                      "
-        printf "\033[31m"
-        echo "       -/;:-,.              ,,-==+M########H  "
-        echo "      -##################@HX%%+%%$%%%+:,,     "
-        echo "         .-/H%%%+%%\$H@###############M@+=:/+: "
-        echo "     /XHX%:#####MH%=    ,---:;;;;/&&XHM,:###$ "
-        echo "     \$@#MX %+;-                               "
-        printf "\033[0m"
-        echo "                                              "
-        echo "                                              "
-        echo "                                              "
-        echo "DELETING ROOT..."
-        btrfs subvolume delete /mnt/@/srv
-        btrfs subvolume delete /mnt/@/var/lib/portables
-        btrfs subvolume delete /mnt/@/var/lib/machines
-        btrfs subvolume delete /mnt/@/var/tmp
-        btrfs subvolume delete /mnt/@/@fresh 2>/dev/null # for when deleting fails and this gets created here...
-        btrfs subvolume delete /mnt/@
-        echo "RECREATING ROOT..."
-        btrfs subvolume snapshot /mnt/@fresh /mnt/@
-        echo "POPULATING ROOT FOR MOUNTPOINTS..."
-        mkdir /mnt/@/home
-        mkdir /mnt/@/nix
-        mkdir /mnt/@/persist
-        mkdir /mnt/@/var
-        mkdir /mnt/@/var/log
-        mkdir /mnt/@/boot
-        mkdir /mnt/@/boot/efi
-        mkdir /mnt/@/mnt #optional but I like to have this directory :-)
-        echo "SYSTEM IS FRESH! :-D"
-        
+          echo "ROOT WAS MARKED FOR DELETION!"
+          echo "                                              "
+          echo "                                              "
+          echo "                                              "
+          printf "\033[93m"
+          echo "                          -\$-                 "
+          echo "                         .H##H,               "
+          echo "                        +######+              "
+          echo "                     .+#########H.            "
+          echo "                   -\$############@.           "
+          echo "                 =H###############@  -X:      "
+          echo "               .\$##################:  @#@-    "
+          echo "          ,;  .M###################;  H###;   "
+          echo "        ;@#:  @###################@  ,#####:  "
+          echo "      -M###.  M#################@.  ;######H  "
+          echo "      M####-  +###############$   =@#######X  "
+          echo "      H####$   -M###########+   :#########M,  "
+          echo "       /####X-   =########%   :M########@/.   "
+          echo "         ,;%H@X;   .\$###X   :##MM@%+;:-       "
+          echo "                      ..                      "
+          printf "\033[31m"
+          echo "       -/;:-,.              ,,-==+M########H  "
+          echo "      -##################@HX%%+%%$%%%+:,,     "
+          echo "         .-/H%%%+%%\$H@###############M@+=:/+: "
+          echo "     /XHX%:#####MH%=    ,---:;;;;/&&XHM,:###$ "
+          echo "     \$@#MX %+;-                               "
+          printf "\033[0m"
+          echo "                                              "
+          echo "                                              "
+          echo "                                              "
+          echo "DELETING ROOT..."
+          btrfs subvolume delete /mnt/@/srv
+          btrfs subvolume delete /mnt/@/var/lib/portables
+          btrfs subvolume delete /mnt/@/var/lib/machines
+          btrfs subvolume delete /mnt/@/var/tmp
+          btrfs subvolume delete /mnt/@/@fresh 2>/dev/null # for when deleting fails and this gets created here...
+          btrfs subvolume delete /mnt/@
+          echo "RECREATING ROOT..."
+          btrfs subvolume snapshot /mnt/@fresh /mnt/@
+          echo "POPULATING ROOT FOR MOUNTPOINTS..."
+          mkdir /mnt/@/home
+          mkdir /mnt/@/nix
+          mkdir /mnt/@/persist
+          mkdir /mnt/@/var
+          mkdir /mnt/@/var/log
+          mkdir /mnt/@/boot
+          mkdir /mnt/@/boot/efi
+          mkdir /mnt/@/mnt #optional but I like to have this directory :-)
+          echo "REMOVIMG 'WIPE ROOT ON BOOT' MARKER"
+          rm /mnt/__WIPE_ROOT_ON_BOOT
+          echo "SYSTEM IS FRESH! :-D"
         else
           echo "ROOT WAS NOT MARKED FOR DELETION AND WILL THEREFORE NOT BE WIPED!"
-
         fi
 
         echo "UNMOUNTING ROOTFS..."
@@ -121,19 +121,37 @@
   };
 
   systemd = {
-    services."etc_shadow_persistence" = {
-      enable = true;
-      description = "Persist /etc/shadow on shutdown.";
-      wantedBy = ["multi-user.target"];
-      path = [pkgs.util-linux];
-      unitConfig.defaultDependencies = true;
-      serviceConfig = {
-        Type = "oneshot";
-        RemainAfterExit = true;
-        # Service is stopped before shutdown
-        ExecStop = pkgs.writeShellScript "persist_etc_shadow" ''
-          cp /etc/shadow /persist/etc/shadow
-        '';
+    services = {
+      etc_shadow_persistence = {
+        enable = true;
+        description = "Persist /etc/shadow on shutdown.";
+        wantedBy = ["multi-user.target"];
+        path = [pkgs.util-linux];
+        unitConfig.defaultDependencies = true;
+        serviceConfig = {
+          Type = "oneshot";
+          RemainAfterExit = true;
+          # Service is stopped before shutdown
+          ExecStop = pkgs.writeShellScript "persist_etc_shadow" ''
+            cp /etc/shadow /persist/etc/shadow
+          '';
+        };
+      };
+      wipe_root_on_next_boot_marker = {
+        enable = true;
+        description = "Mars root for deletion on poweroff or reboot";
+        wantedBy = ["multi-user.target"];
+        serviceConfig = {
+          Type = "oneshot";
+          RemainAfterExit = true;
+          # Service is stopped before shutdown
+          ExecStop = pkgs.writeShellScript "wipe_root_on_next_boot" ''
+            umount -Rq /mnt
+            mount -t btrfs /dev/mapper/GLaDOS_lvm-GLaDOS_rootfs /mnt
+            touch /mnt/__WIPE_ROOT_ON_BOOT
+            umount /mnt
+          '';
+        };
       };
     };
     tmpfiles.rules = [
