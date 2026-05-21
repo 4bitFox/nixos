@@ -46,6 +46,7 @@
         mkdir /mnt
         mount -t btrfs /dev/mapper/GLaDOS_lvm-GLaDOS_rootfs /mnt
         
+        echo "CHECKING IF ROOT IS MARKED FOR DELETION..."
         if [ -f /mnt/__WIPE_ROOT_ON_BOOT ]; then
           echo "ROOT WAS MARKED FOR DELETION!"
           echo "                                              "
@@ -100,6 +101,32 @@
           echo "SYSTEM IS FRESH! :-D"
         else
           echo "ROOT WAS NOT MARKED FOR DELETION AND WILL THEREFORE NOT BE WIPED!"
+          echo "                                              "
+          echo "                                              "
+          echo "                                              "
+          echo "            \#+ @      \# \#              M#@    "
+          echo "      .    .X  X.%##@;# \#   +@#######X. @H%   "
+          echo "        ,==.   ,######M+  -#####%M####M-    \# "
+          echo "       :H##M%:=##+ .M##M,;#####/+#######% ,M# "
+          echo "      .M########=  =@#@.=#####M=M#######=  X# "
+          echo "      :@@MMM##M.  -##M.,#######M#######. =  M "
+          echo "                  @##..###:.    .H####. @@ X, "
+          echo "        \############: \###,/####;  /##= @#. M  "
+          echo "                ,M## ;##,@#M;/M#M  @# X#% X#  "
+          echo "     .%=   \######M## \##.M#:   ./#M ,M \#M ,#$  "
+          echo "     \##/         \$## \#+;#: \#### ;#/ M M- @# : "
+          echo "     \#+ \#M@MM###M-;M \#:\$#-##\$H# .#X @ + \$#. \# "
+          echo "           \######/.: \#%=# M#:MM./#.-#  @#: H# "
+          echo "     +,.=   @###: /@ %#,@  \##@X \#,-#@.##% .@# "
+          echo "     \#####+;/##/ @##  @#,+       /#M    . X,  "
+          echo "        ;###M#@ M###H .#M-     ,##M  ;@@; \### "
+          echo "        .M#M##H ;####X ,@#######M/ -M###$  -H "
+          echo "         .M###%  X####H  .@@MM@;  ;@#M@       "
+          echo "           H#M    /@####/      ,++.  / ==-,   "
+          echo "                    ,=/:, .+X@MMH@#H  \#####$= "
+          echo "                                              "
+          echo "                                              "
+          echo "                                              "
         fi
 
         echo "UNMOUNTING ROOTFS..."
