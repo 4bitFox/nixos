@@ -31,10 +31,10 @@ in
       easyeffects
       alpaca
       woeusb-ng
-      ungoogled-chromium
+      # ungoogled-chromium
       kdePackages.kdenlive
-     # openscad
-     # tor-browser
+      # openscad
+      # tor-browser
       gimp
       hyprpicker
       wl-clip-persist
