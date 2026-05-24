@@ -63,6 +63,7 @@
       "flathub:app/org.torproject.torbrowser-launcher/x86_64/stable"
 
       "flathub:app/sh.ppy.osu/x86_64/stable"
+      "flathub:app/com.usebottles.bottles/x86_64/stable"
     ];
   };
 

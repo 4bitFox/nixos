@@ -38,7 +38,6 @@ in
       gimp
       hyprpicker
       wl-clip-persist
-      bottles
       (python3.withPackages (python-pkgs: with python-pkgs; [
         rich
         numpy
