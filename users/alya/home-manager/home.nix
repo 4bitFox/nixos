@@ -83,8 +83,8 @@
   
   qt = {
     enable = true;
-    platformTheme = "gnome";
-    # style.name = "kvantum";
+    platformTheme = "qtct";
+    style.name = "kvantum";
   };
 
   dconf.settings = {
