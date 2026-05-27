@@ -26,6 +26,8 @@
       adw-gtk3
       fastfetch
       gnome-software
+      kvantum
+      rose-pine-kvantum
     ];
     pointerCursor = {
       # name = "catppuccin-latte-mauve-cursors";
@@ -85,9 +87,6 @@
     enable = true;
     platformTheme = "qtct";
     style.name = "kvantum";
-    kvantum.themes = with pkgs; [
-      rose-pine-kvantum
-    ];
   };
 
   dconf.settings = {
