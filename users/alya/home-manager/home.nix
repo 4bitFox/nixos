@@ -80,6 +80,12 @@
       ### force violet folders for papirus icon theme (end) ###
     };
   };
+  
+  qt = {
+    enable = true;
+    platformTheme = "gnome";
+    # style.name = "kvantum";
+  };
 
   dconf.settings = {
     "org/gnome/desktop/interface" = {
