@@ -38,6 +38,7 @@ in
       gimp
       hyprpicker
       wl-clip-persist
+      doublecmd
       (python3.withPackages (python-pkgs: with python-pkgs; [
         rich
         numpy
