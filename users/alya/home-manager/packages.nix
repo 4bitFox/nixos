@@ -39,6 +39,7 @@ in
       hyprpicker
       wl-clip-persist
       doublecmd
+      super-slicer
       (python3.withPackages (python-pkgs: with python-pkgs; [
         rich
         numpy
