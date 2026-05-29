@@ -26,8 +26,6 @@
       adw-gtk3
       fastfetch
       gnome-software
-      kvantum
-      rose-pine-kvantum
     ];
     pointerCursor = {
       # name = "catppuccin-latte-mauve-cursors";
