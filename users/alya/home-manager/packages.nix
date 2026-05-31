@@ -38,7 +38,6 @@ in
       gimp
       hyprpicker
       wl-clip-persist
-      doublecmd
       super-slicer
       (python3.withPackages (python-pkgs: with python-pkgs; [
         rich
@@ -54,8 +53,11 @@ in
   
   file = {
       ".local/opt/doublecmd" = {
-        source = ./homefiles/.local/opt/doublecmd;
+        source = ./homefiles/.local/opt/doublecmd/doublecmd_qt6_x86_64;
         recursive = true;
+      };
+      ".local/share/applications/doublecmd.desktop" = {
+        source = ./homefiles/.local/opt/doublecmd/doublecmd.desktop;
       };
     };
   };
