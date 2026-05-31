@@ -16,6 +16,8 @@
     systemPackages = with pkgs; [
       kdePackages.polkit-kde-agent-1
       xwayland-satellite
+      libsForQt5.qtstyleplugin-kvantum
+      qt6Packages.qtstyleplugin-kvantum
     ];
   };
 

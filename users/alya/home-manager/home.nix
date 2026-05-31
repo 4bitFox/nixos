@@ -22,13 +22,10 @@
     homeDirectory = "/home/alya";
 
     packages = with pkgs; [
-      # themeing
       gnome-themes-extra
       adw-gtk3
-      libsForQt5.qtstyleplugin-kvantum
-      qt6Packages.qtstyleplugin-kvantum
-      hicolor-icon-theme
-      # stuff
+      # libsForQt5.qtstyleplugin-kvantum
+      # qt6Packages.qtstyleplugin-kvantum
       fastfetch
       gnome-software
     ];
@@ -60,8 +57,6 @@
   gtk = {
     enable = true;
     theme = {
-      # name = "Adwaita-dark";
-      # package = pkgs.gnome-themes-extra;
       name = "rose-pine";
       package = pkgs.rose-pine-gtk-theme;
     };
@@ -92,7 +87,7 @@
     enable = true;
     platformTheme.name = "qtct";
     style = {
-      #name = "kvantum";
+      name = "kvantum";
       package = pkgs.rose-pine-kvantum;
     };
   };
