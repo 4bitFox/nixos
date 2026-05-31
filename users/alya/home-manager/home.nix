@@ -27,7 +27,6 @@
       adw-gtk3
       libsForQt5.qtstyleplugin-kvantum
       qt6Packages.qtstyleplugin-kvantum
-      #rose-pine-kvantum
       hicolor-icon-theme
       # stuff
       fastfetch
@@ -93,7 +92,7 @@
     enable = true;
     platformTheme.name = "qtct";
     style = {
-      name = "kvantum";
+      #name = "kvantum";
       package = pkgs.rose-pine-kvantum;
     };
   };
