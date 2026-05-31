@@ -22,12 +22,12 @@
     homeDirectory = "/home/alya";
 
     packages = with pkgs; [
-      # GTK themeing
+      # themeing
       gnome-themes-extra
       adw-gtk3
-      # kvantum themeing
       libsForQt5.qtstyleplugin-kvantum
       rose-pine-kvantum
+      hicolor-icon-theme
       # stuff
       fastfetch
       gnome-software
