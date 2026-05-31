@@ -59,6 +59,7 @@
         qt6.qtbase
         glib
         dbus
+        mesa
       ];
     };
   };
