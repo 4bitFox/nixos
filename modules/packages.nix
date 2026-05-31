@@ -55,7 +55,7 @@
         gtk2
         gtk3
         gtk4
-        qt5.qtbase
+        libsForQt5.qt5.qtbase
         qt6.qtbase
         glib
         dbus
