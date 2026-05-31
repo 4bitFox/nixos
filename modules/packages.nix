@@ -57,6 +57,7 @@
         gtk4
         qt5.qtbase
         qt6.qtbase
+        glib
       ];
     };
   };
