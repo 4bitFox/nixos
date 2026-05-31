@@ -63,6 +63,7 @@
         atk
         pango
         gdk-pixbuf
+        cairo
       ];
     };
   };
