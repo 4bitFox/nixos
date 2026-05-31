@@ -58,6 +58,7 @@
         qt5.qtbase
         qt6.qtbase
         glib
+        dbus
       ];
     };
   };
