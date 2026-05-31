@@ -94,11 +94,14 @@
   qt = {
     enable = true;
     platformTheme.name = "qtct";
-    style.name = "kvantum";
+    style = {
+      name = "kvantum";
+      package = pkgs.rose-pine-kvantum;
+    };
   };
   
-  xdg.dataFile."Kvantum/rose-pine-moon-iris".source =
-    "${pkgs.rose-pine-kvantum}/share/Kvantum/themes/rose-pine-moon-iris";
+  #xdg.dataFile."Kvantum/rose-pine-moon-iris".source =
+  #  "${pkgs.rose-pine-kvantum}/share/Kvantum/themes/rose-pine-moon-iris";
 
   xdg.configFile."Kvantum/kvantum.kvconfig".text = ''
     [General]
