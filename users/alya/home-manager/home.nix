@@ -25,7 +25,7 @@
       gnome-themes-extra
       adw-gtk3
       libsForQt5.qtstyleplugin-kvantum
-      yqt6Packages.qtstyleplugin-kvantum
+      qt6Packages.qtstyleplugin-kvantum
       libsForQt5.qt5ct
       kdePackages.qt6ct
       fastfetch
