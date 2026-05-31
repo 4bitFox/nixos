@@ -60,6 +60,7 @@
         glib
         dbus
         libGL
+        atk
       ];
     };
   };
