@@ -17,6 +17,8 @@
                 <FileSource Type="FileSystem"/>
                 <Paths>
                   <Path Filename="..">/etc/nixos/users/alya/home-manager/homefiles/.local/opt/doublecmd/doublecmd_qt6_x86_64/</Path>
+                  <Path Filename="doublecmd_qt6_x86_64">/etc/nixos/users/alya/home-manager/homefiles/.local/opt/doublecmd/</Path>
+                  <Path Filename="highlighters">/etc/nixos/users/alya/home-manager/homefiles/.local/opt/doublecmd/doublecmd_qt6_x86_64/</Path>
                 </Paths>
               </Entry>
             </History>
@@ -41,6 +43,29 @@
                 <FileSource Type="FileSystem"/>
                 <Paths>
                   <Path Filename="..">/etc/nixos/users/alya/home-manager/homefiles/.local/opt/doublecmd/doublecmd_qt6_x86_64/</Path>
+                  <Path Filename="..">/boot/</Path>
+                  <Path Filename="..">/var/lib/systemd/coredump/</Path>
+                  <Path Filename="..">/var/lib/docker/</Path>
+                  <Path Filename="..">/var/lib/flatpak/</Path>
+                  <Path Filename="..">/home/</Path>
+                  <Path Filename="..">/var/lib/libvirt/</Path>
+                  <Path Filename="..">/var/log/</Path>
+                  <Path Filename="..">/var/lib/NetworkManager/</Path>
+                  <Path Filename="..">/nix/</Path>
+                  <Path Filename="..">/var/lib/nixos/</Path>
+                  <Path Filename="..">/etc/nixos/users/alya/home-manager/homefiles/.local/opt/doublecmd/doublecmd_qt6_x86_64/</Path>
+                  <Path Filename="..">/etc/nixos/</Path>
+                  <Path Filename="..">/var/lib/private/ollama/</Path>
+                  <Path Filename="..">/boot/</Path>
+                  <Path Filename="..">/home/</Path>
+                  <Path Filename="..">/var/log/</Path>
+                  <Path Filename="..">/nix/store/</Path>
+                  <Path Filename="..">/persist/</Path>
+                  <Path Filename="..">/nix/store/</Path>
+                  <Path Filename="..">/persist/</Path>
+                  <Path Filename="..">/nix/store/</Path>
+                  <Path Filename="..">/nix/</Path>
+                  <Path Filename="bin">/</Path>
                 </Paths>
               </Entry>
             </History>

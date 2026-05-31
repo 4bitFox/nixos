@@ -220,7 +220,7 @@
     <LoadIconsSeparately>True</LoadIconsSeparately>
     <DelayLoadingTabs>True</DelayLoadingTabs>
     <HighlightUpdatedFiles>True</HighlightUpdatedFiles>
-    <DriveBlackList/>
+    <DriveBlackList>/var/lib/*;/boot;/home;/var/log;/etc/*;/persist;/nix;/nix/store</DriveBlackList>
     <DriveBlackListUnmounted>False</DriveBlackListUnmounted>
   </Behaviours>
   <Tools>
@@ -332,7 +332,7 @@
   </ToolTips>
   <Layout>
     <MainMenu>True</MainMenu>
-    <ButtonBar Enabled="True">
+    <ButtonBar Enabled="False">
       <FlatIcons>True</FlatIcons>
       <ButtonHeight>24</ButtonHeight>
       <IconSize>16</IconSize>
@@ -349,7 +349,7 @@
       <ShowCaptions>False</ShowCaptions>
       <ReportErrorWithCommands>False</ReportErrorWithCommands>
     </MiddleBar>
-    <DriveBar1>True</DriveBar1>
+    <DriveBar1>False</DriveBar1>
     <DriveBar2>True</DriveBar2>
     <DriveBarFlat>True</DriveBarFlat>
     <DrivesListButton Enabled="True">
@@ -362,7 +362,7 @@
     <CurrentDirectory>True</CurrentDirectory>
     <TabHeader>True</TabHeader>
     <StatusBar>True</StatusBar>
-    <CmdLine>True</CmdLine>
+    <CmdLine>False</CmdLine>
     <LogWindow>False</LogWindow>
     <TermWindow>False</TermWindow>
     <KeyButtons>True</KeyButtons>
@@ -372,7 +372,7 @@
     <ProgressInMenuBar>False</ProgressInMenuBar>
     <PanelOfOperationsInBackground>True</PanelOfOperationsInBackground>
     <HorizontalFilePanels>False</HorizontalFilePanels>
-    <ShortFormatDriveInfo>True</ShortFormatDriveInfo>
+    <ShortFormatDriveInfo>False</ShortFormatDriveInfo>
     <UppercaseDriveLetter>False</UppercaseDriveLetter>
     <ShowColonAfterDrive>False</ShowColonAfterDrive>
   </Layout>
@@ -472,11 +472,11 @@
       <MulRenLogFilename>%DC_CONFIG_PATH%/multirename.log</MulRenLogFilename>
       <MultRenDailyIndividualDirLog>True</MultRenDailyIndividualDirLog>
       <MulRenFilenameWithFullPathInLog>False</MulRenFilenameWithFullPathInLog>
-      <MulRenPathRangeSeparator> - </MulRenPathRangeSeparator>
+      <MulRenPathRangeSeparator>- </MulRenPathRangeSeparator>
     </MultiRename>
   </FileOperations>
   <Tabs>
-    <Options>54033</Options>
+    <Options>49937</Options>
     <CharacterLimit>32</CharacterLimit>
     <Position>0</Position>
     <ActionOnDoubleClick>2</ActionOnDoubleClick>

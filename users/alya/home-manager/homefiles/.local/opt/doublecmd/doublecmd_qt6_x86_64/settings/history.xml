@@ -1,7 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <doublecmd>
   <History>
-    <Navigation/>
+    <Navigation>
+      <Item>/</Item>
+      <Item>/nix/</Item>
+      <Item>/nix/store/</Item>
+      <Item>/persist/</Item>
+      <Item>/var/log/</Item>
+      <Item>/home/</Item>
+      <Item>/boot/</Item>
+      <Item>/var/lib/private/ollama/</Item>
+      <Item>/etc/nixos/</Item>
+      <Item>/etc/nixos/users/alya/home-manager/homefiles/.local/opt/doublecmd/doublecmd_qt6_x86_64/</Item>
+      <Item>/var/lib/nixos/</Item>
+      <Item>/var/lib/NetworkManager/</Item>
+      <Item>/var/lib/libvirt/</Item>
+      <Item>/var/lib/flatpak/</Item>
+      <Item>/var/lib/docker/</Item>
+      <Item>/var/lib/systemd/coredump/</Item>
+      <Item>/etc/nixos/users/alya/home-manager/homefiles/.local/opt/doublecmd/</Item>
+    </Navigation>
     <CommandLine/>
     <FileMask/>
     <VolumeSize/>
