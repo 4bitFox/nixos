@@ -22,11 +22,17 @@
     homeDirectory = "/home/alya";
 
     packages = with pkgs; [
+      # GTK themeing
       gnome-themes-extra
       adw-gtk3
+      # kvantum themeing
+      libsForQt5.qtstyleplugin-kvantum
+      rose-pine-kvantum
+      # stuff
       fastfetch
       gnome-software
     ];
+    
     pointerCursor = {
       # name = "catppuccin-latte-mauve-cursors";
       # package = pkgs.catppuccin-cursors.latteMauve;
@@ -52,6 +58,7 @@
     mpris-proxy.enable = true;
   };
   
+  ### GTK theme ###
   gtk = {
     enable = true;
     theme = {
@@ -80,12 +87,9 @@
       ### force violet folders for papirus icon theme (end) ###
     };
   };
+  ### GTK theme (end) ###
   
   ### kvantunm theme ###
-  home.packages = with pkgs; [
-    libsForQt5.qtstyleplugin-kvantum
-    rose-pine-kvantum
-  ];
   qt = {
     enable = true;
     platformTheme.name = "qtct";
