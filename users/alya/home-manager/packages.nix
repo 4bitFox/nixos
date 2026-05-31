@@ -52,6 +52,7 @@ in
     ];
   
   file = {
+    ### Double Commander Qt6 ###
       ".local/opt/doublecmd" = {
         source = ./homefiles/.local/opt/doublecmd/doublecmd_qt6_x86_64;
         recursive = true;
