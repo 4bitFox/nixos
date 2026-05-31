@@ -2,6 +2,27 @@
 { config, pkgs, lib, ... }:
 
 
+let
+  ### COMPATIBILITY: missing dynamic libraries for unpackaged programs and extra packages for appimage-run ###
+  compatPkgs = with pkgs; [
+    wayland
+    libx11
+    gtk2
+    gtk3
+    gtk4
+    qt5.qtbase
+    qt6.qtbase
+    glib
+    dbus
+    libGL
+    atk
+    pango
+    gdk-pixbuf
+    cairo
+  ];
+  ### COMPATIBILITY (end) ###
+in
+
 {
   imports = [
     ./packages/bash.nix
@@ -66,24 +87,24 @@
     };
     nix-ld = {
       enable = true;
-      libraries = with pkgs; [
+      libraries = compatPkgs; #with pkgs; [
         # Add any missing dynamic libraries for unpackaged programs
         # here, NOT in environment.systemPackages
-        wayland
-        libx11
-        gtk2
-        gtk3
-        gtk4
-        qt5.qtbase
-        qt6.qtbase
-        glib
-        dbus
-        libGL
-        atk
-        pango
-        gdk-pixbuf
-        cairo
-      ];
+        #wayland
+        #libx11
+        #gtk2
+        #gtk3
+        #gtk4
+        #qt5.qtbase
+        #qt6.qtbase
+        #glib
+        #dbus
+        #libGL
+        #atk
+        #pango
+        #gdk-pixbuf
+        #cairo
+      #];
     };
   };
 
