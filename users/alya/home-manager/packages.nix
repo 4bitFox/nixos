@@ -51,7 +51,6 @@ in
         svgelements
       ]))
     ];
-  };
   
   file = {
       ".local/opt/doublecmd" = {
@@ -59,6 +58,7 @@ in
         recursive = true;
       };
     };
+  };
   
   programs.git = {
     enable = true;

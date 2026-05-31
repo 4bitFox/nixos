@@ -2,7 +2,7 @@
 
 
 {
-  home ={
+  home = {
     file = {
       ".config/xournalpp" = {
         source = ./homefiles/.config/xournalpp;
