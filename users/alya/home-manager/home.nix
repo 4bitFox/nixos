@@ -85,6 +85,9 @@
     enable = true;
     platformTheme.name = "qtct";
     style.name = "kvantum";
+    kvantum.themes = with pkgs; [
+      rose-pine-kvantum
+    ];
   };
 
   dconf.settings = {
