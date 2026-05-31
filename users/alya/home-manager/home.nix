@@ -28,7 +28,7 @@
       # kvantum themeing
       libsForQt5.qtstyleplugin-kvantum
       libsForQt5.qtstyleplugin-kvantum
-      qt5ct
+      kvantum
       rose-pine-kvantum
       # stuff
       fastfetch
