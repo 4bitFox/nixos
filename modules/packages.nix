@@ -62,6 +62,7 @@
         libGL
         atk
         pango
+        gdk-pixbuf
       ];
     };
   };
