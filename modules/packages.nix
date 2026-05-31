@@ -52,6 +52,11 @@
         # here, NOT in environment.systemPackages
         wayland
         libx11
+        gtk2
+        gtk3
+        gtk4
+        qt5.qtbase
+        qt6.qtbase
       ];
     };
   };
