@@ -53,6 +53,13 @@ in
     ];
   };
   
+  file = {
+      ".local/opt/doublecmd" = {
+        source = ./homefiles/.local/opt/doublecmd;
+        recursive = true;
+      };
+    };
+  
   programs.git = {
     enable = true;
     settings = {
