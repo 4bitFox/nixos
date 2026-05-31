@@ -44,6 +44,25 @@
     appimage = {
       enable = true;
       binfmt = true;
+      package = pkgs.appimage-run.override 
+      {
+        extraPkgs = pkgs: with pkgs; [
+          wayland
+          libx11
+          gtk2
+          gtk3
+          gtk4
+          qt5.qtbase
+          qt6.qtbase
+          glib
+          dbus
+          libGL
+          atk
+          pango
+          gdk-pixbuf
+          cairo
+        ]; 
+      };
     };
     nix-ld = {
       enable = true;
