@@ -65,46 +65,13 @@ in
     appimage = {
       enable = true;
       binfmt = true;
-      package = pkgs.appimage-run.override 
-      {
-        extraPkgs = pkgs: with pkgs; [
-          wayland
-          libx11
-          gtk2
-          gtk3
-          gtk4
-          qt5.qtbase
-          qt6.qtbase
-          glib
-          dbus
-          libGL
-          atk
-          pango
-          gdk-pixbuf
-          cairo
-        ]; 
+      package = pkgs.appimage-run.override {
+        extraPkgs = pkgs: compatPkgs;
       };
     };
     nix-ld = {
       enable = true;
-      libraries = compatPkgs; #with pkgs; [
-        # Add any missing dynamic libraries for unpackaged programs
-        # here, NOT in environment.systemPackages
-        #wayland
-        #libx11
-        #gtk2
-        #gtk3
-        #gtk4
-        #qt5.qtbase
-        #qt6.qtbase
-        #glib
-        #dbus
-        #libGL
-        #atk
-        #pango
-        #gdk-pixbuf
-        #cairo
-      #];
+      libraries = compatPkgs;
     };
   };
 
