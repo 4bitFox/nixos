@@ -24,8 +24,10 @@
     packages = with pkgs; [
       gnome-themes-extra
       adw-gtk3
-      # libsForQt5.qtstyleplugin-kvantum
-      # qt6Packages.qtstyleplugin-kvantum
+      libsForQt5.qtstyleplugin-kvantum
+      yqt6Packages.qtstyleplugin-kvantum
+      libsForQt5.qt5ct
+      kdePackages.qt6ct
       fastfetch
       gnome-software
     ];
@@ -85,7 +87,7 @@
   ### kvantunm theme ###
   qt = {
     enable = true;
-    platformTheme.name = "qtct";
+    platformTheme.name = "qt5ct:qt6ct";
     style = {
       name = "kvantum";
       package = pkgs.rose-pine-kvantum;
