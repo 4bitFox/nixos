@@ -34,8 +34,6 @@
     ];
     
     pointerCursor = {
-      # name = "catppuccin-latte-mauve-cursors";
-      # package = pkgs.catppuccin-cursors.latteMauve;
       name = "phinger-cursors-dark-left";
       package = pkgs.phinger-cursors;
       size = 32;
@@ -96,13 +94,13 @@
     style.name = "kvantum";
   };
   
-  #xdg.dataFile."Kvantum/rose-pine-moon-iris".source =
-  #  "${pkgs.rose-pine-kvantum}/share/Kvantum/themes/rose-pine-moon-iris";
+  xdg.dataFile."Kvantum/rose-pine-moon-iris".source =
+    "${pkgs.rose-pine-kvantum}/share/Kvantum/themes/rose-pine-moon-iris";
 
-  #xdg.configFile."Kvantum/kvantum.kvconfig".text = ''
-  #  [General]
-  #  theme=rose-pine-moon-iris
-  #'';
+  xdg.configFile."Kvantum/kvantum.kvconfig".text = ''
+    [General]
+    theme=rose-pine-moon-iris
+  '';
   ### kvantum theme (end) ###
 
   dconf.settings = {
