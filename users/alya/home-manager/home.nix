@@ -26,7 +26,6 @@
       adw-gtk3
       fastfetch
       gnome-software
-      rose-pine-kvantum
     ];
     pointerCursor = {
       # name = "catppuccin-latte-mauve-cursors";
@@ -82,20 +81,24 @@
     };
   };
   
+  ### kvantunm theme ###
+  home.packages = with pkgs; [
+    libsForQt5.qtstyleplugin-kvantum
+    rose-pine-kvantum
+  ];
   qt = {
     enable = true;
     platformTheme.name = "qtct";
     style.name = "kvantum";
   };
   
-  ### kvantunm theme ###
-  xdg.dataFile."Kvantum/rose-pine-moon-iris".source =
-    "${pkgs.rose-pine-kvantum}/share/Kvantum/themes/rose-pine-moon-iris";
+  #xdg.dataFile."Kvantum/rose-pine-moon-iris".source =
+  #  "${pkgs.rose-pine-kvantum}/share/Kvantum/themes/rose-pine-moon-iris";
 
-  xdg.configFile."Kvantum/kvantum.kvconfig".text = ''
-    [General]
-    theme=rose-pine-moon-iris
-  '';
+  #xdg.configFile."Kvantum/kvantum.kvconfig".text = ''
+  #  [General]
+  #  theme=rose-pine-moon-iris
+  #'';
   ### kvantum theme (end) ###
 
   dconf.settings = {
