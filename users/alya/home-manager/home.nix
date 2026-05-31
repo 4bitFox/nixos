@@ -97,8 +97,8 @@
     style.name = "kvantum";
   };
   
-  #xdg.dataFile."Kvantum/rose-pine-moon-iris".source =
-  #  "${pkgs.rose-pine-kvantum}/share/Kvantum/themes/rose-pine-moon-iris";
+  xdg.dataFile."Kvantum/rose-pine-moon-iris".source =
+    "${pkgs.rose-pine-kvantum}/share/Kvantum/themes/rose-pine-moon-iris";
 
   #xdg.configFile."Kvantum/kvantum.kvconfig".text = ''
   #  [General]
