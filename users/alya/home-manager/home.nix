@@ -26,6 +26,7 @@
       gnome-themes-extra
       adw-gtk3
       libsForQt5.qtstyleplugin-kvantum
+      libsForQt5.qt5ct
       rose-pine-kvantum
       hicolor-icon-theme
       # stuff
