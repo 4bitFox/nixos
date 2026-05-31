@@ -19,6 +19,7 @@ let
     pango
     gdk-pixbuf
     cairo
+    qtx11extras
   ];
   ### COMPATIBILITY (end) ###
 in
