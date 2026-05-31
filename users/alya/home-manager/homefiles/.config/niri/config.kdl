@@ -254,6 +254,7 @@ binds {
     Mod+T hotkey-overlay-title="Open a Terminal" { spawn "alacritty"; }
     Mod+D hotkey-overlay-title="Run an Application" { spawn "fuzzel"; }
     Mod+E hotkey-overlay-title="Open File Manager" { spawn "nautilus" "-w"; }
+    Mod+C hotkey-overlay-title="Open File Commander" { spawn "doublecmd"; }
     Mod+B hotkey-overlay-title="Open Web Browser" { spawn "firefox"; }
     // Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock" "-f" "-F" "-i" "/var/home/alya/Pictures/Wallpaper.png"; }
     Super+Alt+L hotkey-overlay-title="Lock the Screen" { spawn "bash" "-c" "niri msg action power-off-monitors && hyprlock"; }
