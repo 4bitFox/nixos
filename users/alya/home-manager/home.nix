@@ -27,6 +27,7 @@
       adw-gtk3
       # kvantum themeing
       libsForQt5.qtstyleplugin-kvantum
+      libsForQt5.qtstyleplugin-kvantum
       rose-pine-kvantum
       # stuff
       fastfetch
