@@ -61,6 +61,7 @@
         dbus
         libGL
         atk
+        pango
       ];
     };
   };
