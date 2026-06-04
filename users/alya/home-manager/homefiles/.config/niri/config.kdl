@@ -78,6 +78,13 @@ output "HP Inc. HP Z24n G2 6CM8180H0W" { // FHNW Windisch Geb. 1, 3. Stock Bilds
     position x=-1536 y=-300
 }
 
+output "HP Inc. HP Z24n G2 6CM8180H1C" { // FHNW Windisch Geb. 1, 3. Stock Bildschirm HP
+    mode "1920x1200@74.939"
+    scale 1.25
+    transform "normal"
+    position x=-1536 y=-300
+}
+
 // Settings that influence how windows are positioned and sized.
 // Find more information on the wiki:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Layout
