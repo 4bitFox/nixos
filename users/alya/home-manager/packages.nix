@@ -39,7 +39,7 @@ in
       hyprpicker
       wl-clip-persist
       super-slicer
-      mtkclient
+      # mtkclient
       (python3.withPackages (python-pkgs: with python-pkgs; [
         rich
         numpy
