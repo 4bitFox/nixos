@@ -61,6 +61,10 @@ in
       ".local/share/applications/doublecmd.desktop" = {
         source = ./homefiles/.local/opt/doublecmd/doublecmd.desktop;
       };
+      ".local/opt/doublecmd/pixmaps/dctheme/32x32/places/folder.png" = {
+        source = ./homefiles/.local/opt/doublecmd/folder.png;
+        recursive = true;
+      };
     };
   };
   
