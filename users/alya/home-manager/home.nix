@@ -1,5 +1,22 @@
 { config, pkgs, lib, ... }:
 
+let
+  papirus-icon-theme_violet = pkgs.papirus-icon-theme.overrideAttrs (old: {
+    postInstall = (old.postInstall or "") + ''
+      echo "MANUAL OVERRIDE: Forcing violet folder icons! ~~~ pretty :D"
+      themeDir="$out/share/icons/Papirus"
+      sizeDirs=(22x22 24x24 32x32 48x48 64x64)
+      for size in "''${sizeDirs[@]}"; do
+        for f in "$themeDir/$size/places"/folder-violet*.svg; do
+          [ -e "$f" ] || continue
+          ln -sf "$(basename "$f")" "$themeDir/$size/places/folder.svg"
+        done
+      done
+      echo "MANUAL OVERRIDE OVER: Violet folders all nice and done! ... hopefully ^^"
+    '';
+  });
+  
+in
 
 {
   imports = [
@@ -65,28 +82,16 @@
     iconTheme = {
       name = "Papirus-Dark";
       ### force violet folders for papirus icon theme ###
-      package = pkgs.papirus-icon-theme.overrideAttrs (old: {
-        postInstall = (old.postInstall or "") + ''
-          echo "MANUAL OVERRIDE: Forcing violet folder icons! ~~~ pretty :D"
-          themeDir="$out/share/icons/Papirus"
-          sizeDirs=(22x22 24x24 32x32 48x48 64x64)
-          for size in "''${sizeDirs[@]}"; do
-            for f in "$themeDir/$size/places"/folder-violet*.svg; do
-              [ -e "$f" ] || continue
-              ln -sf "$(basename "$f")" "$themeDir/$size/places/folder.svg"
-            done
-          done
-          echo "MANUAL OVERRIDE OVER: Violet folders all nice and done! ... hopefully ^^"
-        '';
+      package = papirus-icon-theme_violet;
       });
       ### force violet folders for papirus icon theme (end) ###
     };
   };
   
   home.file.".local/share/icons/Papirus-Violet".source =
-    "${pkgs.papirus-icon-theme}/share/icons/Papirus";
+    "${papirus-icon-theme_violet}/share/icons/Papirus";
   home.file.".icons/Papirus-Violet".source =
-    "${pkgs.papirus-icon-theme}/share/icons/Papirus";
+    "${papirus-icon-theme_violet}/share/icons/Papirus";
   ### GTK theme (end) ###
   
   ### kvantunm theme ###
