@@ -82,6 +82,11 @@
       ### force violet folders for papirus icon theme (end) ###
     };
   };
+  
+  home.file.".local/share/icons/Papirus-Violet".source =
+    "${pkgs.papirus-icon-theme}/share/icons/Papirus";
+  home.file.".icons/Papirus-Violet".source =
+    "${pkgs.papirus-icon-theme}/share/icons/Papirus";
   ### GTK theme (end) ###
   
   ### kvantunm theme ###
