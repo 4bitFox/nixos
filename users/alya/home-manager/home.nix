@@ -1,6 +1,7 @@
 { config, pkgs, lib, ... }:
 
 let
+  ### force violet folders for papirus icon theme ###
   papirus-icon-theme_violet = pkgs.papirus-icon-theme.overrideAttrs (old: {
     postInstall = (old.postInstall or "") + ''
       echo "MANUAL OVERRIDE: Forcing violet folder icons! ~~~ pretty :D"
@@ -15,6 +16,7 @@ let
       echo "MANUAL OVERRIDE OVER: Violet folders all nice and done! ... hopefully ^^"
     '';
   });
+  ### force violet folders for papirus icon theme (end) ###
   
 in
 
@@ -81,10 +83,7 @@ in
     };
     iconTheme = {
       name = "Papirus-Dark";
-      ### force violet folders for papirus icon theme ###
       package = papirus-icon-theme_violet;
-      });
-      ### force violet folders for papirus icon theme (end) ###
     };
   };
   
