@@ -63,7 +63,6 @@ in
       };
       ".local/opt/doublecmd/pixmaps/dctheme/32x32/places/folder.png" = {
         source = ./homefiles/.local/opt/doublecmd/folder.png;
-        recursive = true;
       };
     };
   };
