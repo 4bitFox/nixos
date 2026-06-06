@@ -61,11 +61,6 @@ in
       ".local/share/applications/doublecmd.desktop" = {
         source = ./homefiles/.local/opt/doublecmd/doublecmd.desktop;
       };
-      ".local/opt/doublecmd/pixmaps/Papirus-Violet" = {
-        source = config.lib.file.mkOutOfStoreSymlink
-          "${config.home.homeDirectory}/.local/share/icons/Papirus-Violet";
-        recursive = true;
-      };
     };
   };
   
