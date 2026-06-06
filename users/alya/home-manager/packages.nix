@@ -61,7 +61,6 @@ in
       ".local/share/applications/doublecmd.desktop" = {
         source = ./homefiles/.local/opt/doublecmd/doublecmd.desktop;
       };
-      ".local/share/doublecmd/pixmaps/Papirus-Violet".source = "${papirus-icon-theme_violet}/share/icons/Papirus";
     };
   };
   

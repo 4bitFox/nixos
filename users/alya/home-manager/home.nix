@@ -87,10 +87,11 @@ in
     };
   };
   
-  home.file.".local/share/icons/Papirus-Violet".source =
-    "${papirus-icon-theme_violet}/share/icons/Papirus";
-  home.file.".icons/Papirus-Violet".source =
-    "${papirus-icon-theme_violet}/share/icons/Papirus";
+  home.file = {
+    ".local/share/icons/Papirus-Violet".source = "${papirus-icon-theme_violet}/share/icons/Papirus";
+    ".icons/Papirus-Violet".source = "${papirus-icon-theme_violet}/share/icons/Papirus";
+    ".local/share/doublecmd/pixmaps/Papirus-Violet".source = "${papirus-icon-theme_violet}/share/icons/Papirus";
+  };
   ### GTK theme (end) ###
   
   ### kvantunm theme ###
