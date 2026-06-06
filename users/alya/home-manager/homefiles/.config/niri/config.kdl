@@ -250,7 +250,7 @@ window-rule {
 
 // doublecmd startup popup
 window-rule {
-    match title="doublecmd"
+    match app-id="doublecmd" title="doublecmd"
     open-floating true
     open-focused false
     opacity 0.0
