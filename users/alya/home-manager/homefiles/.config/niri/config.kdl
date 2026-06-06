@@ -249,7 +249,7 @@ window-rule {
 }
 
 window-rule {
-    match app-id="doublecmd"
+    match title="doublecmd"
     open-floating true
 }
 
