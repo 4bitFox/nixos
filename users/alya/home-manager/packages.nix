@@ -61,8 +61,8 @@ in
       ".local/share/applications/doublecmd.desktop" = {
         source = ./homefiles/.local/opt/doublecmd/doublecmd.desktop;
       };
-      ".local/opt/doublecmd/pixmaps" = {
-        source = ./homefiles/.local/opt/doublecmd/pixmaps;
+      ".local/opt/doublecmd/pixmaps/fml" = {
+        source = ./homefiles/.local/opt/doublecmd/pixmaps/fml;
         recursive = true;
       };
     };
