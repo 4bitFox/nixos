@@ -1,0 +1,10 @@
+[Icon Theme]
+Name=KillMe
+Comment=fml DoubleCommander too dumb for SVGs :c
+Directories=32x32/places
+
+[32x32/places]
+Size=32
+Context=Places
+Type=Threshold
+
