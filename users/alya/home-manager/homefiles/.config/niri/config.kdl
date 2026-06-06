@@ -248,6 +248,11 @@ window-rule {
     default-window-height { proportion 1.0; }
 }
 
+window-rule {
+    match app-id="doublecmd"
+    open-floating true
+}
+
 
 binds {
     // Keys consist of modifiers separated by + signs, followed by an XKB key name
