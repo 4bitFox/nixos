@@ -87,7 +87,7 @@
   ### kvantunm theme ###
   qt = {
     enable = true;
-    platformTheme.name = "qt5ct:qt6ct";
+    platformTheme.name = "qt6ct";
     style = {
       name = "kvantum";
       package = pkgs.rose-pine-kvantum;
