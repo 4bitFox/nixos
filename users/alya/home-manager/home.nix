@@ -91,7 +91,7 @@ in
     ".local/share/icons/Papirus-Violet".source = "${papirus-icon-theme_violet}/share/icons/Papirus";
     ".icons/Papirus-Violet".source = "${papirus-icon-theme_violet}/share/icons/Papirus";
     ".local/share/doublecmd/pixmaps/Papirus-Violet/index.theme".source = "${papirus-icon-theme_violet}/share/icons/Papirus/index.theme";
-    ".local/share/doublecmd/pixmaps/Papirus-Violet/32x32/places".source = "${papirus-icon-theme_violet}/share/icons/Papirus/32x32/places";
+    ".local/share/doublecmd/pixmaps/Papirus-Violet/32x32/places/folder.svg".source = "${papirus-icon-theme_violet}/share/icons/Papirus/32x32/places/folder.svg";
     ".local/share/doublecmd/pixmaps/Papirus-Violet/32x32/mimetypes".source = "${papirus-icon-theme_violet}/share/icons/Papirus/32x32/mimetypes";
   };
   ### GTK theme (end) ###
