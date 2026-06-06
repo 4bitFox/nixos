@@ -248,9 +248,13 @@ window-rule {
     default-window-height { proportion 1.0; }
 }
 
+// doublecmd startup popup
 window-rule {
+    match app-id="doublecmd"
     match title="doublecmd"
     open-floating true
+    open-focused false
+    opacity 0
 }
 
 
