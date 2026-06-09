@@ -20,7 +20,7 @@
 
   systemd = {
     sleep.settings.Sleep = {
-      SuspendState = freeze;
+      SuspendState = "freeze";
     };
   };
 
