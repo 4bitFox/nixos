@@ -16,3 +16,10 @@ border-radius=15
 on-button-left=dismiss
 on-button-right=invoke-default-action
 on-button-middle=dismiss-all
+
+
+
+[summary~=".*Battery low!.*"]
+background-color=#8b0000
+border-color=#ff0000
+
