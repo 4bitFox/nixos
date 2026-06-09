@@ -3,11 +3,11 @@
 
 
   inputs = {
-    # nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-26.05";
+    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    # nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-26.05";
     ### home-manager ###
-    # home-manager.url = github:nix-community/home-manager/ # unstable channel
-    home-manager.url = github:nix-community/home-manager/release-26.05; # stable channel
+    home-manager.url = github:nix-community/home-manager/ # unstable channel
+    # home-manager.url = github:nix-community/home-manager/release-26.05; # stable channel
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     ### declarative-flatpak ###
     declarative-flatpak.url = "github:in-a-dil-emma/declarative-flatpak/latest";
