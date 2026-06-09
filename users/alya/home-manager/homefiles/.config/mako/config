@@ -20,6 +20,6 @@ on-button-middle=dismiss-all
 
 
 [summary~=".*Battery low!.*"]
-background-color=#5c0000
+background-color=#400000
 border-color=#ff0000
 
