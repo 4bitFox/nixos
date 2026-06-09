@@ -6,7 +6,7 @@
   boot = {
     initrd = {
       enable = true;
-      systemd.enable = false;
+      systemd.enable = true;
       kernelModules = [   ];
       stage1Greeting = "<<< Booting GLaDOS - Stage 1 >>>";
       preDeviceCommands = ''
