@@ -31,15 +31,14 @@ in
       easyeffects
       alpaca
       woeusb-ng
-      # ungoogled-chromium
+      ungoogled-chromium
       kdePackages.kdenlive
-      # openscad
-      # tor-browser
+      tor-browser
       gimp
       hyprpicker
       wl-clip-persist
       super-slicer
-      # mtkclient
+      mtkclient
       (python3.withPackages (python-pkgs: with python-pkgs; [
         rich
         numpy
