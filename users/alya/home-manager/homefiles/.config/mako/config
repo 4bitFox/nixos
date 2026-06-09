@@ -17,9 +17,9 @@ on-button-left=dismiss
 on-button-right=invoke-default-action
 on-button-middle=dismiss-all
 
-
+default-timeout=5
 
 [summary~=".*Battery low!.*"]
-background-color=#400000
+background-color=#4a0000
 border-color=#ff0000
 
