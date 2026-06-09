@@ -28,7 +28,6 @@
       };
       gdm = {
         enable = true;
-        wayland = true;
       };
     };
     blueman.enable = true;

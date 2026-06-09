@@ -19,9 +19,9 @@
   };
 
   systemd = {
-    sleep.extraConfig = ''
-      SuspendState=freeze
-    '';
+    sleep.settings.Sleep = {
+      SuspendState = freeze;
+    };
   };
 
   services = {
