@@ -60,7 +60,7 @@
           (builtins.fetchurl {
             url = "https://github.com/alsa-project/alsa-ucm-conf/pull/533.patch";
             # sha256 = "465c5fe560725ccc7f3e319d543a99160b8af46a047e8a2816b6b4671dbfdab9";
-            sha256 = "5306991552ecc9169c275ce9002492f20d01f917266c430607b6be4102500635";
+            sha256 = "1ivpzsbf39xwm3dwpbrg85dpp92by8nagzryrqnzpggcw0y1adck";
           })
         ];
       });
