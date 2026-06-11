@@ -62,7 +62,8 @@
     in {
     ### Tuxedo Sirius 16 dual speaker patch ###
     # (final: prev: {
-      alsa-ucm-conf = prev.alsa-ucm-conf.overrideAttrs (old: {
+      # alsa-ucm-conf = prev.alsa-ucm-conf.overrideAttrs (old: {
+      alsa-ucm-conf = oldPkgs.alsa-ucm-conf.overrideAttrs (old: {
         patches = (old.patches or []) ++ [
           # ./patches/alsa-ucm-conf/tuxedo-sirius16_dual-speaker.patch
           (builtins.fetchurl {
