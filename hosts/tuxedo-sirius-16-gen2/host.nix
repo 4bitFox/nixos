@@ -52,15 +52,22 @@
   };
 
   nixpkgs.overlays = [
+    (final: prev:
+    let
+      oldPkgs = import (builtins.fetchTarball {
+        url = "https://github.com/NixOS/nixpkgs/archive/nixos-25.11.tar.gz";
+      }) {
+        system = prev.system;
+      };
+    in {
     ### Tuxedo Sirius 16 dual speaker patch ###
-    (final: prev: {
+    # (final: prev: {
       alsa-ucm-conf = prev.alsa-ucm-conf.overrideAttrs (old: {
         patches = (old.patches or []) ++ [
           # ./patches/alsa-ucm-conf/tuxedo-sirius16_dual-speaker.patch
           (builtins.fetchurl {
             url = "https://github.com/alsa-project/alsa-ucm-conf/pull/533.patch";
-            # sha256 = "465c5fe560725ccc7f3e319d543a99160b8af46a047e8a2816b6b4671dbfdab9";
-            sha256 = "1ivpzsbf39xwm3dwpbrg85dpp92by8nagzryrqnzpggcw0y1adck";
+            sha256 = "465c5fe560725ccc7f3e319d543a99160b8af46a047e8a2816b6b4671dbfdab9";
           })
         ];
       });
