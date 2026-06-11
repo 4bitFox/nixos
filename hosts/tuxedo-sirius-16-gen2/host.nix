@@ -56,7 +56,7 @@
     let
       oldPkgs = import (builtins.fetchTarball {
         url = "https://github.com/NixOS/nixpkgs/archive/nixos-25.11.tar.gz";
-        sha256 = "";
+        sha256 = "1nqxpzhvy1yn2pivhlilcviffvbwmvp9jw101whhvda3rbx7a1qp";
       }) {
         system = prev.system;
       };
