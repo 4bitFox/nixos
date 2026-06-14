@@ -41,6 +41,42 @@
     ];
   };
 
+  boot = {
+    initrd = {
+      systemd = {
+        initrdBin = [ pkgs.coreutils ];
+        services = {
+          impermanence-wiperoot = {
+            description = "Impermanence filesystem preparation";
+            wantedBy = [ "initrd.target" ];
+            before = [
+              "sysroot.mount"
+            ];
+            after = [
+              "systemd-udev-settle.service"
+              "local-fs-pre.target" # resume hibernation before altering disk
+              "systemd-hibernate-resume.service"
+            ];
+            requires = [ "systemd-udev-settle.service" ];
+            unitConfig.DefaultDependencies = false;
+            serviceConfig.Type = "oneshot";
+            script = ''
+              # Clear
+              printf "\033[2J" > /dev/console
+              # Move cursor to top left
+              printf "\033[H" > /dev/console
+              # Set color (bright yellow)
+              printf "\033[93m" > /dev/console
+              # ASCII art
+              ${pkgs.coreutils}/bin/echo -e "${bootlogo}" > /dev/console
+              # Set color to normal again
+              printf "\033[0m" > /dev/console
+            '';
+          };
+        };
+      };
+    };
+
 #  boot = {
 #    initrd = {
 #      postDeviceCommands = lib.mkAfter ''
