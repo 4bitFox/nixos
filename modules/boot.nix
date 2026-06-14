@@ -53,6 +53,8 @@ in
               "systemd-journald.service"
               "systemd-tmpfiles-setup-dev.service"
               "systemd-vconsole-setup.service"
+              "systemd-udev-trigger.service"
+              "tpm2.target"
             ];
             unitConfig.DefaultDependencies = "no";
             serviceConfig = {
