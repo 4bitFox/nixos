@@ -26,10 +26,7 @@
   ### ccache to speed up builds ### https://wiki.nixos.org/wiki/CCache
   programs.ccache = {
     enable = true;
-    packageNames = [
-      "firefox"
-      "ungoogled-chromium"
-    ];
+    packageNames = [  ];
   };
 
   nix.settings.extra-sandbox-paths = [ config.programs.ccache.cacheDir ];
