@@ -21,11 +21,15 @@
         epson-escpr
       ];
     };
+    ipp-usb.enable = true;
 #    avahi = {
 #      enable = true;
 #      nssmdns4 = true;
 #      openFirewall = true;
 #    };
+  };
+
+  programs = {
     system-config-printer.enable = true;
   };
 }
