@@ -2,6 +2,37 @@
 { config, pkgs, lib, impermanence, ... }:
 
 
+let
+  wipelogo = ''
+    \\t
+    \\t
+    \\t
+    \\t        \#+ @      \# \#              M#@    
+    \\t  .    .X  X.%##@;# \#   +@#######X. @H%   
+    \\t    ,==.   ,######M+  -#####%M####M-    \# 
+    \\t   :H##M%:=##+ .M##M,;#####/+#######% ,M# 
+    \\t  .M########=  =@#@.=#####M=M#######=  X# 
+    \\t  :@@MMM##M.  -##M.,#######M#######. =  M 
+    \\t              @##..###:.    .H####. @@ X, 
+    \\t    \############: \###,/####;  /##= @#. M  
+    \\t            ,M## ;##,@#M;/M#M  @# X#% X#  
+    \\t .%=   \######M## \##.M#:   ./#M ,M \#M ,#$  
+    \\t \##/         \$## \#+;#: \#### ;#/ M M- @# : 
+    \\t \#+ \#M@MM###M-;M \#:\$#-##\$H# .#X @ + \$#. \# 
+    \\t       \######/.: \#%=# M#:MM./#.-#  @#: H# 
+    \\t +,.=   @###: /@ %#,@  \##@X \#,-#@.##% .@# 
+    \\t \#####+;/##/ @##  @#,+       /#M    . X,  
+    \\t    ;###M#@ M###H .#M-     ,##M  ;@@; \### 
+    \\t    .M#M##H ;####X ,@#######M/ -M###$  -H 
+    \\t     .M###%  X####H  .@@MMM;  ;@#M@       
+    \\t       H#M    /@####/      ,++.  / ==-,   
+    \\t                ,=/:, .+X@MMH##H  \#####$= 
+    \\t
+    \\t
+    \\t
+  '';
+in
+
 {
   imports = [
     impermanence.nixosModules.impermanence
@@ -61,16 +92,8 @@
             unitConfig.DefaultDependencies = false;
             serviceConfig.Type = "oneshot";
             script = ''
-              # Clear
-              printf "\033[2J" > /dev/console
-              # Move cursor to top left
-              printf "\033[H" > /dev/console
-              # Set color (bright yellow)
-              printf "\033[93m" > /dev/console
               # ASCII art
-              ${pkgs.coreutils}/bin/echo -e "${bootlogo}" > /dev/console
-              # Set color to normal again
-              printf "\033[0m" > /dev/console
+              ${pkgs.coreutils}/bin/echo -e "${wipelogo}" > /dev/console
             '';
           };
         };
