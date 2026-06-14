@@ -54,7 +54,7 @@
             ];
             after = [
               "systemd-udev-settle.service"
-              "local-fs-pre.target" # resume hibernation before altering disk
+              "local-fs-pre.target"
               "systemd-hibernate-resume.service"
             ];
             requires = [ "systemd-udev-settle.service" ];
@@ -76,6 +76,7 @@
         };
       };
     };
+  };
 
 #  boot = {
 #    initrd = {
