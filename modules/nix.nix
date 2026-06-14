@@ -27,9 +27,6 @@
   programs.ccache = {
     enable = true;
     packageNames = [
-      "linuxPackages_latest"
-      "linuxPackages_xanmod"
-      "linuxPackages_zen"
       "firefox"
       "ungoogled-chromium"
     ];
