@@ -39,7 +39,7 @@
 
       # "flathub:app/org.blender.Blender/x86_64/stable"
       "flathub:app/org.darktable.Darktable/x86_64/stable"
-      "flathub:app/org.fedoraproject.MediaWriter/x86_64/stable"
+      # "flathub:app/org.fedoraproject.MediaWriter/x86_64/stable"
       "flathub:app/org.freecad.FreeCAD/x86_64/stable"
 
       "flathub:app/org.geogebra.GeoGebra/x86_64/stable"

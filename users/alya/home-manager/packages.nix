@@ -39,7 +39,7 @@ in
       wl-clip-persist
       super-slicer
       mtkclient
-      ventoy-full-gtk
+      mediawriter
       (python3.withPackages (python-pkgs: with python-pkgs; [
         rich
         numpy
