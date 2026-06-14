@@ -38,7 +38,7 @@ in
       enable = true;
       systemd = {
         enable = true;
-        initrdBin = [ pkgs.coreutils ];
+        # initrdBin = [ pkgs.coreutils ];
         services = {
           bootlogo = {
             wantedBy = [ "sysinit.target" ];
@@ -48,7 +48,9 @@ in
               Type = "oneshot";
             };
             script = ''
-              ${pkgs.coreutils}/bin/echo -e "${bootlogo}"  > /dev/console
+              exec > /dev/console 2>&1
+              printf "%b\n" "${bootlogo}"
+              # ${pkgs.coreutils}/bin/echo -e "${bootlogo}"  > /dev/console
             '';
           };
         };
