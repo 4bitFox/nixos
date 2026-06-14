@@ -41,6 +41,7 @@ in
         initrdBin = [ pkgs.coreutils ];
         services = {
           bootlogo = {
+            description = "Boot logo";
             wantedBy = [ "initrd.target" ];
             before = [ 
               "sysinit.target"
@@ -50,6 +51,8 @@ in
             ];
             after = [
               "systemd-journald.service"
+              "systemd-tmpfiles-setup-dev.service"
+              "systemd-vconsole-setup.service"
             ];
             unitConfig.DefaultDependencies = "no";
             serviceConfig = {
