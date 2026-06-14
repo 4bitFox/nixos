@@ -20,7 +20,6 @@ in
         enable = true;
         initrdBin = [ pkgs.coreutils ];
         services.boot-logo = {
-  services.bootmsg = {
     wantedBy = [ "sysinit.target" ];
     before = [ "systemd-cryptsetup@cryptroot.service" ];
     unitConfig.DefaultDependencies = "no";
