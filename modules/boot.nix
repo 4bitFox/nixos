@@ -2,14 +2,34 @@
 { config, pkgs, lib, ... }:
 
 let
-
-bootmsg = ''
-    ==========================
-        A P E R T U R E
-    ==========================
-
+bootlogo = ''
+                                              
+                                              
+                                              
+                   .,-:;//;:=,                
+               . :H@@@MMMM#H/.,+%;,           
+            ,/X+ +M@@MMMM%=,-%HMMM@X/,        
+          -+@MM; \$M@@MH+-,;XMMMM@MMMMH+-      
+         ;@MMMM- XM@X;. -+XXXXXHHH@MMM#@/.    
+       ,%MM@@MH ,@%=             .---=-=:=,.  
+       =@#@@@MX.,                -%HX\$\$%%%:;  
+      =-./@MMM$                   .;@MMMMMMM: 
+      X@/ -\$MM/                    . +MM@@@M$ 
+     ,@MMH: :@:                    . =X#@@@@- 
+     ,@@@MMX, .                    /H- ;@MMM= 
+     .H@@@@@@+,                    %MM+..%#$. 
+      /MMMM@MMH/.                  XM@MH; =;  
+       /%+%\$XHH@$=              , .H@@@@MX,   
+        .=--------.           -%H.,@@@@@MX,   
+        .%MM@@@HHHXX\$\$\$%+- .:\$MMX =M@@MM%.    
+          =XMMM@MMMMM#H;,-+HMM@M+ /MMMX=      
+            =%@MMM#@\$-.=\$MMM@@@M; %M%=        
+              ,:+$+-,/H#MMMMMMM@= =,          
+                    =++%%%%+/:-.              
+                                              
+                                              
+                                              
   '';
-
 in
 
 {
@@ -19,17 +39,19 @@ in
       systemd = {
         enable = true;
         initrdBin = [ pkgs.coreutils ];
-        services.boot-logo = {
-    wantedBy = [ "sysinit.target" ];
-    before = [ "systemd-cryptsetup@cryptroot.service" ];
-    unitConfig.DefaultDependencies = "no";
-    serviceConfig = {
-      Type = "oneshot";
-    };
-    script = ''
-      ${pkgs.coreutils}/bin/echo -e "${bootmsg}"  > /dev/console
-    '';
-};
+        services = {
+          bootlogo = {
+            wantedBy = [ "sysinit.target" ];
+            before = [ "systemd-cryptsetup@cryptroot.service" ];
+            unitConfig.DefaultDependencies = "no";
+            serviceConfig = {
+              Type = "oneshot";
+            };
+            script = ''
+              ${pkgs.coreutils}/bin/echo -e "${bootlogo}"  > /dev/console
+            '';
+          };
+        };
       };
       kernelModules = [   ];
 #      preDeviceCommands = ''
