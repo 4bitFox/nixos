@@ -160,7 +160,8 @@ spawn-at-startup "bash" "-c" "sleep 1 && nm-applet"
 // spawn-at-startup "blueman-applet" // Bluetooth
 spawn-at-startup "bash" "-c" "sleep 2 && blueman-applet"
 spawn-at-startup "system-config-printer-applet" // Printer
-spawn-at-startup "systemctl" "--user" "start" "plasma-polkit-agent.service" // Polkit
+// spawn-at-startup "systemctl" "--user" "start" "plasma-polkit-agent.service" // Polkit
+spawn-at-startup "systemctl" "--user" "start" "hyprpolkitagent.service" // Polkit
 spawn-at-startup "/home/alya/.local/opt/DavMail/davmail" // DavMail
 spawn-at-startup "bash" "-c" "sleep 3 && /opt/tuxedo-control-center/tuxedo-control-center --tray" // Tuxedo Control Center
 spawn-at-startup "bash" "-c" "sleep 5 && /usr/lib/protonmail/bridge/proton-bridge --no-window" // Proton Mail Bridge

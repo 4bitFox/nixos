@@ -14,7 +14,8 @@
 
   environment = {
     systemPackages = with pkgs; [
-      kdePackages.polkit-kde-agent-1
+      # kdePackages.polkit-kde-agent-1
+      hyprpolkitagent
       xwayland-satellite
     ];
   };

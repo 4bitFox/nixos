@@ -8,7 +8,7 @@ fi
 
 mountpoint -q /mnt && { echo "/mnt is mounted! aborting"; exit 1; }
 
-echo "Manually create 3 unformatted partitions (for 'ESP/EFI' (1024 MiB), 'boot' (2048 MiB) and 'luks/lvm rootfs and swap' (rest of space)) using fdisk, gparted or other tool."
+echo "Manually create 3 unformatted partitions (for 'ESP/EFI' (1024 MiB), 'boot' (2048 MiB) and 'luks (optional) + lvm rootfs and swap' (rest of space)) using fdisk, gparted or other tool."
 echo "In the next step you will be asked to enter the path to the partitions. (example: /dev/sdxN)"
 read -p "Press Enter to continue..." 
 
@@ -41,6 +41,14 @@ for p in "$PARTITION_ESP" "$PARTITION_BOOT" "$PARTITION_ROOTFS"; do
   fi
 done
 
+read -r -p "Use LUKS encryption? (y/N): " USE_LUKS
+
+if [[ "$USE_LUKS" == "y" || "$USE_LUKS" == "yes" ]]; then
+  USE_LUKS=1
+else
+  USE_LUKS=0
+fi
+
 echo ""
 echo "MAKE SURE THE SELECTED PARTITIONS ARE CORRECT. THEIR DATA WILL BE DESTROYED!!!"
 read -r -p "Type 'YES' to continue: " CONFIRM
@@ -67,14 +75,19 @@ echo "Formatting $PARTITION_BOOT"
 mkfs.ext4 -L "$LABEL_ROOTFS"_boot "$PARTITION_BOOT"
 
 echo "Formatting $PARTITION_ROOTFS"
+if [[ "$USE_LUKS" -eq 1 ]]; then
 echo "LUKS encryption:"
-cryptsetup luksFormat "$PARTITION_ROOTFS" --label "$LABEL_ROOTFS"_luks
-cryptsetup open "$PARTITION_ROOTFS" "$LABEL_ROOTFS"_luks
+  cryptsetup luksFormat "$PARTITION_ROOTFS" --label "$LABEL_ROOTFS"_luks
+  cryptsetup open "$PARTITION_ROOTFS" "$LABEL_ROOTFS"_luks
+  PV_DEVICE="/dev/mapper/${LABEL_ROOTFS}_luks"
+else
+  PV_DEVICE="$PARTITION_ROOTFS"
+fi
 
 echo ""
 echo "Creating LVM"
-pvcreate /dev/mapper/"$LABEL_ROOTFS"_luks
-vgcreate "$LABEL_ROOTFS"_lvm /dev/mapper/"$LABEL_ROOTFS"_luks
+pvcreate "$PV_DEVICE"
+vgcreate "$LABEL_ROOTFS"_lvm "$PV_DEVICE"
 
 echo ""
 echo "Create SWAP"
@@ -131,14 +144,16 @@ echo "  boot.loader.grub.enable = true;"
 echo "  boot.loader.grub.device = \"nodev\";"
 echo "  boot.loader.grub.efiSupport = true;"
 echo "  boot.loader.efi.efiSysMountPoint = \"/boot/efi\";"
-echo "  boot.initrd.luks.devices = {"
-echo "    luksroot = {"
-PARTITION_ROOTFS_UUID=$(blkid -s UUID -o value "$PARTITION_ROOTFS")
-echo "      device = \"/dev/disk/by-uuid/$PARTITION_ROOTFS_UUID\";"
-echo "      preLVM = true;"
-echo "      allowDiscards = true;"
-echo "    };"
-echo "  };"
+if [[ "$USE_LUKS" -eq 1 ]]; then
+  echo "  boot.initrd.luks.devices = {"
+  echo "    luksroot = {"
+  PARTITION_ROOTFS_UUID=$(blkid -s UUID -o value "$PARTITION_ROOTFS")
+  echo "      device = \"/dev/disk/by-uuid/$PARTITION_ROOTFS_UUID\";"
+  echo "      preLVM = true;"
+  echo "      allowDiscards = true;"
+  echo "    };"
+  echo "  };"
+fi
 echo ""
 echo "Other useful options:"
 echo " - Console keymap (in this case swissgerman):"
@@ -148,5 +163,5 @@ echo "  nix.settings.experimental-features = [ \"nix-command\" \"flakes\" ];"
 echo "After all the configuration has been made, run 'nixos-install' to install; fingers crossed."
 
 echo ""
-read -p "Press Enter to exit..." 
+read -p "Press Enter to exit..."
 exit

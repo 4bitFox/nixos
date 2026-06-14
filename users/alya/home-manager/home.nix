@@ -30,6 +30,7 @@ in
     ./alacritty.nix
     ./mako.nix
     ./hyprlock.nix
+    ./hyprpolkitagent.nix
     ./flatpak.nix
     ./dotfiles.nix
     ./homefiles.nix
