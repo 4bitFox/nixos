@@ -8,29 +8,26 @@
       enable = true;
       systemd = {
         enable = true;
+        initrdBin = [ pkgs.coreutils ];
         services.boot-logo = {
-description = "Boot logo before LUKS prompt";
+  services.bootmsg = {
+    wantedBy = [ "sysinit.target" ];
+    before = [ "systemd-cryptsetup@cryptroot.service" ];
+    unitConfig.DefaultDependencies = false;
+    serviceConfig = {
+      Type = "oneshot";
+    };
+    script = ''
+      ${pkgs.coreutils}/bin/echo -e ''
+AAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAA
 
-  wantedBy = [ "initrd.target" ];
-  requiredBy = [ "systemd-cryptsetup@root.service" ];
-  before = [ "systemd-cryptsetup@root.service" ];
-
-  unitConfig.DefaultDependencies = "no";
-
-  serviceConfig = {
-    Type = "oneshot";
-    StandardOutput = "tty";
-    StandardError = "tty";
-    TTYPath = "/dev/console";
-  };
-
-  script = ''
-    clear
-    echo "================================"
-    echo "        A P E R T U R E"
-    echo "================================"
-    echo ""
-    sleep 2
+''  > /dev/console
+    '';
   '';
 };
       };
