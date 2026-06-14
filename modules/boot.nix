@@ -61,7 +61,9 @@ in
               Type = "oneshot";
             };
             script = ''
+              printf "\033[93m"
               ${pkgs.coreutils}/bin/echo -e "${bootlogo}"  > /dev/console
+              printf "\033[0m"
             '';
           };
         };
