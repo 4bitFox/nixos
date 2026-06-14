@@ -60,9 +60,6 @@ in
               Type = "oneshot";
             };
             script = ''
-              #printf "\033[93m" > /dev/console
-              #${pkgs.coreutils}/bin/echo -e "${bootlogo}" > /dev/console
-              #printf "\033[0m" > /dev/console
               # Clear
               printf "\033[2J" > /dev/console
               # Move cursor to top left
@@ -70,32 +67,7 @@ in
               # Set color (bright yellow)
               printf "\033[93m" > /dev/console
               # ASCII art
-              ${pkgs.coreutils}/bin/echo '                                              ' > /dev/console
-              ${pkgs.coreutils}/bin/echo '                                              ' > /dev/console
-              ${pkgs.coreutils}/bin/echo '                                              ' > /dev/console
-              ${pkgs.coreutils}/bin/echo '                   .,-:;//;:=,                ' > /dev/console
-              ${pkgs.coreutils}/bin/echo '               . :H@@@MMMM#H/.,+%;,           ' > /dev/console
-              ${pkgs.coreutils}/bin/echo '            ,/X+ +M@@MMMM%=,-%HMMM@X/,        ' > /dev/console
-              ${pkgs.coreutils}/bin/echo '          -+@MM; \$M@@MH+-,;XMMMM@MMMMH+-      ' > /dev/console
-              ${pkgs.coreutils}/bin/echo '         ;@MMMM- XM@X;. -+XXXXXHHH@MMM#@/.    ' > /dev/console
-              ${pkgs.coreutils}/bin/echo '       ,%MM@@MH ,@%=             .---=-=:=,.  ' > /dev/console
-              ${pkgs.coreutils}/bin/echo '       =@#@@@MX.,                -%HX\$\$%%%:;  ' > /dev/console
-              ${pkgs.coreutils}/bin/echo '      =-./@MMM$                   .;@MMMMMMM: ' > /dev/console
-              ${pkgs.coreutils}/bin/echo '      X@/ -\$MM/                    . +MM@@@M$ ' > /dev/console
-              ${pkgs.coreutils}/bin/echo '     ,@MMH: :@:                    . =X#@@@@- ' > /dev/console
-              ${pkgs.coreutils}/bin/echo '     ,@@@MMX, .                    /H- ;@MMM= ' > /dev/console
-              ${pkgs.coreutils}/bin/echo '     .H@@@@@@+,                    %MM+..%#$. ' > /dev/console
-              ${pkgs.coreutils}/bin/echo '      /MMMM@MMH/.                  XM@MH; =;  ' > /dev/console
-              ${pkgs.coreutils}/bin/echo '       /%+%\$XHH@$=              , .H@@@@MX,   ' > /dev/console
-              ${pkgs.coreutils}/bin/echo '        .=--------.           -%H.,@@@@@MX,   ' > /dev/console
-              ${pkgs.coreutils}/bin/echo '        .%MM@@@HHHXX\$\$\$%+- .:\$MMX =M@@MM%.    ' > /dev/console
-              ${pkgs.coreutils}/bin/echo '          =XMMM@MMMMM#H;,-+HMM@M+ /MMMX=      ' > /dev/console
-              ${pkgs.coreutils}/bin/echo '            =%@MMM#@\$-.=\$MMM@@@M; %M%=        ' > /dev/console
-              ${pkgs.coreutils}/bin/echo '              ,:+$+-,/H#MMMMMMM@= =,          ' > /dev/console
-              ${pkgs.coreutils}/bin/echo '                    =++%%%%+/:-.              ' > /dev/console
-              ${pkgs.coreutils}/bin/echo '                                              ' > /dev/console
-              ${pkgs.coreutils}/bin/echo '                                              ' > /dev/console
-              ${pkgs.coreutils}/bin/echo '                                              ' > /dev/console
+              ${pkgs.coreutils}/bin/echo -e "${bootlogo}" > /dev/console
               # Set color to normal again
               printf "\033[0m" > /dev/console
             '';
