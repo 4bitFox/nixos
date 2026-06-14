@@ -19,6 +19,8 @@
       "/var/lib/bluetooth"
       "/var/lib/nixos"
       "/var/lib/systemd/coredump"
+      "/var/lib/systemd/credentials"
+      "/var/lib/systemd/credstore"
       "/etc/NetworkManager/system-connections"
       "/var/lib/NetworkManager"
       "/var/lib/docker"
