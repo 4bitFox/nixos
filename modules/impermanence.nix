@@ -86,7 +86,6 @@ in
             after = [
               "systemd-udev-settle.service"
               "local-fs-pre.target"
-              "systemd-hibernate-resume.service"
             ];
             requires = [ "systemd-udev-settle.service" ];
             unitConfig.DefaultDependencies = false;
