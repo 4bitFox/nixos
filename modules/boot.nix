@@ -12,7 +12,7 @@
 description = "Boot logo before LUKS prompt";
 
   wantedBy = [ "initrd.target" ];
-
+  requiredBy = [ "systemd-cryptsetup@root.service" ];
   before = [ "systemd-cryptsetup@root.service" ];
 
   unitConfig.DefaultDependencies = "no";
