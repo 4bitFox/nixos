@@ -41,8 +41,13 @@ in
         initrdBin = [ pkgs.coreutils ];
         services = {
           bootlogo = {
-            wantedBy = [ "sysinit.target" ];
-            before = [ "systemd-cryptsetup@cryptroot.service" ];
+            wantedBy = [ "initrd.target" ];
+            # wantedBy = [ "sysinit.target" ];
+            before = [ 
+              "systemd-cryptsetup@cryptroot.service"
+              "initrd-root-device.target"
+              "cryptsetup-pre.target"
+            ];
             unitConfig.DefaultDependencies = "no";
             serviceConfig = {
               Type = "oneshot";
