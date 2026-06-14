@@ -38,7 +38,7 @@ in
       enable = true;
       systemd = {
         enable = true;
-        # initrdBin = [ pkgs.coreutils ];
+        initrdBin = [ pkgs.coreutils ];
         services = {
           bootlogo = {
             wantedBy = [ "sysinit.target" ];
