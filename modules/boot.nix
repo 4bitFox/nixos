@@ -48,12 +48,12 @@ in
               "initrd-root-device.target"
               "cryptsetup-pre.target"
             ];
+            after = [
+              "systemd-journald.service"
+            ];
             unitConfig.DefaultDependencies = "no";
             serviceConfig = {
               Type = "oneshot";
-              StandardOutput = "tty-force";
-              StandardError = "inherit";
-              TTYPath = "/dev/console";
             };
             script = ''
               ${pkgs.coreutils}/bin/echo -e "${bootlogo}"  > /dev/console
