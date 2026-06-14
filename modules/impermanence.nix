@@ -19,7 +19,6 @@
       "/var/lib/bluetooth"
       "/var/lib/nixos"
       "/var/lib/systemd/coredump"
-      "/var/lib/systemd/random-seed"
       "/etc/NetworkManager/system-connections"
       "/var/lib/NetworkManager"
       "/var/lib/docker"
@@ -31,6 +30,8 @@
     ];
     files = [
       "/etc/machine-id"
+      "/var/lib/systemd/random-seed"
+      "/var/lib/systemd/credential.secret"
       "/etc/ssh/ssh_host_rsa_key"
       "/etc/ssh/ssh_host_rsa_key.pub"
       "/etc/ssh/ssh_host_ed25519_key"
