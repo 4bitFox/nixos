@@ -77,16 +77,17 @@ if [[ "$UEFI_INSTALL" -eq 1 ]]; then
   PARTITION_ESP_PARTED_PARTNUM="$(lsblk -no partn "$PARTITION_ESP")"
   parted "$PARTITION_ESP_PARTED_DISK" set "$PARTITION_ESP_PARTED_PARTNUM" esp on
   parted "$PARTITION_ESP_PARTED_DISK" set "$PARTITION_ESP_PARTED_PARTNUM" boot on
-  parted "$PARTITION_ESP_PARTED_DISK" set "$PARTITION_ESP_PARTED_PARTNUM" hidden on
   echo "Formatting $PARTITION_ESP"
   mkfs.fat -F32 -n "$LABEL_ROOTFS"_ESP "$PARTITION_ESP"
 fi
 
 echo ""
-echo "Setting hidden flag on $PARTITION_BOOT"
 PARTITION_BOOT_PARTED_DISK=$(lsblk -no pkname "$PARTITION_BOOT" | sed 's|^|/dev/|')
 PARTITION_BOOT_PARTED_PARTNUM="$(lsblk -no partn "$PARTITION_BOOT")"
-parted "$PARTITION_BOOT_PARTED_DISK" set "$PARTITION_BOOT_PARTED_PARTNUM" hidden on
+if [[ ! "$UEFI_INSTALL" -eq 1 ]]; then
+  echo "Setting boot flag on $PARTITION_BOOT"
+  parted "$PARTITION_BOOT_PARTED_DISK" set "$PARTITION_BOOT_PARTED_PARTNUM" boot on
+fi
 echo "Formatting $PARTITION_BOOT"
 mkfs.ext4 -L "$LABEL_ROOTFS"_boot "$PARTITION_BOOT"
 
@@ -160,7 +161,12 @@ echo "REMOVE this from configuration.nix:"
 echo "  boot.loader.systemd-boot.enable = true;"
 echo "ADD this to configuration.nix:"
 echo "  boot.loader.grub.enable = true;"
-echo "  boot.loader.grub.device = \"nodev\";"
+if [[ "$UEFI_INSTALL" -eq 1 ]]; then
+  echo "  boot.loader.grub.device = \"nodev\";"
+else
+  DISK="/dev/$(lsblk -no pkname "$PARTITION_BOOT")"
+  echo "  boot.loader.grub.device = \"$DISK\";"
+fi
 if [[ "$UEFI_INSTALL" -eq 1 ]]; then
   echo "  boot.loader.grub.efiSupport = true;"
   echo "  boot.loader.efi.efiSysMountPoint = \"/boot/efi\";"
