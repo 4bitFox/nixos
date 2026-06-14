@@ -6,7 +6,7 @@
   boot = {
     initrd = {
       enable = true;
-      systemd.enable = false;
+      systemd.enable = true;
       kernelModules = [   ];
       stage1Greeting =  ''
         TEST
@@ -24,48 +24,48 @@
         TEST
         TEST
       ''; # "<<< Booting GLaDOS - Stage 1 >>>";
-      preDeviceCommands = ''
-        # Clear
-        printf "\033[2J"
-        # Move cursor to top left
-        printf "\033[H"
-        # Set color (bright yellow)
-        printf "\033[93m"
-        # ASCII art
-        echo "                                              "
-        echo "                                              "
-        echo "                                              "
-        echo "                   .,-:;//;:=,                "
-        echo "               . :H@@@MMMM#H/.,+%;,           "
-        echo "            ,/X+ +M@@MMMM%=,-%HMMM@X/,        "
-        echo "          -+@MM; \$M@@MH+-,;XMMMM@MMMMH+-      "
-        echo "         ;@MMMM- XM@X;. -+XXXXXHHH@MMM#@/.    "
-        echo "       ,%MM@@MH ,@%=             .---=-=:=,.  "
-        echo "       =@#@@@MX.,                -%HX\$\$%%%:;  "
-        echo "      =-./@MMM$                   .;@MMMMMMM: "
-        echo "      X@/ -\$MM/                    . +MM@@@M$ "
-        echo "     ,@MMH: :@:                    . =X#@@@@- "
-        echo "     ,@@@MMX, .                    /H- ;@MMM= "
-        echo "     .H@@@@@@+,                    %MM+..%#$. "
-        echo "      /MMMM@MMH/.                  XM@MH; =;  "
-        echo "       /%+%\$XHH@$=              , .H@@@@MX,   "
-        echo "        .=--------.           -%H.,@@@@@MX,   "
-        echo "        .%MM@@@HHHXX\$\$\$%+- .:\$MMX =M@@MM%.    "
-        echo "          =XMMM@MMMMM#H;,-+HMM@M+ /MMMX=      "
-        echo "            =%@MMM#@\$-.=\$MMM@@@M; %M%=        "
-        echo "              ,:+$+-,/H#MMMMMMM@= =,          "
-        echo "                    =++%%%%+/:-.              "
-        echo "                                              "
-        echo "                                              "
-        echo "                                              "
-        # Set color to normal again
-        printf "\033[0m"
-        # Get terminal height
-        rows=$(stty size 2>/dev/null | awk '{print $1}')
-        # Move cursor to third-to-last line
-        target_row=$((rows - 2))
-        printf "\033[''${target_row};1H"
-      '';
+#      preDeviceCommands = ''
+#        # Clear
+#        printf "\033[2J"
+#        # Move cursor to top left
+#        printf "\033[H"
+#        # Set color (bright yellow)
+#        printf "\033[93m"
+#        # ASCII art
+#        echo "                                              "
+#        echo "                                              "
+#        echo "                                              "
+#        echo "                   .,-:;//;:=,                "
+#        echo "               . :H@@@MMMM#H/.,+%;,           "
+#        echo "            ,/X+ +M@@MMMM%=,-%HMMM@X/,        "
+#        echo "          -+@MM; \$M@@MH+-,;XMMMM@MMMMH+-      "
+#        echo "         ;@MMMM- XM@X;. -+XXXXXHHH@MMM#@/.    "
+#        echo "       ,%MM@@MH ,@%=             .---=-=:=,.  "
+#        echo "       =@#@@@MX.,                -%HX\$\$%%%:;  "
+#        echo "      =-./@MMM$                   .;@MMMMMMM: "
+#        echo "      X@/ -\$MM/                    . +MM@@@M$ "
+#        echo "     ,@MMH: :@:                    . =X#@@@@- "
+#        echo "     ,@@@MMX, .                    /H- ;@MMM= "
+#        echo "     .H@@@@@@+,                    %MM+..%#$. "
+#        echo "      /MMMM@MMH/.                  XM@MH; =;  "
+#        echo "       /%+%\$XHH@$=              , .H@@@@MX,   "
+#        echo "        .=--------.           -%H.,@@@@@MX,   "
+#        echo "        .%MM@@@HHHXX\$\$\$%+- .:\$MMX =M@@MM%.    "
+#        echo "          =XMMM@MMMMM#H;,-+HMM@M+ /MMMX=      "
+#        echo "            =%@MMM#@\$-.=\$MMM@@@M; %M%=        "
+#        echo "              ,:+$+-,/H#MMMMMMM@= =,          "
+#        echo "                    =++%%%%+/:-.              "
+#        echo "                                              "
+#        echo "                                              "
+#        echo "                                              "
+#        # Set color to normal again
+#        printf "\033[0m"
+#        # Get terminal height
+#        rows=$(stty size 2>/dev/null | awk '{print $1}')
+#        # Move cursor to third-to-last line
+#        target_row=$((rows - 2))
+#        printf "\033[''${target_row};1H"
+#      '';
     };
     # kernelPackages = pkgs.linuxPackages_latest;
     # kernelPackages = pkgs.linuxPackages_xanmod;

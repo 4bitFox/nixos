@@ -41,102 +41,102 @@
     ];
   };
 
-  boot = {
-    initrd = {
-      postDeviceCommands = lib.mkAfter ''
-        echo "MOUNTING ROOTFS..."
-        mkdir /mnt
-        mount -t btrfs /dev/mapper/GLaDOS_lvm-GLaDOS_rootfs /mnt
-        
-        echo "CHECKING IF ROOT IS MARKED FOR DELETION..."
-        if [ -f /mnt/__WIPE_ROOT_ON_BOOT ]; then
-          echo "ROOT WAS MARKED FOR DELETION!"
-          echo "                                              "
-          echo "                                              "
-          echo "                                              "
-          printf "\033[93m"
-          echo "                          -\$-                 "
-          echo "                         .H##H,               "
-          echo "                        +######+              "
-          echo "                     .+#########H.            "
-          echo "                   -\$############@.           "
-          echo "                 =H###############@  -X:      "
-          echo "               .\$##################:  @#@-    "
-          echo "          ,;  .M###################;  H###;   "
-          echo "        ;@#:  @###################@  ,#####:  "
-          echo "      -M###.  M#################@.  ;######H  "
-          echo "      M####-  +###############$   =@#######X  "
-          echo "      H####$   -M###########+   :#########M,  "
-          echo "       /####X-   =########%   :M########@/.   "
-          echo "         ,;%H@X;   .\$###X   :##MM@%+;:-       "
-          echo "                      ..                      "
-          printf "\033[31m"
-          echo "       -/;:-,.              ,,-==+M########H  "
-          echo "      -##################@HX%%+%%$%%%+:,,     "
-          echo "         .-/H%%%+%%\$H@###############M@+=:/+: "
-          echo "     /XHX%:#####MH%=    ,---:;;;;/&&XHM,:###$ "
-          echo "     \$@#MX %+;-                               "
-          printf "\033[0m"
-          echo "                                              "
-          echo "                                              "
-          echo "                                              "
-          echo "DELETING ROOT..."
-          btrfs subvolume delete /mnt/@/srv
-          btrfs subvolume delete /mnt/@/var/lib/portables
-          btrfs subvolume delete /mnt/@/var/lib/machines
-          btrfs subvolume delete /mnt/@/var/tmp
-          btrfs subvolume delete /mnt/@/@fresh 2>/dev/null # for when deleting fails and this gets created here...
-          btrfs subvolume delete /mnt/@
-          echo "RECREATING ROOT..."
-          btrfs subvolume snapshot /mnt/@fresh /mnt/@
-          echo "POPULATING ROOT FOR MOUNTPOINTS..."
-          mkdir /mnt/@/home
-          mkdir /mnt/@/nix
-          mkdir /mnt/@/persist
-          mkdir /mnt/@/var
-          mkdir /mnt/@/var/log
-          mkdir /mnt/@/boot
-          mkdir /mnt/@/boot/efi
-          mkdir /mnt/@/mnt #optional but I like to have this directory :-)
-          echo "REMOVIMG 'WIPE ROOT ON BOOT' MARKER"
-          rm /mnt/__WIPE_ROOT_ON_BOOT
-          echo "SYSTEM IS FRESH! :-D"
-        else
-          echo "ROOT WAS NOT MARKED FOR DELETION AND WILL THEREFORE NOT BE WIPED!"
-          echo "                                              "
-          echo "                                              "
-          echo "                                              "
-          echo "            \#+ @      \# \#              M#@    "
-          echo "      .    .X  X.%##@;# \#   +@#######X. @H%   "
-          echo "        ,==.   ,######M+  -#####%M####M-    \# "
-          echo "       :H##M%:=##+ .M##M,;#####/+#######% ,M# "
-          echo "      .M########=  =@#@.=#####M=M#######=  X# "
-          echo "      :@@MMM##M.  -##M.,#######M#######. =  M "
-          echo "                  @##..###:.    .H####. @@ X, "
-          echo "        \############: \###,/####;  /##= @#. M  "
-          echo "                ,M## ;##,@#M;/M#M  @# X#% X#  "
-          echo "     .%=   \######M## \##.M#:   ./#M ,M \#M ,#$  "
-          echo "     \##/         \$## \#+;#: \#### ;#/ M M- @# : "
-          echo "     \#+ \#M@MM###M-;M \#:\$#-##\$H# .#X @ + \$#. \# "
-          echo "           \######/.: \#%=# M#:MM./#.-#  @#: H# "
-          echo "     +,.=   @###: /@ %#,@  \##@X \#,-#@.##% .@# "
-          echo "     \#####+;/##/ @##  @#,+       /#M    . X,  "
-          echo "        ;###M#@ M###H .#M-     ,##M  ;@@; \### "
-          echo "        .M#M##H ;####X ,@#######M/ -M###$  -H "
-          echo "         .M###%  X####H  .@@MMM;  ;@#M@       "
-          echo "           H#M    /@####/      ,++.  / ==-,   "
-          echo "                    ,=/:, .+X@MMH##H  \#####$= "
-          echo "                                              "
-          echo "                                              "
-          echo "                                              "
-        fi
-
-        echo "UNMOUNTING ROOTFS..."
-        umount /mnt
-        echo ""
-      '';
-    };
-  };
+#  boot = {
+#    initrd = {
+#      postDeviceCommands = lib.mkAfter ''
+#        echo "MOUNTING ROOTFS..."
+#        mkdir /mnt
+#        mount -t btrfs /dev/mapper/GLaDOS_lvm-GLaDOS_rootfs /mnt
+#        
+#        echo "CHECKING IF ROOT IS MARKED FOR DELETION..."
+#        if [ -f /mnt/__WIPE_ROOT_ON_BOOT ]; then
+#          echo "ROOT WAS MARKED FOR DELETION!"
+#          echo "                                              "
+#          echo "                                              "
+#          echo "                                              "
+#          printf "\033[93m"
+#          echo "                          -\$-                 "
+#          echo "                         .H##H,               "
+#          echo "                        +######+              "
+#          echo "                     .+#########H.            "
+#          echo "                   -\$############@.           "
+#          echo "                 =H###############@  -X:      "
+#          echo "               .\$##################:  @#@-    "
+#          echo "          ,;  .M###################;  H###;   "
+#          echo "        ;@#:  @###################@  ,#####:  "
+#          echo "      -M###.  M#################@.  ;######H  "
+#          echo "      M####-  +###############$   =@#######X  "
+#          echo "      H####$   -M###########+   :#########M,  "
+#          echo "       /####X-   =########%   :M########@/.   "
+#          echo "         ,;%H@X;   .\$###X   :##MM@%+;:-       "
+#          echo "                      ..                      "
+#          printf "\033[31m"
+#          echo "       -/;:-,.              ,,-==+M########H  "
+#          echo "      -##################@HX%%+%%$%%%+:,,     "
+#          echo "         .-/H%%%+%%\$H@###############M@+=:/+: "
+#          echo "     /XHX%:#####MH%=    ,---:;;;;/&&XHM,:###$ "
+#          echo "     \$@#MX %+;-                               "
+#          printf "\033[0m"
+#          echo "                                              "
+#          echo "                                              "
+#          echo "                                              "
+#          echo "DELETING ROOT..."
+#          btrfs subvolume delete /mnt/@/srv
+#          btrfs subvolume delete /mnt/@/var/lib/portables
+#          btrfs subvolume delete /mnt/@/var/lib/machines
+#          btrfs subvolume delete /mnt/@/var/tmp
+#          btrfs subvolume delete /mnt/@/@fresh 2>/dev/null # for when deleting fails and this gets created here...
+#          btrfs subvolume delete /mnt/@
+#          echo "RECREATING ROOT..."
+#          btrfs subvolume snapshot /mnt/@fresh /mnt/@
+#          echo "POPULATING ROOT FOR MOUNTPOINTS..."
+#          mkdir /mnt/@/home
+#          mkdir /mnt/@/nix
+#          mkdir /mnt/@/persist
+#          mkdir /mnt/@/var
+#          mkdir /mnt/@/var/log
+#          mkdir /mnt/@/boot
+#          mkdir /mnt/@/boot/efi
+#          mkdir /mnt/@/mnt #optional but I like to have this directory :-)
+#          echo "REMOVIMG 'WIPE ROOT ON BOOT' MARKER"
+#          rm /mnt/__WIPE_ROOT_ON_BOOT
+#          echo "SYSTEM IS FRESH! :-D"
+#        else
+#          echo "ROOT WAS NOT MARKED FOR DELETION AND WILL THEREFORE NOT BE WIPED!"
+#          echo "                                              "
+#          echo "                                              "
+#          echo "                                              "
+#          echo "            \#+ @      \# \#              M#@    "
+#          echo "      .    .X  X.%##@;# \#   +@#######X. @H%   "
+#          echo "        ,==.   ,######M+  -#####%M####M-    \# "
+#          echo "       :H##M%:=##+ .M##M,;#####/+#######% ,M# "
+#          echo "      .M########=  =@#@.=#####M=M#######=  X# "
+#          echo "      :@@MMM##M.  -##M.,#######M#######. =  M "
+#          echo "                  @##..###:.    .H####. @@ X, "
+#          echo "        \############: \###,/####;  /##= @#. M  "
+#          echo "                ,M## ;##,@#M;/M#M  @# X#% X#  "
+#          echo "     .%=   \######M## \##.M#:   ./#M ,M \#M ,#$  "
+#          echo "     \##/         \$## \#+;#: \#### ;#/ M M- @# : "
+#          echo "     \#+ \#M@MM###M-;M \#:\$#-##\$H# .#X @ + \$#. \# "
+#          echo "           \######/.: \#%=# M#:MM./#.-#  @#: H# "
+#          echo "     +,.=   @###: /@ %#,@  \##@X \#,-#@.##% .@# "
+#          echo "     \#####+;/##/ @##  @#,+       /#M    . X,  "
+#          echo "        ;###M#@ M###H .#M-     ,##M  ;@@; \### "
+#          echo "        .M#M##H ;####X ,@#######M/ -M###$  -H "
+#          echo "         .M###%  X####H  .@@MMM;  ;@#M@       "
+#          echo "           H#M    /@####/      ,++.  / ==-,   "
+#          echo "                    ,=/:, .+X@MMH##H  \#####$= "
+#          echo "                                              "
+#          echo "                                              "
+#          echo "                                              "
+#        fi
+#
+#        echo "UNMOUNTING ROOTFS..."
+#        umount /mnt
+#        echo ""
+#      '';
+#    };
+#  };
 
 
   ### /etc/shadow ### hacky code snippet from thundertheidiot on Sep 30, 2024; thank you! :D : https://github.com/nix-community/impermanence/issues/120#issuecomment-2382674299
