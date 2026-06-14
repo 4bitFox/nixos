@@ -39,7 +39,6 @@ in
       wl-clip-persist
       super-slicer
       mtkclient
-      mediawriter
       (python3.withPackages (python-pkgs: with python-pkgs; [
         rich
         numpy
