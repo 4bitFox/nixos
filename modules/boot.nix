@@ -6,24 +6,38 @@
   boot = {
     initrd = {
       enable = true;
-      systemd.enable = true;
+      systemd = {
+        enable = true;
+        services.boot-logo = {
+    description = "Display boot logo";
+
+    wantedBy = [ "cryptsetup-pre.target" ];
+    before = [ "cryptsetup-pre.target" ];
+
+    serviceConfig = {
+      Type = "oneshot";
+      StandardOutput = "tty";
+      StandardError = "tty";
+      TTYPath = "/dev/console";
+    };
+
+    script = ''
+      clear
+
+      cat <<'EOF'
+       _   _ _      ___  __
+      | \ | (_)__  / _ \/ /
+      |  \| | \ \/ / // / /
+      | |\  | |>  < /__/_/
+      |_| \_|_/_/\_\\___(_)
+
+      EOF
+
+      sleep 2
+    '';
+  };
+      };
       kernelModules = [   ];
-      stage1Greeting =  ''
-        TEST
-        TEST
-        TEST
-        TEST
-        TEST
-        TEST
-        TEST
-        TEST
-        TEST
-        TEST
-        TEST
-        TEST
-        TEST
-        TEST
-      ''; # "<<< Booting GLaDOS - Stage 1 >>>";
 #      preDeviceCommands = ''
 #        # Clear
 #        printf "\033[2J"
