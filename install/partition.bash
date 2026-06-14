@@ -8,13 +8,20 @@ fi
 
 mountpoint -q /mnt && { echo "/mnt is mounted! aborting"; exit 1; }
 
-echo "Manually create 3 unformatted partitions (for 'ESP/EFI' (1024 MiB), 'boot' (2048 MiB) and 'luks (optional) + lvm rootfs and swap' (rest of space)) using fdisk, gparted or other tool."
+echo "Manually create unformatted partitions for 'ESP/EFI' (1024 MiB) (optional), 'boot' (2048 MiB) and 'luks (optional) + lvm rootfs and swap' (rest of space) using fdisk, gparted or other tool."
 echo "In the next step you will be asked to enter the path to the partitions. (example: /dev/sdxN)"
 read -p "Press Enter to continue..." 
 
 echo ""
-read -r -p "Enter path for partition 'ESP': " PARTITION_ESP
-echo "PARTITION FOR ESP: $PARTITION_ESP"
+read -r -p "Enter path for partition 'ESP' for a UEFI install; leave blank for a BIOS install: " PARTITION_ESP
+
+if [ -z "$PARTITION_ESP" ]; then
+  echo "BIOS install selected"
+  UEFI_INSTALL=0
+else
+  echo "PARTITION FOR ESP: $PARTITION_ESP"
+  UEFI_INSTALL=1
+fi
 
 echo ""
 read -r -p "Enter path for partition 'boot': " PARTITION_BOOT
@@ -34,7 +41,14 @@ LABEL_ROOTFS="GLaDOS"
 # read -r -p "ROOTFS LABEL (e.g. rootfs): " LABEL_ROOTFS
 echo "LABEL FOR ROOTFS: $LABEL_ROOTFS"
 
-for p in "$PARTITION_ESP" "$PARTITION_BOOT" "$PARTITION_ROOTFS"; do
+if [[ "$UEFI_INSTALL" -eq 1 ]]; then
+  if [[ ! -b "$PARTITION_ESP" ]]; then
+    echo "Error: $PARTITION_ESP is not a valid block device"
+    exit 1
+  fi
+fi
+
+for p in "$PARTITION_BOOT" "$PARTITION_ROOTFS"; do
   if [[ ! -b "$p" ]]; then
     echo "Error: $p is not a valid block device"
     exit 1
@@ -57,14 +71,16 @@ read -r -p "Type 'YES' to continue: " CONFIRM
 
 
 echo ""
-echo "Setting ESP + boot + hidden flags on $PARTITION_ESP"
-PARTITION_ESP_PARTED_DISK=$(lsblk -no pkname "$PARTITION_ESP" | sed 's|^|/dev/|')
-PARTITION_ESP_PARTED_PARTNUM="$(lsblk -no partn "$PARTITION_ESP")"
-parted "$PARTITION_ESP_PARTED_DISK" set "$PARTITION_ESP_PARTED_PARTNUM" esp on
-parted "$PARTITION_ESP_PARTED_DISK" set "$PARTITION_ESP_PARTED_PARTNUM" boot on
-parted "$PARTITION_ESP_PARTED_DISK" set "$PARTITION_ESP_PARTED_PARTNUM" hidden on
-echo "Formatting $PARTITION_ESP"
-mkfs.fat -F32 -n "$LABEL_ROOTFS"_ESP "$PARTITION_ESP"
+if [[ "$UEFI_INSTALL" -eq 1 ]]; then
+  echo "Setting ESP + boot + hidden flags on $PARTITION_ESP"
+  PARTITION_ESP_PARTED_DISK=$(lsblk -no pkname "$PARTITION_ESP" | sed 's|^|/dev/|')
+  PARTITION_ESP_PARTED_PARTNUM="$(lsblk -no partn "$PARTITION_ESP")"
+  parted "$PARTITION_ESP_PARTED_DISK" set "$PARTITION_ESP_PARTED_PARTNUM" esp on
+  parted "$PARTITION_ESP_PARTED_DISK" set "$PARTITION_ESP_PARTED_PARTNUM" boot on
+  parted "$PARTITION_ESP_PARTED_DISK" set "$PARTITION_ESP_PARTED_PARTNUM" hidden on
+  echo "Formatting $PARTITION_ESP"
+  mkfs.fat -F32 -n "$LABEL_ROOTFS"_ESP "$PARTITION_ESP"
+fi
 
 echo ""
 echo "Setting hidden flag on $PARTITION_BOOT"
@@ -125,8 +141,11 @@ mount -o compress=zstd,subvol=@persist /dev/"$LABEL_ROOTFS"_lvm/"$LABEL_ROOTFS"_
 mount -o compress=zstd,subvol=@log /dev/"$LABEL_ROOTFS"_lvm/"$LABEL_ROOTFS"_rootfs /mnt/var/log
 mkdir /mnt/boot
 mount "$PARTITION_BOOT" /mnt/boot
-mkdir /mnt/boot/efi
-mount "$PARTITION_ESP" /mnt/boot/efi
+
+if [[ "$UEFI_INSTALL" -eq 1 ]]; then
+  mkdir /mnt/boot/efi
+  mount "$PARTITION_ESP" /mnt/boot/efi
+fi
 swapon /dev/"$LABEL_ROOTFS"_lvm/"$LABEL_ROOTFS"_swap
 
 echo "Generating NixOS config"
@@ -142,8 +161,10 @@ echo "  boot.loader.systemd-boot.enable = true;"
 echo "ADD this to configuration.nix:"
 echo "  boot.loader.grub.enable = true;"
 echo "  boot.loader.grub.device = \"nodev\";"
-echo "  boot.loader.grub.efiSupport = true;"
-echo "  boot.loader.efi.efiSysMountPoint = \"/boot/efi\";"
+if [[ "$UEFI_INSTALL" -eq 1 ]]; then
+  echo "  boot.loader.grub.efiSupport = true;"
+  echo "  boot.loader.efi.efiSysMountPoint = \"/boot/efi\";"
+fi
 if [[ "$USE_LUKS" -eq 1 ]]; then
   echo "  boot.initrd.luks.devices = {"
   echo "    luksroot = {"
