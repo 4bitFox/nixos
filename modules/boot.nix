@@ -8,7 +8,22 @@
       enable = true;
       systemd.enable = false;
       kernelModules = [   ];
-      stage1Greeting = "<<< Booting GLaDOS - Stage 1 >>>";
+      stage1Greeting =  ''
+        TEST
+        TEST
+        TEST
+        TEST
+        TEST
+        TEST
+        TEST
+        TEST
+        TEST
+        TEST
+        TEST
+        TEST
+        TEST
+        TEST
+      ''; # "<<< Booting GLaDOS - Stage 1 >>>";
       preDeviceCommands = ''
         # Clear
         printf "\033[2J"
