@@ -42,8 +42,8 @@ in
         services = {
           bootlogo = {
             wantedBy = [ "initrd.target" ];
-            # wantedBy = [ "sysinit.target" ];
             before = [ 
+              "sysinit.target"
               "systemd-cryptsetup@cryptroot.service"
               "initrd-root-device.target"
               "cryptsetup-pre.target"
@@ -51,6 +51,9 @@ in
             unitConfig.DefaultDependencies = "no";
             serviceConfig = {
               Type = "oneshot";
+              StandardOutput = "tty-force";
+              StandardError = "inherit";
+              TTYPath = "/dev/console";
             };
             script = ''
               ${pkgs.coreutils}/bin/echo -e "${bootlogo}"  > /dev/console
