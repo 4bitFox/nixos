@@ -45,17 +45,17 @@ in
             wantedBy = [ "initrd.target" ];
             before = [ 
               "sysinit.target"
-#              "systemd-cryptsetup@cryptroot.service"
-#              "initrd-root-device.target"
+              "systemd-cryptsetup@cryptroot.service"
+              "initrd-root-device.target"
 #              "cryptsetup-pre.target"
             ];
-#            after = [
-#              "systemd-journald.service"
-#              "systemd-tmpfiles-setup-dev.service"
-#              "systemd-vconsole-setup.service"
-#              "systemd-udev-trigger.service"
-#            ];
-            after = [ "systemd-udev-settle.service" ];
+            after = [
+              "systemd-journald.service"
+              "systemd-tmpfiles-setup-dev.service"
+              "systemd-vconsole-setup.service"
+              "systemd-udev-trigger.service"
+              "systemd-udev-settle.service"
+            ];
             unitConfig.DefaultDependencies = "no";
             serviceConfig = {
               Type = "oneshot";
