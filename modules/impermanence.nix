@@ -82,10 +82,10 @@ in
             wantedBy = [ "initrd.target" ];
             before = [
               "sysroot.mount"
+              "local-fs-pre.target"
             ];
             after = [
               "systemd-udev-settle.service"
-              "local-fs-pre.target"
             ];
             requires = [ "systemd-udev-settle.service" ];
             unitConfig.DefaultDependencies = false;
