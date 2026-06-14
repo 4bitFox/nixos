@@ -9,33 +9,30 @@
       systemd = {
         enable = true;
         services.boot-logo = {
-    description = "Display boot logo";
+description = "Boot logo before LUKS prompt";
 
-    wantedBy = [ "cryptsetup-pre.target" ];
-    before = [ "cryptsetup-pre.target" ];
+  wantedBy = [ "initrd.target" ];
 
-    serviceConfig = {
-      Type = "oneshot";
-      StandardOutput = "tty";
-      StandardError = "tty";
-      TTYPath = "/dev/console";
-    };
+  before = [ "systemd-cryptsetup@root.service" ];
 
-    script = ''
-      clear
+  unitConfig.DefaultDependencies = "no";
 
-      cat <<'EOF'
-       _   _ _      ___  __
-      | \ | (_)__  / _ \/ /
-      |  \| | \ \/ / // / /
-      | |\  | |>  < /__/_/
-      |_| \_|_/_/\_\\___(_)
-
-      EOF
-
-      sleep 2
-    '';
+  serviceConfig = {
+    Type = "oneshot";
+    StandardOutput = "tty";
+    StandardError = "tty";
+    TTYPath = "/dev/console";
   };
+
+  script = ''
+    clear
+    echo "================================"
+    echo "        A P E R T U R E"
+    echo "================================"
+    echo ""
+    sleep 2
+  '';
+};
       };
       kernelModules = [   ];
 #      preDeviceCommands = ''
