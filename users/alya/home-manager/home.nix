@@ -85,6 +85,7 @@ in
       name = "Papirus-Dark";
       package = papirus-icon-theme_violet;
     };
+    gtk4.theme = config.gtk.theme; # keep legacy behavior from 25.11; The default value of `gtk.gtk4.theme` has changed from `config.gtk.theme` to `null`.
   };
   
   home.file = {
