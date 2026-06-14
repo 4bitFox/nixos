@@ -3,32 +3,32 @@
 
 let
   bootlogo = ''
-                                              
-                                              
-                                              
-                   .,-:;//;:=,                
-               . :H@@@MMMM#H/.,+%;,           
-            ,/X+ +M@@MMMM%=,-%HMMM@X/,        
-          -+@MM; \$M@@MH+-,;XMMMM@MMMMH+-      
-         ;@MMMM- XM@X;. -+XXXXXHHH@MMM#@/.    
-       ,%MM@@MH ,@%=             .---=-=:=,.  
-       =@#@@@MX.,                -%HX\$\$%%%:;  
-      =-./@MMM$                   .;@MMMMMMM: 
-      X@/ -\$MM/                    . +MM@@@M$ 
-     ,@MMH: :@:                    . =X#@@@@- 
-     ,@@@MMX, .                    /H- ;@MMM= 
-     .H@@@@@@+,                    %MM+..%#$. 
-      /MMMM@MMH/.                  XM@MH; =;  
-       /%+%\$XHH@$=              , .H@@@@MX,   
-        .=--------.           -%H.,@@@@@MX,   
-        .%MM@@@HHHXX\$\$\$%+- .:\$MMX =M@@MM%.    
-          =XMMM@MMMMM#H;,-+HMM@M+ /MMMX=      
-            =%@MMM#@\$-.=\$MMM@@@M; %M%=        
-              ,:+$+-,/H#MMMMMMM@= =,          
-                    =++%%%%+/:-.              
-                                              
-                                              
-                                              
+    \\t                                              
+    \\t                                              
+    \\t                                              
+    \\t                   .,-:;//;:=,                
+    \\t               . :H@@@MMMM#H/.,+%;,           
+    \\t            ,/X+ +M@@MMMM%=,-%HMMM@X/,        
+    \\t          -+@MM; \$M@@MH+-,;XMMMM@MMMMH+-      
+    \\t         ;@MMMM- XM@X;. -+XXXXXHHH@MMM#@/.    
+    \\t       ,%MM@@MH ,@%=             .---=-=:=,.  
+    \\t       =@#@@@MX.,                -%HX\$\$%%%:;  
+    \\t      =-./@MMM$                   .;@MMMMMMM: 
+    \\t      X@/ -\$MM/                    . +MM@@@M$ 
+    \\t     ,@MMH: :@:                    . =X#@@@@- 
+    \\t     ,@@@MMX, .                    /H- ;@MMM= 
+    \\t     .H@@@@@@+,                    %MM+..%#$. 
+    \\t      /MMMM@MMH/.                  XM@MH; =;  
+    \\t       /%+%\$XHH@$=              , .H@@@@MX,   
+    \\t        .=--------.           -%H.,@@@@@MX,   
+    \\t        .%MM@@@HHHXX\$\$\$%+- .:\$MMX =M@@MM%.    
+    \\t          =XMMM@MMMMM#H;,-+HMM@M+ /MMMX=      
+    \\t            =%@MMM#@\$-.=\$MMM@@@M; %M%=        
+    \\t              ,:+$+-,/H#MMMMMMM@= =,          
+    \\t                    =++%%%%+/:-.              
+    \\t                                              
+    \\t                                              
+    \\t                                              
   '';
 in
 
