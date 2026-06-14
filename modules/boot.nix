@@ -30,7 +30,6 @@ in
     script = ''
       ${pkgs.coreutils}/bin/echo -e "${bootmsg}"  > /dev/console
     '';
-  '';
 };
       };
       kernelModules = [   ];
