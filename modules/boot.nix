@@ -54,16 +54,15 @@ in
               "systemd-tmpfiles-setup-dev.service"
               "systemd-vconsole-setup.service"
               "systemd-udev-trigger.service"
-              "tpm2.target"
             ];
             unitConfig.DefaultDependencies = "no";
             serviceConfig = {
               Type = "oneshot";
             };
             script = ''
-              printf "\033[93m"
-              ${pkgs.coreutils}/bin/echo -e "${bootlogo}"  > /dev/console
-              printf "\033[0m"
+              printf "\033[93m" > /dev/console
+              ${pkgs.coreutils}/bin/echo -e "${bootlogo}" > /dev/console
+              printf "\033[0m" > /dev/console
             '';
           };
         };
