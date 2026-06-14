@@ -77,7 +77,7 @@ in
       systemd = {
         initrdBin = [ pkgs.coreutils ];
         services = {
-          impermanence-wiperoot = {
+          impermanence_wiperoot = {
             description = "Impermanence filesystem preparation";
             wantedBy = [ "initrd.target" ];
             before = [
