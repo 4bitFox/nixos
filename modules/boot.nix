@@ -48,9 +48,9 @@ in
               Type = "oneshot";
             };
             script = ''
-              exec > /dev/console 2>&1
-              printf "%b\n" "${bootlogo}"
-              # ${pkgs.coreutils}/bin/echo -e "${bootlogo}"  > /dev/console
+              # exec > /dev/console 2>&1
+              # printf "%b\n" "${bootlogo}"
+              ${pkgs.coreutils}/bin/echo -e "${bootlogo}"  > /dev/console
             '';
           };
         };
