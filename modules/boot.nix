@@ -1,6 +1,16 @@
 
 { config, pkgs, lib, ... }:
 
+let
+
+bootmsg = ''
+    ==========================
+        A P E R T U R E
+    ==========================
+
+  '';
+
+in
 
 {
   boot = {
@@ -13,20 +23,12 @@
   services.bootmsg = {
     wantedBy = [ "sysinit.target" ];
     before = [ "systemd-cryptsetup@cryptroot.service" ];
-    unitConfig.DefaultDependencies = false;
+    unitConfig.DefaultDependencies = "no";
     serviceConfig = {
       Type = "oneshot";
     };
     script = ''
-      ${pkgs.coreutils}/bin/echo -e ''
-AAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAA
-
-''  > /dev/console
+      ${pkgs.coreutils}/bin/echo -e "${bootmsg}"  > /dev/console
     '';
   '';
 };
