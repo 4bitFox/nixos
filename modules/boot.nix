@@ -92,14 +92,8 @@ in
     tmp.cleanOnBoot = true;
     supportedFilesystems = ["ntfs"];
     loader = {
-      efi = {
-        canTouchEfiVariables = true;
-        efiSysMountPoint = "/boot/efi";
-      };
       grub = {
         enable = true;
-        device = "nodev";
-        efiSupport = true;
         useOSProber = false;
         timeoutStyle = "menu";
         splashImage = null;
@@ -108,8 +102,6 @@ in
         copyKernels = true;
         gfxmodeBios = "auto";
         gfxpayloadBios = "keep";
-        gfxmodeEfi = "auto";
-        gfxpayloadEfi = "keep";
         fsIdentifier = "uuid";
         default = "saved";
       };

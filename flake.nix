@@ -54,6 +54,7 @@
         system = "x86_64-linux";
         hostModules = [
           ./hosts/tuxedo-sirius-16-gen2/host.nix
+          ./modules/boot/efi.nix
           {
             # This value determines the NixOS release from which the default
             # settings for stateful data, like file locations and database versions
