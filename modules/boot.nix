@@ -104,6 +104,7 @@ in
         gfxpayloadBios = "keep";
         fsIdentifier = "uuid";
         default = "saved";
+        configurationLimit = 10;
       };
       timeout = 3;
     };
