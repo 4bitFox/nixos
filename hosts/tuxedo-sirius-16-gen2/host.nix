@@ -58,7 +58,7 @@
         version = "git";
         src = builtins.fetchGit {
           url = "https://github.com/alsa-project/alsa-ucm-conf.git";
-          ref = "c68dcb1";
+          ref = "7e08d4e6b0c75bfee72abbc0b3ac7c7b6e6abec1"; # git ls-remote https://github.com/alsa-project/alsa-ucm-conf.git | grep <COMMIT>
         };
         patches = (old.patches or []) ++ [
           (builtins.fetchurl {
