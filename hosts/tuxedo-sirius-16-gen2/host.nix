@@ -59,7 +59,7 @@
 src = prev.fetchFromGitHub {
   owner = "alsa-project";
   repo = "alsa-ucm-conf";
-  rev = "acaa985df3404207ddb6beae42677f60df94deb5"; # Get with: git ls-remote https://github.com/alsa-project/alsa-ucm-conf.git | grep <COMMIT>
+  rev = "858d3a2443c66a7d5a2b5598308619237e8fc75d"; # Get with: git ls-remote https://github.com/alsa-project/alsa-ucm-conf.git | grep <COMMIT>
   sha256 = "";
 };
         patches = (old.patches or []) ++ [
