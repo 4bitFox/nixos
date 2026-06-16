@@ -59,15 +59,15 @@
 src = prev.fetchFromGitHub {
   owner = "alsa-project";
   repo = "alsa-ucm-conf";
-  # GET BELOW WITH: nix run nixpkgs#nix-prefetch-github -- alsa-project alsa-ucm-conf
-  rev = "83b6ecf30b774a43060794119063ebee761a2c38";
+  rev = "83b6ecf30b774a43060794119063ebee761a2c38"; # Get with: git ls-remote https://github.com/alsa-project/alsa-ucm-conf.git | grep <COMMIT>
   sha256 = "sha256-jPNu3TSZknvllU1RZNVrqv1TyTLRVcoPBAsMOOJBmH8=";
 };
         patches = (old.patches or []) ++ [
-          (builtins.fetchurl {
-            url = "https://github.com/alsa-project/alsa-ucm-conf/pull/533.patch";
-            sha256 = "1ivpzsbf39xwm3dwpbrg85dpp92by8nagzryrqnzpggcw0y1adck";
-          })
+          ./patches/alsa-ucm-conf/tuxedo-sirius16_dual-speaker_v1.patch
+          #(builtins.fetchurl {
+          #  url = "https://github.com/alsa-project/alsa-ucm-conf/pull/533.patch";
+          #  sha256 = "1ivpzsbf39xwm3dwpbrg85dpp92by8nagzryrqnzpggcw0y1adck";
+          #})
         ];
       });
     })
