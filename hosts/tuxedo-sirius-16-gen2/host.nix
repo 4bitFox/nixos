@@ -60,7 +60,7 @@ src = prev.fetchFromGitHub {
   owner = "alsa-project";
   repo = "alsa-ucm-conf";
   rev = "5682b16f50e2a6ba8d4361c9ef7810ab534708bf"; # Get with: git ls-remote https://github.com/alsa-project/alsa-ucm-conf.git | grep <COMMIT>
-  sha256 = "";
+  sha256 = "sha256-xYwDQA4ykagdMrpBK6dL/OcpOdDMJSoROQ4axC7SVkI=";
 };
         patches = (old.patches or []) ++ [
           ./patches/alsa-ucm-conf/tuxedo-sirius16_dual-speaker_v1.patch
