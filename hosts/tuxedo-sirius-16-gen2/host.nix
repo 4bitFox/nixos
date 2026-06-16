@@ -58,7 +58,7 @@
         version = "git";
         src = builtins.fetchGit {
           url = "https://github.com/alsa-project/alsa-ucm-conf.git";
-          ref = "master";
+          ref = "7e08d4e";
         };
         patches = (old.patches or []) ++ [
           (builtins.fetchurl {
