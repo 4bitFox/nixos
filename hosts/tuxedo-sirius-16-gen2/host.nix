@@ -52,13 +52,13 @@
   };
 
   nixpkgs.overlays = [
-#    ### Tuxedo Sirius 16 dual speaker patch ###
+    ### Tuxedo Sirius 16 dual speaker patch ###
     (final: prev: {
       alsa-ucm-conf = prev.alsa-ucm-conf.overrideAttrs (old: {
         version = "git";
         src = builtins.fetchGit {
           url = "https://github.com/alsa-project/alsa-ucm-conf.git";
-          ref = "7e08d4e";
+          ref = "c68dcb1";
         };
         patches = (old.patches or []) ++ [
           (builtins.fetchurl {
