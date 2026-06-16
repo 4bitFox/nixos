@@ -51,29 +51,6 @@
     };
   };
 
-  nixpkgs.overlays = [
-    ### Tuxedo Sirius 16 dual speaker patch ###
-    (final: prev: {
-      alsa-ucm-conf = prev.alsa-ucm-conf.overrideAttrs (old: {
-        version = "git";
-src = prev.fetchFromGitHub {
-  owner = "alsa-project";
-  repo = "alsa-ucm-conf";
-  rev = "5d175e1f7e3df15973945a9cc15e82fa7ca0d7b6"; # Get with: git ls-remote https://github.com/alsa-project/alsa-ucm-conf.git | grep <COMMIT>
-  sha256 = "sha256-N/zHZwqbhJ4/40bjIzTvlGMO+BccJsvmtaEvD0TZBww=";
-};
-        patches = (old.patches or []) ++ [
-          ./patches/alsa-ucm-conf/tuxedo-sirius16_dual-speaker_v1.patch
-          #(builtins.fetchurl {
-          #  url = "https://github.com/alsa-project/alsa-ucm-conf/pull/533.patch";
-          #  sha256 = "1ivpzsbf39xwm3dwpbrg85dpp92by8nagzryrqnzpggcw0y1adck";
-          #})
-        ];
-      });
-    })
-  ];
-
-
   
   specialisation = {
     gpu-passtrough = {
