@@ -1,0 +1,351 @@
+From 83b6ecf30b774a43060794119063ebee761a2c38 Mon Sep 17 00:00:00 2001
+From: Jaroslav Kysela <perex@perex.cz>
+Date: Tue, 25 Mar 2025 15:55:24 +0100
+Subject: [PATCH] HDA: Handle better Bass speaker including 4 channel mode
+
+Create 'Speaker 4ch' virtual mixer controls for this purpose.
+
+'Syntax 8' is required (alsa-lib 1.2.14).
+
+Link: https://github.com/alsa-project/alsa-ucm-conf/pull/410
+Signed-off-by: Jaroslav Kysela <perex@perex.cz>
+---
+ ucm2/HDA/HDA.conf                       |   3 +-
+ ucm2/HDA/HiFi-spk.conf                  | 111 ++++++++++++++++---
+ ucm2/HDA/init.conf                      | 140 +++++++++++++++++++++++-
+ ucm2/Intel/sof-hda-dsp/sof-hda-dsp.conf |   2 +-
+ 4 files changed, 233 insertions(+), 23 deletions(-)
+
+diff --git a/ucm2/HDA/HDA.conf b/ucm2/HDA/HDA.conf
+index b407f46ab..107ab1e21 100644
+--- a/ucm2/HDA/HDA.conf
++++ b/ucm2/HDA/HDA.conf
+@@ -1,4 +1,4 @@
+-Syntax 6
++Syntax 8
+ 
+ Define.Use ""	# a non-empty string to use UCM configuration for HDA devices
+ Define.Done ""	# a non-empty string to skip the end error
+@@ -50,6 +50,7 @@ If.use {
+ 			}
+ 			True {
+ 				Include.led.File "/common/ctl/led.conf"
++				Include.card-init.File "/lib/card-init.conf"
+ 				Include.init.File "/HDA/init.conf"
+ 
+ 				Macro [
+diff --git a/ucm2/HDA/HiFi-spk.conf b/ucm2/HDA/HiFi-spk.conf
+index 7e6c4d03d..eb96733c6 100644
+--- a/ucm2/HDA/HiFi-spk.conf
++++ b/ucm2/HDA/HiFi-spk.conf
+@@ -1,38 +1,56 @@
+ # HDA Speaker configuration
+ 
+-SectionDevice."Speaker" {
++Define.SpkDevice "Speaker"
++
++If.spk4ch {
++	Condition {
++		Type String
++		Empty "${var:Speaker4chBass}"
++	}
++	False.Define.SpkDevice "Speaker1"
++}
++
++SectionDevice."${var:SpkDevice}" {
+ 	Comment "Speaker"
+ 
+ 	If.seq {
+ 		Condition {
+-			Type ControlExists
+-			Control "name='Bass Speaker Playback Switch'"
++			Type String
++			Empty "${var:Speaker4chBass}"
+ 		}
+-		True {
++		False {
+ 			EnableSequence [
+-				cset "name='Speaker Playback Switch' on"
++				cset "name='Speaker 4ch SyncSw Playback Switch' on"
+ 				cset "name='Bass Speaker Playback Switch' on"
+ 			]
+ 
+ 			DisableSequence [
+-				cset "name='Speaker Playback Switch' off"
+ 				cset "name='Bass Speaker Playback Switch' off"
+-			]
+-		}
+-		False {
+-			EnableSequence [
+-				cset "name='${var:spkvol} Playback Switch' on"
++				cset "name='Speaker 4ch SyncSw Playback Switch' off"
+ 			]
+ 
+-			DisableSequence [
+-				cset "name='${var:spkvol} Playback Switch' off"
+-			]
++			If.sync_vol {
++				Condition {
++					Type String
++					Empty "${var:SpeakerSyncVol}"
++				}
++				False {
++					EnableSequence [
++						cset "name='Speaker 4ch SyncVol Playback Switch' on"
++					]
++
++					DisableSequence [
++						cset "name='Speaker 4ch SyncVol Playback Switch' off"
++					]
++				}
++			}
+ 		}
+ 	}
+ 
+ 	Value {
+-		PlaybackPriority 100
++		PlaybackPriority 110
+ 		PlaybackPCM "hw:${CardId}"
++		PlaybackMixer "default:${CardId}"
+ 		PlaybackMixerElem "${var:spkvol}"
+ 		PlaybackVolume "${var:spkvol} Playback Volume"
+ 		PlaybackSwitch "${var:spkvol} Playback Switch"
+@@ -44,6 +62,67 @@ SectionDevice."Speaker" {
+ 			String1 "${var:spkvol}"
+ 			String2 "Master"
+ 		}
+-		False.Value.PlaybackMasterElem "Master"
++		False {
++			EnableSequence [
++				cset "name='${var:spkvol} Playback Switch' on"
++			]
++
++			DisableSequence [
++				cset "name='${var:spkvol} Playback Switch' off"
++			]
++
++			Value.PlaybackMasterElem "Master"
++		}
++	}
++}
++
++If.spk4ch {
++	Condition {
++		Type String
++		Empty "${var:Speaker4chBass}"
++	}
++	False.SectionDevice."Speaker2" {
++		Comment "Speaker (4 channels)"
++
++		ConflictingDevice [
++			"Speaker1"
++		]
++
++		EnableSequence [
++			cset "name='Speaker 4ch Playback Switch' on"
++			cset "name='Speaker 4ch SyncSw Playback Switch' off"
++		]
++
++		DisableSequence [
++			cset "name='Speaker 4ch Playback Switch' off"
++			cset "name='Speaker 4ch SyncSw Playback Switch' off"
++		]
++
++		If.sync_vol {
++			Condition {
++				Type String
++				Empty "${var:SpeakerSyncVol}"
++			}
++			False {
++				EnableSequence [
++					cset "name='Speaker 4ch SyncVol Playback Switch' off"
++				]
++
++				DisableSequence [
++					cset "name='Speaker 4ch SyncVol Playback Switch' off"
++				]
++			}
++		}
++
++		Value {
++			PlaybackPriority 100
++			PlaybackPCM "hw:${CardId}"
++			PlaybackChannels 4
++			PlaybackMixer "default:${CardId}"
++			PlaybackMasterElem "Master"
++			PlaybackMixerElem "Speaker 4ch"
++			PlaybackVolume "Speaker 4ch Playback Volume"
++			PlaybackSwitch "Speaker 4ch Playback Switch"
++		}
+ 	}
+ }
+diff --git a/ucm2/HDA/init.conf b/ucm2/HDA/init.conf
+index a190e981c..9cefe76ab 100644
+--- a/ucm2/HDA/init.conf
++++ b/ucm2/HDA/init.conf
+@@ -1,3 +1,5 @@
++Define.HasSpeaker ""
++
+ If.amute {
+ 	Condition {
+ 		Type ControlExists
+@@ -22,12 +24,51 @@ If.master {
+ If.speaker {
+ 	Condition {
+ 		Type ControlExists
+-		Control "name='Speaker Playback Volume'"
++		Control "name='Speaker Playback Switch'"
++	}
++	True {
++		Define.HasSpeaker "switch"
++		BootSequence [
++			cset "name='Speaker Playback Switch' off"
++		]
++		If.v {
++			Condition {
++				Type ControlExists
++				Control "name='Speaker Playback Volume'"
++			}
++			True {
++				Define.HasSpeaker "volume"
++				BootSequence [
++					cset "name='Speaker Playback Volume' 60%"
++				]
++			}
++		}
++	}
++}
++
++If.bass-speaker {
++	Condition {
++		Type ControlExists
++		Control "name='Bass Speaker Playback Switch'"
++	}
++	True {
++		Define.HasBassSpeaker "switch"
++		BootSequence [
++			cset "name='Bass Speaker Playback Switch' off"
++		]
++		If.v {
++			Condition {
++				Type ControlExists
++				Control "name='Bass Speaker Playback Volume'"
++			}
++			True {
++				Define.HasBassSpeaker "volume"
++				BootSequence [
++					cset "name='Bass Speaker Playback Volume' 60%"
++				]
++			}
++		}
+ 	}
+-	True.BootSequence [
+-		cset "name='Speaker Playback Volume' 60%"
+-		cset "name='Speaker Playback Switch' off"
+-	]
+ }
+ 
+ If.headphone {
+@@ -50,3 +91,92 @@ If.capture {
+ 		cset "name='Capture Volume' 60%"
+ 	]
+ }
++
++#
++# Bass (four) Speakers
++#
++
++Define.Speaker4chBass ""
++
++If.bass-spk-switch {
++	Condition {
++		Type String
++		Empty "${var:HasBassSpeaker}"
++	}
++	False {
++		Include.ctl-remap.File "/lib/ctl-remap.conf"
++
++		LibraryConfig.remap.Config {
++			ctl.default.sync {
++				speaker_bass_sync_switch {
++					switch "name='Speaker 4ch SyncSw Playback Switch'"
++					controls [
++						"name='Speaker Playback Switch'"
++						"name='Bass Speaker Playback Switch'"
++					]
++				}
++			}
++			ctl.default.map {
++				"name='Speaker 4ch Playback Switch'" {
++					"name='Speaker Playback Switch'" { vindex.0 0 vindex.1 1 }
++					"name='Bass Speaker Playback Switch'" { vindex.2 0 vindex.3 1 }
++				}
++			}
++		}
++
++		Define.Speaker4chBass "y"
++		Define.SpeakerSyncVol ""
++
++		If.vol {
++			Condition {
++				Type String
++				Haystack "${var:HasSpeaker}"
++				Needle "volume"
++			}
++			True {
++				Define.SpeakerSyncVol "y"
++				If.bass-vol {
++					Condition {
++						Type String
++						Haystack "${var:HasBassSpeaker}"
++						Needle "volume"
++					}
++					False.LibraryConfig.remap.Config {
++						# remap may be better
++						ctl.default.sync {
++							speaker_bass_sync_volume {
++								switch "name='Speaker 4ch SyncVol Playback Switch'"
++								controls [
++									"name='Speaker Playback Volume'"
++								]
++							}
++						}
++						ctl.default.map {
++							# FIXME: assume similar linear volume for main and bass streams
++							"name='Speaker 4ch Playback Volume'" {
++								"name='Speaker Playback Volume'" { vindex.0 0 vindex.1 1 vindex.2 0 vindex.3 1 }
++							}
++						}
++					}
++					True.LibraryConfig.remap.Config {
++						ctl.default.sync {
++							speaker_bass_sync_volume {
++								switch "name='Speaker 4ch SyncVol Playback Switch'"
++								controls [
++									"name='Speaker Playback Volume'"
++									"name='Bass Speaker Playback Volume'"
++								]
++							}
++						}
++						ctl.default.map {
++							"name='Speaker 4ch Playback Volume'" {
++								"name='Speaker Playback Volume'" { vindex.0 0 vindex.1 1 }
++								"name='Bass Speaker Playback Volume'" { vindex.2 0 vindex.3 1 }
++							}
++						}
++					}
++				}
++			}
++		}
++	}
++}
+diff --git a/ucm2/Intel/sof-hda-dsp/sof-hda-dsp.conf b/ucm2/Intel/sof-hda-dsp/sof-hda-dsp.conf
+index c1a019a85..2476f1448 100644
+--- a/ucm2/Intel/sof-hda-dsp/sof-hda-dsp.conf
++++ b/ucm2/Intel/sof-hda-dsp/sof-hda-dsp.conf
+@@ -1,4 +1,4 @@
+-Syntax 7
++Syntax 8
+ 
+ Include.led.File "/common/ctl/led.conf"
+ Include.card-init.File "/lib/card-init.conf"
