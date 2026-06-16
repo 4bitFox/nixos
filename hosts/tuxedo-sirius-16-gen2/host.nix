@@ -60,7 +60,7 @@ src = prev.fetchFromGitHub {
   owner = "alsa-project";
   repo = "alsa-ucm-conf";
   # GET BELOW WITH: nix run nixpkgs#nix-prefetch-github -- alsa-project alsa-ucm-conf
-  rev = "7e08d4e6b0c75bfee72abbc0b3ac7c7b6e6abec1";
+  rev = "83b6ecf30b774a43060794119063ebee761a2c38";
   sha256 = "sha256-jPNu3TSZknvllU1RZNVrqv1TyTLRVcoPBAsMOOJBmH8=";
 };
         patches = (old.patches or []) ++ [
