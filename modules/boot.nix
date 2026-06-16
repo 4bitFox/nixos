@@ -100,8 +100,6 @@ in
         font = "${pkgs.dejavu_fonts}/share/fonts/truetype/DejaVuSansMono.ttf";
         fontSize = 32;
         copyKernels = true;
-        gfxmodeBios = "auto";
-        gfxpayloadBios = "keep";
         fsIdentifier = "uuid";
         default = "saved";
         configurationLimit = 10;
