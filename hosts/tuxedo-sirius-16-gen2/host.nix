@@ -56,10 +56,13 @@
     (final: prev: {
       alsa-ucm-conf = prev.alsa-ucm-conf.overrideAttrs (old: {
         version = "git";
-        src = builtins.fetchGit {
-          url = "https://github.com/alsa-project/alsa-ucm-conf.git";
-          ref = "7e08d4e6b0c75bfee72abbc0b3ac7c7b6e6abec1"; # git ls-remote https://github.com/alsa-project/alsa-ucm-conf.git | grep <COMMIT>
-        };
+src = prev.fetchFromGitHub {
+  owner = "alsa-project";
+  repo = "alsa-ucm-conf";
+  # GET BELOW WITH: nix run nixpkgs#nix-prefetch-github -- alsa-project alsa-ucm-conf
+  rev = "7e08d4e6b0c75bfee72abbc0b3ac7c7b6e6abec1";
+  sha256 = "sha256-jPNu3TSZknvllU1RZNVrqv1TyTLRVcoPBAsMOOJBmH8=";
+};
         patches = (old.patches or []) ++ [
           (builtins.fetchurl {
             url = "https://github.com/alsa-project/alsa-ucm-conf/pull/533.patch";
