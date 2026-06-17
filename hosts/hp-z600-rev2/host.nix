@@ -14,7 +14,7 @@
     enabled = true;
     modesetting.enable = true;
     open = false;
-    powerManagement.enable = true
+    powerManagement.enable = true;
   };
   ### NVIDIA (end) ###
 
