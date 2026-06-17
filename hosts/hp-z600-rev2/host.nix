@@ -2,9 +2,7 @@
 
 
 {
-  imports = [
-    ./hardware-configuration.nix
-  ];
+  imports = [  ];
 
   nix = {
     settings = {

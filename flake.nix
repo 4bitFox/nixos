@@ -50,6 +50,7 @@
         system = "x86_64-linux";
         hostModules = [
           ./hosts/tuxedo-sirius-16-gen2/host.nix
+          ./hosts/tuxedo-sirius-16-gen2/hardware-configuration.nix
           ./modules/boot/efi.nix
           ./modules/graphical/niri.nix
           ./modules/printing.nix
@@ -65,6 +66,7 @@
         system = "x86_64-linux";
         hostModules = [
           ./hosts/hp-z600-rev2/host.nix
+          ./hosts/hp-z600-rev2/hardware-configuration.nix
           ./modules/boot/bios.nix
           {
             system.stateVersion = "26.05";

@@ -3,7 +3,6 @@
 
 {
   imports = [
-    ./hardware-configuration.nix
     ./_partitions.nix
   ];
 
