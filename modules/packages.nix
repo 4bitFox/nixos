@@ -39,7 +39,6 @@ in
       docker-compose
       gparted
       dnsmasq
-      texliveFull
       bc
       pciutils
       usbutils

@@ -54,6 +54,7 @@
           ./modules/graphical/niri.nix
           ./modules/printing.nix
           ./modules/virtualisation.nix
+          ./modules/packages/tex.nix
           ./modules/packages/steam.nix
           {
             system.stateVersion = "25.11";
