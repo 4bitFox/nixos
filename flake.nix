@@ -69,6 +69,8 @@
           ./hosts/hp-z600-rev2/host.nix
           ./hosts/hp-z600-rev2/hardware-configuration.nix
           ./modules/boot/bios.nix
+          ./modules/graphical/niri.nix
+          ./modules/packages/steam.nix
           {
             networking.hostName = "wheatley";
             system.stateVersion = "26.05";
