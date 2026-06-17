@@ -5,7 +5,6 @@
 {
   services = {
     openssh.enable = true;
-    flatpak.enable = true;
     dbus.enable = true;
     libinput.enable = true;
     udev = {

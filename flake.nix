@@ -29,7 +29,6 @@
         ./modules/keyboard.nix
         ./modules/datetime.nix
         ./modules/services.nix
-        ./modules/virtualisation.nix
         ./modules/networking.nix
         ./users/alya/user.nix
         ./modules/nix.nix
@@ -37,13 +36,10 @@
         ./modules/boot.nix
         ./modules/packages.nix
         ./modules/hardware.nix
-        ./modules/graphical/niri.nix
         ./modules/audio.nix
-        ./modules/printing.nix
         ./modules/home-manager.nix
         ./modules/declarative-flatpak.nix
         ./modules/impermanence.nix
-        ./modules/partitions.nix
         ./modules/security.nix
       ] ++ hostModules;
     };
@@ -55,6 +51,10 @@
         hostModules = [
           ./hosts/tuxedo-sirius-16-gen2/host.nix
           ./modules/boot/efi.nix
+          ./modules/graphical/niri.nix
+          ./modules/printing.nix
+          ./modules/virtualisation.nix
+          ./modules/packages/steam.nix
           {
             system.stateVersion = "25.11";
           }

@@ -6,6 +6,8 @@
     declarative-flatpak.nixosModules.default
   ];
 
-
+  services = {
+    flatpak.enable = true;
+  };
 
 }

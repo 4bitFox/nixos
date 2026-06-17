@@ -26,8 +26,8 @@ in
 
 {
   imports = [
-    ./packages/bash.nix
-    ./packages/firefox.nix
+    ./packages/_bash.nix
+    ./packages/_firefox.nix
   ];
 
   environment = {
@@ -58,11 +58,6 @@ in
   };
 
   programs = {
-    steam = {
-      enable = true;
-      remotePlay.openFirewall = true;
-      dedicatedServer.openFirewall = true;
-    };
     appimage = {
       enable = true;
       binfmt = true;

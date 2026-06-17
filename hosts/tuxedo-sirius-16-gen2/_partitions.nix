@@ -2,9 +2,6 @@
 { config, pkgs, lib, ... }:
 
 
-# Additional partitions-stuff to hardware-configuration.nix
-
-
 {
   boot = {
     ### full disk encryption; decrypt on boot ###
