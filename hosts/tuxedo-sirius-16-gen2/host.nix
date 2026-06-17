@@ -5,7 +5,7 @@
 {
   imports = [
     ./_partitions.nix
-    ./speicalisations/_gpu-passtrough.nix
+    ./specialisations/_gpu-passtrough.nix
   ];
 
   nix = {
