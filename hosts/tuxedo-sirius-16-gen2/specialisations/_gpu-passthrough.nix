@@ -4,7 +4,7 @@
 
 {
   specialisation = {
-    gpu-passtrough = {
+    gpu-passthrough = {
       inheritParentConfig = true;
       configuration = {
         system.nixos.tags = [ "gpu-passthrough" ];
