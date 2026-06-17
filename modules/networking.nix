@@ -4,7 +4,6 @@
 
 {
   networking = {
-    hostName = "aperture";
     networkmanager = {
       enable = true;
       # dns = "none"; # set to "none" for manual dns nameservers

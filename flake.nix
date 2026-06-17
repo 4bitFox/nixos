@@ -58,6 +58,7 @@
           ./modules/packages/tex.nix
           ./modules/packages/steam.nix
           {
+            networking.hostName = "aperture";
             system.stateVersion = "25.11";
           }
         ];
@@ -69,6 +70,7 @@
           ./hosts/hp-z600-rev2/hardware-configuration.nix
           ./modules/boot/bios.nix
           {
+            networking.hostName = "wheatley";
             system.stateVersion = "26.05";
           }
         ];
