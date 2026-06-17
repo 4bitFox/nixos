@@ -15,7 +15,7 @@
     modesetting.enable = true;
     open = false;
     powerManagement.enable = true;
-    package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
+    package = config.boot.kernelPackages.nvidiaPackages.legacy_580; # legacy driver branch 580 (last to support Pascal)
   };
   ### NVIDIA (end) ###
 
