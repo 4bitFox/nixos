@@ -15,6 +15,7 @@
     modesetting.enable = true;
     open = false;
     powerManagement.enable = true;
+    package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
   };
   ### NVIDIA (end) ###
 
