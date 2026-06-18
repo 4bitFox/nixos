@@ -95,6 +95,42 @@ in
             script = ''
               # ASCII art
               ${pkgs.coreutils}/bin/echo -e "${wipelogo}" > /dev/console
+
+              # Script
+              echo "MOUNTING ROOTFS..."
+              mkdir /mnt
+              mount -t btrfs /dev/mapper/GLaDOS_lvm-GLaDOS_rootfs /mnt
+
+              echo "CHECKING IF ROOT IS MARKED FOR DELETION..." > /dev/console
+              if [ -f /mnt/__WIPE_ROOT_ON_BOOT ]; then
+                ${pkgs.coreutils}/bin/echo "ROOT WAS MARKED FOR DELETION!" > /dev/console
+                ${pkgs.coreutils}/bin/echo "DELETING ROOT..." > /dev/console
+                btrfs subvolume delete /mnt/@/srv
+                btrfs subvolume delete /mnt/@/var/lib/portables
+                btrfs subvolume delete /mnt/@/var/lib/machines
+                btrfs subvolume delete /mnt/@/var/tmp
+                btrfs subvolume delete /mnt/@/@fresh 2>/dev/null # for when deleting fails and '@fresh' gets recreated in '@'...
+                btrfs subvolume delete /mnt/@
+                ${pkgs.coreutils}/bin/echo "RECREATING ROOT..." > /dev/console
+                btrfs subvolume snapshot /mnt/@fresh /mnt/@
+                ${pkgs.coreutils}/bin/echo "POPULATING ROOT FOR MOUNTPOINTS..." > /dev/console
+                mkdir /mnt/@/home
+                mkdir /mnt/@/nix
+                mkdir /mnt/@/persist
+                mkdir /mnt/@/var
+                mkdir /mnt/@/var/log
+                mkdir /mnt/@/boot
+                mkdir /mnt/@/boot/efi
+                mkdir /mnt/@/mnt #optional but I like to have this directory :-)
+                ${pkgs.coreutils}/bin/echo "REMOVIMG 'WIPE ROOT ON BOOT' MARKER" > /dev/console
+                rm /mnt/__WIPE_ROOT_ON_BOOT
+                ${pkgs.coreutils}/bin/echo "SYSTEM IS FRESH! :-D" > /dev/console
+              else
+                echo "ROOT WAS NOT MARKED FOR DELETION AND WILL THEREFORE NOT BE WIPED!" > /dev/console
+              fi
+
+              echo "UNMOUNTING ROOTFS..." > /dev/console
+              umount /mnt
             '';
           };
         };
