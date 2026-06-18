@@ -77,7 +77,6 @@ in
       systemd = {
         initrdBin = [
           pkgs.coreutils
-          pkgs.btrfs-progs
         ];
         services = {
           impermanence_wiperoot = {
@@ -103,39 +102,39 @@ in
 
               # Script
               echo "MOUNTING ROOTFS..."
-              mkdir /mnt
-              mount -t btrfs /dev/mapper/GLaDOS_lvm-GLaDOS_rootfs /mnt
+              mkdir /mnt > /dev/console
+              mount -t btrfs /dev/mapper/GLaDOS_lvm-GLaDOS_rootfs /mnt > /dev/console
 
               echo "CHECKING IF ROOT IS MARKED FOR DELETION..." > /dev/console
               if [ -f /mnt/__WIPE_ROOT_ON_BOOT ]; then
                 ${pkgs.coreutils}/bin/echo "ROOT WAS MARKED FOR DELETION!" > /dev/console
                 ${pkgs.coreutils}/bin/echo "DELETING ROOT..." > /dev/console
-                ${pkgs.btrfs-progs}/bin/btrfs subvolume delete /mnt/@/srv
-                ${pkgs.btrfs-progs}/bin/btrfs subvolume delete /mnt/@/var/lib/portables
-                ${pkgs.btrfs-progs}/bin/btrfs subvolume delete /mnt/@/var/lib/machines
-                ${pkgs.btrfs-progs}/bin/btrfs subvolume delete /mnt/@/var/tmp
-                ${pkgs.btrfs-progs}/bin/btrfs subvolume delete /mnt/@/@fresh 2>/dev/null # for when deleting fails and '@fresh' gets recreated in '@'...
-                ${pkgs.btrfs-progs}/bin/btrfs subvolume delete /mnt/@
+                btrfs subvolume delete /mnt/@/srv > /dev/console
+                btrfs subvolume delete /mnt/@/var/lib/portables > /dev/console
+                btrfs subvolume delete /mnt/@/var/lib/machines > /dev/console
+                btrfs subvolume delete /mnt/@/var/tmp > /dev/console
+                btrfs subvolume delete /mnt/@/@fresh 2>/dev/null # for when deleting fails and '@fresh' gets recreated in '@'...
+                btrfs subvolume delete /mnt/@ > /dev/console
                 ${pkgs.coreutils}/bin/echo "RECREATING ROOT..." > /dev/console
-                ${pkgs.btrfs-progs}/bin/btrfs subvolume snapshot /mnt/@fresh /mnt/@
+                btrfs subvolume snapshot /mnt/@fresh /mnt/@ > /dev/console
                 ${pkgs.coreutils}/bin/echo "POPULATING ROOT FOR MOUNTPOINTS..." > /dev/console
-                mkdir /mnt/@/home
-                mkdir /mnt/@/nix
-                mkdir /mnt/@/persist
-                mkdir /mnt/@/var
-                mkdir /mnt/@/var/log
-                mkdir /mnt/@/boot
-                mkdir /mnt/@/boot/efi
-                mkdir /mnt/@/mnt #optional but I like to have this directory :-)
+                mkdir /mnt/@/home > /dev/console
+                mkdir /mnt/@/nix > /dev/console
+                mkdir /mnt/@/persist > /dev/console
+                mkdir /mnt/@/var > /dev/console
+                mkdir /mnt/@/var/log > /dev/console
+                mkdir /mnt/@/boot > /dev/console
+                mkdir /mnt/@/boot/efi > /dev/console
+                mkdir /mnt/@/mnt > /dev/console #optional but I like to have this directory :-)
                 ${pkgs.coreutils}/bin/echo "REMOVIMG 'WIPE ROOT ON BOOT' MARKER" > /dev/console
-                rm /mnt/__WIPE_ROOT_ON_BOOT
+                rm /mnt/__WIPE_ROOT_ON_BOOT > /dev/console
                 ${pkgs.coreutils}/bin/echo "SYSTEM IS FRESH! :-D" > /dev/console
               else
                 ${pkgs.coreutils}/bin/echo "ROOT WAS NOT MARKED FOR DELETION AND WILL THEREFORE NOT BE WIPED!" > /dev/console
               fi
 
               ${pkgs.coreutils}/bin/echo "UNMOUNTING ROOTFS..." > /dev/console
-              umount /mnt
+              umount /mnt > /dev/console
             '';
           };
         };
