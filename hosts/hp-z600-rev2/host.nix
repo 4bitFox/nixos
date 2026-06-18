@@ -11,11 +11,17 @@
 
   ### NVIDIA GTX 1070 Ti ###
   services.xserver.videoDrivers = [ "nvidia" ];
+
   hardware.nvidia = {
     modesetting.enable = true;
     open = false;
     powerManagement.enable = true;
     package = config.boot.kernelPackages.nvidiaPackages.legacy_580; # legacy driver branch 580 (last to support Pascal)
+  };
+
+  boot = {
+    initrd.kernelModules = [ "nvidia" ];
+    extraModulePackages = [ config.boot.kernelPackages.nvidia_x11 ];
   };
   ### NVIDIA (end) ###
 
