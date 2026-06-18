@@ -86,10 +86,10 @@ in
             ];
             before = [
               "sysroot.mount"
-              "local-fs-pre.target"
             ];
             after = [
               "initrd-root-device.target"
+              "local-fs-pre.target" # Allow hibernation to resume before trying to alter any data
             ];
             requires = ["initrd-root-device.target"];
             unitConfig.DefaultDependencies = false;
