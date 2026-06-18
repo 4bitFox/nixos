@@ -97,6 +97,7 @@ in
             unitConfig.DefaultDependencies = false;
             serviceConfig.Type = "oneshot";
             script = ''
+              set +e
               # ASCII art
               ${pkgs.coreutils}/bin/echo -e "${wipelogo}" > /dev/console
 
