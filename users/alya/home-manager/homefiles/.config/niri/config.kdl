@@ -165,6 +165,7 @@ spawn-at-startup "systemctl" "--user" "start" "hyprpolkitagent.service" // Polki
 spawn-at-startup "/home/alya/.local/opt/DavMail/davmail" // DavMail
 spawn-at-startup "bash" "-c" "sleep 3 && /opt/tuxedo-control-center/tuxedo-control-center --tray" // Tuxedo Control Center
 spawn-at-startup "bash" "-c" "sleep 5 && /usr/lib/protonmail/bridge/proton-bridge --no-window" // Proton Mail Bridge
+spawn-at-startup "/mnt/fd/autorun.sh" // Autorun Floppy for kiosk
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
 prefer-no-csd
