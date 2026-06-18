@@ -94,7 +94,7 @@ in
             serviceConfig.Type = "oneshot";
             script = ''
               # ASCII art
-              ${pkgs.coreutils}/bin/echo -e "${wipelogo}" > /dev/console
+              # ${pkgs.coreutils}/bin/echo -e "${wipelogo}" > /dev/console
 
               echo "MOUNTING ROOTFS..."
               mkdir /mnt > /dev/console
@@ -133,7 +133,7 @@ in
               umount /mnt > /dev/console
 
               # ASCII art
-              # ${pkgs.coreutils}/bin/echo -e "${wipelogo}" > /dev/console
+              ${pkgs.coreutils}/bin/echo -e "${wipelogo}" > /dev/console
             '';
           };
         };
