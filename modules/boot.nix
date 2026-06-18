@@ -56,6 +56,7 @@ in
               "systemd-udev-trigger.service"
               "systemd-udev-settle.service"
               "systemd-modules-load.service"
+              "systemd-sysctl.service"
             ];
             unitConfig.DefaultDependencies = false;
             serviceConfig.Type = "oneshot";
