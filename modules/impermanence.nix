@@ -135,6 +135,7 @@ in
 
               ${pkgs.coreutils}/bin/echo "UNMOUNTING ROOTFS..." > /dev/console
               umount /mnt > /dev/console
+              sleep 10 # DEBUGGING
             '';
           };
         };
