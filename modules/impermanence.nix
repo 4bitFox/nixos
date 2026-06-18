@@ -24,7 +24,7 @@ let
     \\t #####+;/##/ @##  @#,+       /#M    . X,  
     \\t    ;###M#@ M###H .#M-     ,##M  ;@@; ### 
     \\t    .M#M##H ;####X ,@#######M/ -M###\$  -H 
-#    \\t     .M###%  X####H  .@@MMM;  ;@#M@       
+    \\t     .M###%  X####H  .@@MMM;  ;@#M@       
     \\t       H#M    /@####/      ,++.  / ==-,   
     \\t                ,=/:, .+X@MMH##H  #####$= 
     \\t
@@ -133,7 +133,7 @@ in
               umount /mnt > /dev/console
 
               # ASCII art
-              ${pkgs.coreutils}/bin/echo -e "${wipelogo}" > /dev/console
+              ${pkgs.coreutils}/bin/echo -e '${wipelogo}' > /dev/console
             '';
           };
         };
