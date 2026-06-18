@@ -96,7 +96,8 @@ in
             serviceConfig.Type = "oneshot";
             script = ''
               # ASCII art
-              #${pkgs.coreutils}/bin/echo -e "${wipelogo}" > /dev/console
+              sleep 0.1 # Pfush! D-:
+              ${pkgs.coreutils}/bin/echo -e "${wipelogo}" > /dev/console
 
               # Script
               echo "MOUNTING ROOTFS..."
