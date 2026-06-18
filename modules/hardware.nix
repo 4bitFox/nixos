@@ -26,7 +26,6 @@
     firmware = [
       pkgs.linux-firmware
     ];
-    xpadneo.enable = true;
     usbStorage.manageShutdown = true;
     usb-modeswitch.enable = true;
     logitech.wireless = {
@@ -35,6 +34,10 @@
     };
     enableAllFirmware = true;
   };
+
+  ### xpadneo ###
+  hardware.xpadneo.enable = true;
+  boot.kernelModules = [ "hid_xpadneo" ];
 
   powerManagement.enable = true;
 }
