@@ -20,7 +20,13 @@
   };
 
   boot = {
-    initrd.kernelModules = [ "nvidia" ];
+    initrd.kernelModules = [
+      "nvidia"
+      "nvidiafb"
+      "nvidia-drm"
+      "nvidia-uvm"
+      "nvidia-modeset"
+    ];
     extraModulePackages = [ config.boot.kernelPackages.nvidia_x11 ];
   };
   ### NVIDIA (end) ###
