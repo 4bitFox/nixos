@@ -81,14 +81,13 @@ in
             description = "Impermanence filesystem preparation";
             wantedBy = [
               "initrd.target"
-              "sysroot.mount"
             ];
             before = [
               "sysroot.mount"
               "local-fs-pre.target"
             ];
             after = [
-              "systemd-udev-settle.service"
+              "initrd-root-device.target"
             ];
             requires = ["initrd-root-device.target"];
             unitConfig.DefaultDependencies = false;
