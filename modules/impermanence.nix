@@ -94,9 +94,8 @@ in
             serviceConfig.Type = "oneshot";
             script = ''
               # ASCII art
-              ${pkgs.coreutils}/bin/echo -e "${wipelogo}" > /dev/console
+              # ${pkgs.coreutils}/bin/echo -e "${wipelogo}" > /dev/console
 
-              # Script
               echo "MOUNTING ROOTFS..."
               mkdir /mnt > /dev/console
               mount -t btrfs /dev/mapper/GLaDOS_lvm-GLaDOS_rootfs /mnt > /dev/console
@@ -132,7 +131,9 @@ in
 
               ${pkgs.coreutils}/bin/echo "UNMOUNTING ROOTFS..." > /dev/console
               umount /mnt > /dev/console
-              sleep 20
+
+              # ASCII art
+              ${pkgs.coreutils}/bin/echo -e "${wipelogo}" > /dev/console
             '';
           };
         };
