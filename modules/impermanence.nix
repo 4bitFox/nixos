@@ -75,9 +75,7 @@ in
   boot = {
     initrd = {
       systemd = {
-        initrdBin = [
-          pkgs.coreutils
-        ];
+        initrdBin = [ pkgs.coreutils ];
         services = {
           impermanence_wiperoot = {
             description = "Impermanence filesystem preparation";
@@ -134,7 +132,6 @@ in
 
               ${pkgs.coreutils}/bin/echo "UNMOUNTING ROOTFS..." > /dev/console
               umount /mnt > /dev/console
-              sleep 15 # DEBUGGING
             '';
           };
         };
