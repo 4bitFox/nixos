@@ -68,6 +68,11 @@ in
       enable = true;
       libraries = compatPkgs;
     };
+    gamemode.enable = true;
+    gamescope = {
+      enable = true;
+      capSysNice = true;
+    };
   };
 
   nixpkgs = {
