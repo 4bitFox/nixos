@@ -75,7 +75,10 @@ in
   boot = {
     initrd = {
       systemd = {
-        initrdBin = [ pkgs.coreutils ];
+        initrdBin = [
+          pkgs.coreutils
+          pkgs.btrfs-progs
+        ];
         services = {
           impermanence_wiperoot = {
             description = "Impermanence filesystem preparation";
@@ -107,14 +110,14 @@ in
               if [ -f /mnt/__WIPE_ROOT_ON_BOOT ]; then
                 ${pkgs.coreutils}/bin/echo "ROOT WAS MARKED FOR DELETION!" > /dev/console
                 ${pkgs.coreutils}/bin/echo "DELETING ROOT..." > /dev/console
-                btrfs subvolume delete /mnt/@/srv
-                btrfs subvolume delete /mnt/@/var/lib/portables
-                btrfs subvolume delete /mnt/@/var/lib/machines
-                btrfs subvolume delete /mnt/@/var/tmp
-                btrfs subvolume delete /mnt/@/@fresh 2>/dev/null # for when deleting fails and '@fresh' gets recreated in '@'...
-                btrfs subvolume delete /mnt/@
+                ${pkgs.btrfs-progs}/bin/btrfs subvolume delete /mnt/@/srv
+                ${pkgs.btrfs-progs}/bin/btrfs subvolume delete /mnt/@/var/lib/portables
+                ${pkgs.btrfs-progs}/bin/btrfs subvolume delete /mnt/@/var/lib/machines
+                ${pkgs.btrfs-progs}/bin/btrfs subvolume delete /mnt/@/var/tmp
+                ${pkgs.btrfs-progs}/bin/btrfs subvolume delete /mnt/@/@fresh 2>/dev/null # for when deleting fails and '@fresh' gets recreated in '@'...
+                ${pkgs.btrfs-progs}/bin/btrfs subvolume delete /mnt/@
                 ${pkgs.coreutils}/bin/echo "RECREATING ROOT..." > /dev/console
-                btrfs subvolume snapshot /mnt/@fresh /mnt/@
+                ${pkgs.btrfs-progs}/bin/btrfs subvolume snapshot /mnt/@fresh /mnt/@
                 ${pkgs.coreutils}/bin/echo "POPULATING ROOT FOR MOUNTPOINTS..." > /dev/console
                 mkdir /mnt/@/home
                 mkdir /mnt/@/nix
@@ -128,10 +131,10 @@ in
                 rm /mnt/__WIPE_ROOT_ON_BOOT
                 ${pkgs.coreutils}/bin/echo "SYSTEM IS FRESH! :-D" > /dev/console
               else
-                echo "ROOT WAS NOT MARKED FOR DELETION AND WILL THEREFORE NOT BE WIPED!" > /dev/console
+                ${pkgs.coreutils}/bin/echo "ROOT WAS NOT MARKED FOR DELETION AND WILL THEREFORE NOT BE WIPED!" > /dev/console
               fi
 
-              echo "UNMOUNTING ROOTFS..." > /dev/console
+              ${pkgs.coreutils}/bin/echo "UNMOUNTING ROOTFS..." > /dev/console
               umount /mnt
             '';
           };
