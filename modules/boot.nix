@@ -55,6 +55,7 @@ in
               "systemd-vconsole-setup.service"
               "systemd-udev-trigger.service"
               "systemd-udev-settle.service"
+              "systemd-modules-load.service"
             ];
             unitConfig.DefaultDependencies = false;
             serviceConfig.Type = "oneshot";
