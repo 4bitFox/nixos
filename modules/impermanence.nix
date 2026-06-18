@@ -79,7 +79,10 @@ in
         services = {
           impermanence_wiperoot = {
             description = "Impermanence filesystem preparation";
-            wantedBy = [ "initrd.target" ];
+            wantedBy = [
+              "initrd.target"
+              "sysroot.mount"
+            ];
             before = [
               "sysroot.mount"
               "local-fs-pre.target"
