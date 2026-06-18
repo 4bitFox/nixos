@@ -90,7 +90,7 @@ in
             after = [
               "systemd-udev-settle.service"
             ];
-            requires = [ "systemd-udev-settle.service" ];
+            requires = ["initrd-root-device.target"];
             unitConfig.DefaultDependencies = false;
             serviceConfig.Type = "oneshot";
             script = ''
