@@ -97,7 +97,6 @@ in
             unitConfig.DefaultDependencies = false;
             serviceConfig.Type = "oneshot";
             script = ''
-              set +e
               # ASCII art
               ${pkgs.coreutils}/bin/echo -e "${wipelogo}" > /dev/console
 
@@ -110,6 +109,7 @@ in
               if [ -f /mnt/__WIPE_ROOT_ON_BOOT ]; then
                 ${pkgs.coreutils}/bin/echo "ROOT WAS MARKED FOR DELETION!" > /dev/console
                 ${pkgs.coreutils}/bin/echo "DELETING ROOT..." > /dev/console
+                set +e # DO NOT STOP ON FAIL
                 btrfs subvolume delete /mnt/@/srv > /dev/console
                 btrfs subvolume delete /mnt/@/var/lib/portables > /dev/console
                 btrfs subvolume delete /mnt/@/var/lib/machines > /dev/console
