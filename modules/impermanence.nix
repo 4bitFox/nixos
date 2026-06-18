@@ -90,8 +90,6 @@ in
             ];
             after = [
               "initrd-root-device.target"
-              "systemd-udev-settle.service"
-              "lvm2-activation.service"
             ];
             requires = ["initrd-root-device.target"];
             unitConfig.DefaultDependencies = false;
