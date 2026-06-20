@@ -115,11 +115,11 @@ in
   '';
   ### kvantum theme (end) ###
 
-  dconf.settings = {
-    "org/gnome/desktop/interface" = {
-      color-scheme = "prefer-dark";
-    };
-  };
+  # dconf.settings = {
+  #   "org/gnome/desktop/interface" = {
+  #     color-scheme = "prefer-dark";
+  #   };
+  # };
 
   home.stateVersion = "25.11";
 }
