@@ -70,6 +70,7 @@ in
         "/etc/ssh/ssh_host_ed25519_key.pub"
         "/var/lib/cups/printers.conf"
       ];
+    };
     etc = {
       # Fix for libvirt
       machine-id = {
