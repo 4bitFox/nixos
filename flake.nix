@@ -78,6 +78,24 @@
           }
         ];
       };
+      caroline = mkHost {
+        system = "x86_64-linux";
+        hostModules = [
+          ./hosts/serverpc/host.nix
+          ./hosts/serverpc/hardware-configuration.nix
+          ./modules/boot/efi.nix
+          ./modules/graphical/niri.nix
+          ./modules/printing.nix
+          ./modules/virtualisation.nix
+          # ./modules/packages/tex.nix
+          # ./modules/packages/steam.nix
+          ./modules/declarative-flatpak.nix
+          {
+            networking.hostName = "caroline";
+            system.stateVersion = "26.05";
+          }
+        ];
+      };
     };
   };
 }
