@@ -42,34 +42,41 @@ in
     neededForBoot = true;
   };
 
-  environment.persistence."/persist" = {
-    enable = true;
-    hideMounts = true;
-    directories = [
-      "/etc/nixos"
-      "/var/lib/bluetooth"
-      "/var/lib/nixos"
-      "/var/lib/systemd/coredump"
-      "/etc/NetworkManager/system-connections"
-      "/var/lib/NetworkManager"
-      "/var/lib/docker"
-      "/var/lib/upower"
-      "/var/lib/waydroid"
-      "/var/lib/private/ollama"
-      "/var/lib/libvirt"
-      "/var/lib/flatpak"
-    ];
-    files = [
-      "/etc/machine-id"
-      "/var/lib/systemd/random-seed"
-      "/var/lib/systemd/credential.secret"
-      "/etc/ssh/ssh_host_rsa_key"
-      "/etc/ssh/ssh_host_rsa_key.pub"
-      "/etc/ssh/ssh_host_ed25519_key"
-      "/etc/ssh/ssh_host_ed25519_key.pub"
-      "/var/lib/cups/printers.conf"
-      "/var/lib/logrotate.status"
-    ];
+  environment = {
+    persistence."/persist" = {
+      enable = true;
+      hideMounts = true;
+      directories = [
+        "/etc/nixos"
+        "/var/lib/bluetooth"
+        "/var/lib/nixos"
+        "/var/lib/systemd/coredump"
+        "/etc/NetworkManager/system-connections"
+        "/var/lib/NetworkManager"
+        "/var/lib/docker"
+        "/var/lib/upower"
+        "/var/lib/waydroid"
+        "/var/lib/private/ollama"
+        "/var/lib/libvirt"
+        "/var/lib/flatpak"
+      ];
+      files = [
+        # "/etc/machine-id"
+        "/var/lib/systemd/random-seed"
+        "/var/lib/systemd/credential.secret"
+        "/etc/ssh/ssh_host_rsa_key"
+        "/etc/ssh/ssh_host_rsa_key.pub"
+        "/etc/ssh/ssh_host_ed25519_key"
+        "/etc/ssh/ssh_host_ed25519_key.pub"
+        "/var/lib/cups/printers.conf"
+      ];
+    etc = {
+      # Fix for libvirt
+      machine-id = {
+        mode = "symlink";
+        source = "/persist/etc/machine-id";
+      };
+    };
   };
 
   boot = {
