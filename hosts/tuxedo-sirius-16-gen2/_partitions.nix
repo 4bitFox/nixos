@@ -20,7 +20,7 @@
 
   # don't time out on the password prompt
   fileSystems."/" = {
-    options = config.fileSystems."/".options ++ [
+    options = [
       "x-systemd.device-timeout=infinity"
     ];
   };
