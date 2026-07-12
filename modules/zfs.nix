@@ -4,6 +4,7 @@
 
 {
   boot = {
+    loader.grub.zfsSupport = true;
     zfs = {
       package = pkgs.zfs;
       unsafeAllowHibernation = false;
