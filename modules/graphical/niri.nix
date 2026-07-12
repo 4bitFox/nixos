@@ -60,17 +60,4 @@
       xdg-desktop-portal-gtk
     ];
   };
-
-  # get rid of that pesky autostart generator, omg I hate it.
-  environment.etc."systemd/user-generators/systemd-xdg-autostart-generator".source =
-  "/dev/null";
-#  nixpkgs.overlays = [
-#    (final: prev: {
-#      systemd = prev.systemd.overrideAttrs (old: {
-#        postInstall = (old.postInstall or "") + ''
-#          rm -f $out/lib/systemd/user-generators/systemd-xdg-autostart-generator
-#        '';
-#      });
-#    })
-#  ];
 }

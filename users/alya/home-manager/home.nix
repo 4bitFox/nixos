@@ -121,5 +121,7 @@ in
     };
   };
 
+  xdg.autostart.enable = false;
+
   home.stateVersion = "25.11";
 }
