@@ -27,7 +27,9 @@
       };
     };
     udev = {
-      # hide individual drives in gui file managers https://blog.vx.sk/archives/238
+      # hide individual zfs members in gui file managers showing ub billions of times
+      # https://blog.vx.sk/archives/238
+      # find properties with e.g. 'udevadm info --query=property --name=/dev/sda1'
       extraRules = ''
         ENV{ID_FS_TYPE}=="zfs_member", ENV{UDISKS_IGNORE}="1"
       '';
