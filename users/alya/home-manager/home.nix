@@ -122,11 +122,6 @@ in
   };
 
   xdg.autostart.enable = false;
-  systemd.user.generators = {
-    "systemd-xdg-autostart-generator" = {
-      source = "/dev/null";
-    };
-  };
 
   home.stateVersion = "25.11";
 }
