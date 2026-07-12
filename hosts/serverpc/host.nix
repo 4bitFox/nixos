@@ -7,6 +7,8 @@
     ./_partitions.nix
   ];
 
+  networking.hostId = "9e40f792"; # required for ZFS
+
   nix = {
     settings = {
       max-jobs = 4;

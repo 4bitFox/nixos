@@ -59,6 +59,7 @@ in
         "/var/lib/private/ollama"
         "/var/lib/libvirt"
         "/var/lib/flatpak"
+        "/etc/zfs"
       ];
       files = [
         # "/etc/machine-id"
