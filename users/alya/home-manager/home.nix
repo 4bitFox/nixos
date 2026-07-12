@@ -127,7 +127,6 @@ in
       source = "/dev/null";
     };
   };
-};
 
   home.stateVersion = "25.11";
 }
