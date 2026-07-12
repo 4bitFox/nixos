@@ -5,8 +5,8 @@
 {
   boot = {
     loader.grub.zfsSupport = true;
+    supportedFilesystems = lib.mkAfter [ "zfs" ];
     zfs = {
-      enabled = true;
       package = pkgs.zfs;
       unsafeAllowHibernation = false;
       removeLinuxDRM = true;
