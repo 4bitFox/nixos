@@ -10,6 +10,7 @@
       package = pkgs.zfs;
       unsafeAllowHibernation = false;
       removeLinuxDRM = true;
+      forceImportRoot = false; # `boot.zfs.forceImportRoot` is using the default value of `true`. It is highly recommended to set it to `false`, the new default from 26.11 on, to reduce the risk of data loss.
     };
   };
 
