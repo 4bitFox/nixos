@@ -26,5 +26,11 @@
         randomizedDelaySec = "6h";
       };
     };
+    udev = {
+      # hide individual drives in gui file managers https://blog.vx.sk/archives/238
+      extraRules = ''
+        KERNEL=="zd*", ENV{UDISKS_IGNORE}="1"
+      '';
+    };
   };
 }
