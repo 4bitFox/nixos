@@ -61,14 +61,17 @@
     ];
   };
 
-  # get rid of that pesky autostart generator, omg I hate it. sadly it makes the whole system build from source
-  nixpkgs.overlays = [
-    (final: prev: {
-      systemd = prev.systemd.overrideAttrs (old: {
-        postInstall = (old.postInstall or "") + ''
-          rm -f $out/lib/systemd/user-generators/systemd-xdg-autostart-generator
-        '';
-      });
-    })
-  ];
+  # get rid of that pesky autostart generator, omg I hate it.
+  system.activationScripts.removeSystemdXdgGenerator = ''
+    rm -f /run/current-system/sw/lib/systemd/user-generators/systemd-xdg-autostart-generator 
+  '';
+#  nixpkgs.overlays = [
+#    (final: prev: {
+#      systemd = prev.systemd.overrideAttrs (old: {
+#        postInstall = (old.postInstall or "") + ''
+#          rm -f $out/lib/systemd/user-generators/systemd-xdg-autostart-generator
+#        '';
+#      });
+#    })
+#  ];
 }
