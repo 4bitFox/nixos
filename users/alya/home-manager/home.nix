@@ -122,6 +122,11 @@ in
   };
 
   xdg.autostart.enable = false;
+  home.activation.disableXdgAutostartGenerator = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    mkdir -p "$HOME/.config/systemd/user-generators"
+    ln -sf /dev/null "$HOME/.config/systemd/user-generators/systemd-xdg-autostart-generator"
+  '';
+
 
   home.stateVersion = "25.11";
 }

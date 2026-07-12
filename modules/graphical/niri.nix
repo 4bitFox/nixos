@@ -60,7 +60,4 @@
       xdg-desktop-portal-gtk
     ];
   };
-
-  # Disable autostart generation
-  environment.etc."systemd/user-generators/systemd-xdg-autostart-generator".source = "/dev/null";
 }
