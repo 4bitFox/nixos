@@ -6,6 +6,7 @@
   boot = {
     loader.grub.zfsSupport = true;
     zfs = {
+      enabled = true;
       package = pkgs.zfs;
       unsafeAllowHibernation = false;
       removeLinuxDRM = true;
