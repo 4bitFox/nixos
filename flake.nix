@@ -86,6 +86,7 @@
           ./hosts/serverpc/host.nix
           ./hosts/serverpc/hardware-configuration.nix
           ./modules/boot/kernel/linux_latest_zfs.nix
+          ./modules/zfs.nix
           ./modules/boot/efi.nix
           ./modules/graphical/niri.nix
           ./modules/printing.nix
