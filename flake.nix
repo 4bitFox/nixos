@@ -50,6 +50,7 @@
         hostModules = [
           ./hosts/tuxedo-sirius-16-gen2/host.nix
           ./hosts/tuxedo-sirius-16-gen2/hardware-configuration.nix
+          ./modules/boot/kernel/linux_zen.nix
           ./modules/boot/efi.nix
           ./modules/graphical/niri.nix
           ./modules/printing.nix
@@ -68,6 +69,7 @@
         hostModules = [
           ./hosts/hp-z600-rev2/host.nix
           ./hosts/hp-z600-rev2/hardware-configuration.nix
+          ./modules/boot/kernel/linux_zen.nix
           ./modules/boot/bios.nix
           ./modules/graphical/niri.nix
           ./modules/packages/steam.nix
@@ -83,6 +85,7 @@
         hostModules = [
           ./hosts/serverpc/host.nix
           ./hosts/serverpc/hardware-configuration.nix
+          ./modules/boot/kernel/linux_latest_zfs.nix
           ./modules/boot/efi.nix
           ./modules/graphical/niri.nix
           ./modules/printing.nix
