@@ -47,6 +47,7 @@
       enable = true;
       allowedTCPPorts = [ ];
       allowedUDPPorts = [ ];
+      allowPing = true;
     };
     enableIPv6 = true;
   };
