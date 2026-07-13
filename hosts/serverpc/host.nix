@@ -8,6 +8,7 @@
     ./_samba.nix
     ./_nextcloud.nix
     ./_cloudflared.nix
+    ./_mariadb.nix
   ];
 
   networking.hostId = "9e40f792"; # required for ZFS

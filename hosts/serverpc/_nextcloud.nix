@@ -18,13 +18,14 @@
       extraAppsEnable = true;
       appstoreEnable = false;
       maxUploadSize = "1000G";
+      database.createLocally = true;
       config = {
         adminuser = "admin";
         adminpassFile = "/data/nextcloud/admin-secret.txt";
-        dbtype = "sqlite";
+        dbtype = "mysql";
         dbhost = "localhost";
         dbname = "nextcloud";
-        dbpassFile = null;
+        dbpassFile = "/data/nextcloud/database-secret.txt";
         dbuser = "nextcloud";
       };
       configureRedis = true;
