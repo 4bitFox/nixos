@@ -50,11 +50,11 @@
     clamav = {
       daemon.enable = true;
       updater.enable = true;
-#      daemon.settings = {
-#        LocalSocket = "/run/clamav/clamd.ctl";
-#        LocalSocketGroup = "clamav";
-#        LocalSocketMode = "660";
-#      };
+      daemon.settings = {
+        LocalSocket = "/run/clamav/clamd.ctl";
+        LocalSocketGroup = "clamav";
+        LocalSocketMode = "660";
+      };
     };
   };
 
@@ -73,6 +73,7 @@
         shell = "${pkgs.shadow}/bin/nologin";
         uid = 2000;
         group = "sambagroup";
+        extraGroups = [ "clamav" ];
       };
     };
   };
