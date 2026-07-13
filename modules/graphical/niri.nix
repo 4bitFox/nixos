@@ -62,9 +62,7 @@
   };
 
   # get rid of that pesky autostart generator, omg I hate it.
-  system.activationScripts.removeSystemdXdgGenerator = ''
-    rm -f /run/current-system/sw/lib/systemd/user-generators/systemd-xdg-autostart-generator 
-  '';
+  # rebuildds a lot of pkgs tough :c
 #  nixpkgs.overlays = [
 #    (final: prev: {
 #      systemd = prev.systemd.overrideAttrs (old: {
