@@ -83,6 +83,27 @@
         group = "sambagroup";
         extraGroups = [ "clamav" ];
       };
+      sambaalya = {
+        isSystemUser = true;
+        home = "/var/empty";
+        createHome = false;
+        shell = "${pkgs.shadow}/bin/nologin";
+        uid = 2001;
+      };
+      sambapasquala = {
+        isSystemUser = true;
+        home = "/var/empty";
+        createHome = false;
+        shell = "${pkgs.shadow}/bin/nologin";
+        uid = 2002;
+      };
+      sambanextcloud = {
+        isSystemUser = true;
+        home = "/var/empty";
+        createHome = false;
+        shell = "${pkgs.shadow}/bin/nologin";
+        uid = 2100;
+      };
     };
   };
 }
