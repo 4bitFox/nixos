@@ -50,11 +50,11 @@
     clamav = {
       daemon.enable = true;
       updater.enable = true;
-      daemon.settings = {
-        LocalSocket = "/run/clamav/clamd.ctl";
-        LocalSocketGroup = "clamav";
-        LocalSocketMode = "660";
-      };
+#      daemon.settings = {
+#        LocalSocket = "/run/clamav/clamd.ctl";
+#        LocalSocketGroup = "clamav";
+#        LocalSocketMode = "660";
+#      };
     };
   };
 
