@@ -28,12 +28,12 @@
           "directory mask" = "0755";
           "force user" = "sambauser";
           "force group" = "sambagroup";
-          "valid users" = "sambafoenxy, sambapasquala, sambanextcloud";
+          "valid users" = "sambaalya, sambapasquala, sambanextcloud";
           "vfs objects" = "virusfilter recycle";
           "recycle:repository" = ".recycle";
           "recycle:keeptree" = "yes";
           "recycle:versions" = "yes";
-          "recycle:directory_mode" = "0755"
+          "recycle:directory_mode" = "0755";
           "recycle:touch_mtime" = "yes";
           "virusfilter:scanner" = "clamav";
           "virusfilter:socket path" = "/run/clamav/clamd.ctl";
