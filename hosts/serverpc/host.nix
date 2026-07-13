@@ -5,6 +5,7 @@
 {
   imports = [
     ./_partitions.nix
+    ./_samba.nix
   ];
 
   networking.hostId = "9e40f792"; # required for ZFS
