@@ -47,7 +47,10 @@
       enable = true;
       openFirewall = true;
     };
-    clamav.daemon.enable = true;
+    clamav = {
+      daemon.enable = true;
+      updater.enable = true;
+    };
   };
 
 
