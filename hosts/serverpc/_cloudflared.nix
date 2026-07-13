@@ -6,8 +6,8 @@
   services.cloudflared = {
     enable = true;
     tunnels = {
-      "04ed5fa1-52fd-40fc-af8b-887ea055bab6" = {
-        credentialsFile = "/data/cloudflared/token.txt";
+      "3b9593b0-983e-458a-a35c-9ede085ef3a0" = {
+        credentialsFile = "/data/cloudflared/3b9593b0-983e-458a-a35c-9ede085ef3a0.json";
         ingress = {
           "nextcloud.tschudibacon.com" = "https://localhost:8080";
         };
