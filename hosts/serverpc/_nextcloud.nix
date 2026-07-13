@@ -25,7 +25,7 @@
         dbtype = "mysql";
         dbhost = "localhost";
         dbname = "nextcloud";
-        dbpassFile = "/data/nextcloud/database-secret.txt";
+#        dbpassFile = "/data/nextcloud/database-secret.txt";
         dbuser = "nextcloud";
       };
       configureRedis = true;
