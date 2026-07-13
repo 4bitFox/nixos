@@ -8,7 +8,7 @@
       enable = true;
       package = pkgs.nextcloud33; # Only ever increment by 1 to update (leaving out a major version is not supported)
       hostName = "nextcloud.tschudibacon.com";
-      https = true;
+#      https = true;
       extraApps = {
         inherit (config.services.nextcloud.package.packages.apps) 
         news contacts calendar tasks bookmarks end_to_end_encryption forms impersonate mail maps notes onlyoffice spreed
@@ -25,7 +25,6 @@
         dbtype = "mysql";
         dbhost = "localhost";
         dbname = "nextcloud";
-#        dbpassFile = "/data/nextcloud/database-secret.txt";
         dbuser = "nextcloud";
       };
       configureRedis = true;
@@ -38,16 +37,16 @@
     nginx = {
       virtualHosts."${config.services.nextcloud.hostName}" = {
         listen = [ { addr = "127.0.0.1"; port = 8080; } ];
-        forceSSL = true;
-        enableACME = true;
+#        forceSSL = true;
+#        enableACME = true;
       };
     };
   };
 
-  security.acme = {
-    acceptTerms = true;   
-    certs = { 
-      ${config.services.nextcloud.hostName}.email = "nextcloud-letsencrypt@tschudibacon.com"; 
-    };
-  };
+#  security.acme = {
+#    acceptTerms = true;   
+#    certs = { 
+#      ${config.services.nextcloud.hostName}.email = "nextcloud-letsencrypt@tschudibacon.com"; 
+#    };
+#  };
 }

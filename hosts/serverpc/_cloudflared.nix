@@ -1,6 +1,7 @@
 
 { config, pkgs, lib, ... }:
 
+# https://wiki.nixos.org/wiki/Cloudflared
 
 {
   environment.systemPackages = with pkgs; [
