@@ -89,6 +89,7 @@
         createHome = false;
         shell = "${pkgs.shadow}/bin/nologin";
         uid = 2001;
+        group = "sambagroup";
       };
       sambapasquala = {
         isSystemUser = true;
@@ -96,6 +97,7 @@
         createHome = false;
         shell = "${pkgs.shadow}/bin/nologin";
         uid = 2002;
+        group = "sambagroup";
       };
       sambanextcloud = {
         isSystemUser = true;
@@ -103,6 +105,7 @@
         createHome = false;
         shell = "${pkgs.shadow}/bin/nologin";
         uid = 2100;
+        group = "sambagroup";
       };
     };
   };
