@@ -32,6 +32,12 @@
       nginx = {
         hstsMaxAge = 15552000;
       };
+      settings = {
+        trusted_proxies = [
+          "127.0.0.1"
+          "::1"
+        ];
+      };
     };
 
     nginx = {
