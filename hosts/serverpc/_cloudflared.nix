@@ -21,4 +21,13 @@
       };
     };
   };
+
+  systemd.services.cloudflared-tunnel-3b9593b0-983e-458a-a35c-9ede085ef3a0 = {
+    serviceConfig = {
+      Restart = "always";
+      RestartSec = 10;
+      StartLimitIntervalSec = 0;
+      ExecStartPre = "${pkgs.coreutils}/bin/sleep 10";
+    };
+  };
 }
