@@ -50,6 +50,11 @@
       ];
       phpOptions = {
         "opcache.interned_strings_buffer" = "32";
+        "memory_limit" = "2048M";
+        "max_execution_time" = "3600";
+        "max_input_time" = "3600";
+        "post_max_size" = "1000G";
+        "upload_max_filesize" = "1000G";
       };
       notify_push = {
         enable = false; # currently broken
@@ -91,6 +96,7 @@
         nextcloud-occ app:disable survey_client
         nextcloud-occ app:disable user_status
         nextcloud-occ app:disable logreader
+        nextcloud-occ app:install passwords
         nextcloud-occ config:system:set maintenance_window_start --type=integer --value=1
         
       '';
