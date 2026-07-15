@@ -43,6 +43,9 @@
           "127.0.0.1"
         ];
       };
+      phpExtraExtensions = all: [
+        all.smbclient
+      ];
     };
 
     nginx = {
@@ -60,4 +63,28 @@
 #      ${config.services.nextcloud.hostName}.email = "nextcloud-letsencrypt@tschudibacon.com"; 
 #    };
 #  };
+
+  systemd.services = {
+    nextcloud-custom-config = {
+      path = [
+        config.services.nextcloud.occ
+      ];
+      script = ''
+        nextcloud-occ theming:config name "Tschudibacon!"
+        nextcloud-occ theming:config slogan "the crazy stuff"
+        nextcloud-occ theming:config url "https://nextcloud.tschudibacon.com";
+        nextcloud-occ theming:config primary_color "#8C00CF";
+        nextcloud-occ theming:config background_color "#000000";
+        nextcloud-occ theming:config logo /data/nextcloud/logo.png;
+        nextcloud-occ theming:config favicon /data/nextcloud/favicon.png;
+        nextcloud-occ theming:config background /data/nextcloud/background.jpg;
+        nextcloud-occ app:enable files_external;
+        nextcloud-occ app:enable admin_audit;
+        nextcloud-occ app:disable firstrunwizard;
+        nextcloud-occ app:disable survey_client;
+        nextcloud-occ app:disable user_status;
+      after = [ "nextcloud-setup.service" ];
+      wantedBy = [ "multi-user.target" ];
+    };
+  };
 }
