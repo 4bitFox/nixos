@@ -46,6 +46,9 @@
       phpExtraExtensions = all: [
         all.smbclient
       ];
+      phpOptions = {
+        "opcache.interned_strings_buffer" = "32";
+      };
     };
 
     nginx = {
@@ -79,10 +82,12 @@
         nextcloud-occ theming:config favicon /data/nextcloud/favicon.png
         nextcloud-occ theming:config background /data/nextcloud/background.jpg
         nextcloud-occ app:enable files_external
-        nextcloud-occ app:enable admin_audit
         nextcloud-occ app:disable firstrunwizard
         nextcloud-occ app:disable survey_client
         nextcloud-occ app:disable user_status
+        nextcloud-occ app:disable logreader
+        nextcloud-occ config:system:set maintenance_window_start --type=integer --value=1
+        
       '';
       after = [ "nextcloud-setup.service" ];
       wantedBy = [ "multi-user.target" ];

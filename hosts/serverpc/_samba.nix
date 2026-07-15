@@ -73,6 +73,7 @@
         gid = 2000;
       };
     };
+    ### Set password with sudo smbpasswd -a <username>
     users = {
       sambauser = {
         isSystemUser = true;
