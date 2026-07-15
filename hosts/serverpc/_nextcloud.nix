@@ -109,7 +109,6 @@
 
   programs = {
     bash = {
-      enable = true;
       shellAliases = {
         nextcloud-log = "journalctl -f -t Nextcloud -o json-pretty";
       };
