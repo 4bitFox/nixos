@@ -43,6 +43,7 @@
           "127.0.0.1"
         ];
         default_phone_region = "CH";
+        server_identifier = "nextcloud-tschudibacon";
       };
       phpExtraExtensions = all: [
         all.smbclient
