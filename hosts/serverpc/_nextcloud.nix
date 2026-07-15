@@ -16,7 +16,7 @@
         ;
       };
       extraAppsEnable = true;
-      appstoreEnable = false;
+      appstoreEnable = true;
       maxUploadSize = "1000G";
       database.createLocally = true;
       config = {
