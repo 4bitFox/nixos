@@ -42,6 +42,7 @@
           "localhost"
           "127.0.0.1"
         ];
+        default_phone_region = "CH";
       };
       phpExtraExtensions = all: [
         all.smbclient
