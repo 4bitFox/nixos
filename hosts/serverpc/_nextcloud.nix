@@ -83,7 +83,7 @@
         nextcloud-occ app:disable firstrunwizard
         nextcloud-occ app:disable survey_client
         nextcloud-occ app:disable user_status
-      ''
+      '';
       after = [ "nextcloud-setup.service" ];
       wantedBy = [ "multi-user.target" ];
     };
