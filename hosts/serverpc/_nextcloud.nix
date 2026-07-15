@@ -86,6 +86,7 @@
         config.services.nextcloud.occ
       ];
       script = ''
+        set +e # continue on non zero exit code
         nextcloud-occ theming:config name "Tschudibacon!"
         nextcloud-occ theming:config slogan "the crazy stuff"
         nextcloud-occ theming:config url "https://nextcloud.tschudibacon.com"
@@ -101,7 +102,6 @@
         nextcloud-occ app:disable logreader
         nextcloud-occ app:install passwords
         nextcloud-occ config:system:set maintenance_window_start --type=integer --value=1
-        
       '';
       after = [ "nextcloud-setup.service" ];
       wantedBy = [ "multi-user.target" ];
