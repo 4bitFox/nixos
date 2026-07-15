@@ -17,7 +17,7 @@
       };
       extraAppsEnable = true;
       appstoreEnable = true;
-      maxUploadSize = "1000G";
+      maxUploadSize = "100G";
       database.createLocally = true;
       config = {
         adminuser = "admin";
@@ -50,7 +50,6 @@
       ];
       phpOptions = {
         "opcache.interned_strings_buffer" = "32";
-        "memory_limit" = "2048M";
         "max_execution_time" = "3600";
         "max_input_time" = "3600";
         "post_max_size" = "1000G";
