@@ -64,7 +64,6 @@
 #        forceSSL = true;
 #        enableACME = true;
         extraConfig = ''
-          client_max_body_size 100G;
           proxy_read_timeout 3600;
           proxy_send_timeout 3600;
           fastcgi_read_timeout 3600;
