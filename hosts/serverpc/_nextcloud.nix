@@ -52,7 +52,7 @@
         "opcache.interned_strings_buffer" = "32";
       };
       notify_push = {
-        enable = true;
+        enable = false; # currently broken
       };
     };
 
