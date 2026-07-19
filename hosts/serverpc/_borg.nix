@@ -81,4 +81,13 @@
       ];
     };
   };
+
+  programs = {
+    bash = {
+      shellAliases = {
+        borgbackup-data-startbackup = "sudo systemctl start borgbackup-job-data.service";
+        borgbackup-data-status = "journalctl -fu borgbackup-job-data.service";
+      };
+    };
+  };
 }
