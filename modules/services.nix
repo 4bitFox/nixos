@@ -31,5 +31,13 @@
       enable = true;
       interval = "weekly";
     };
+    services.smartd = {
+      enable = true;
+      autodetect = true;
+      notifications = {
+        wall.enable = true;
+        test = true;
+      };
+    };
   };
 }
