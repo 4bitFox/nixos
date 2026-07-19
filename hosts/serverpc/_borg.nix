@@ -49,6 +49,7 @@
           --events \
           > /data/mariadb/db_dump.sql'
       '';
+      };
     };
     
     borgbackup-job-data = {
