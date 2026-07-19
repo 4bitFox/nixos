@@ -31,7 +31,7 @@
       enable = true;
       interval = "weekly";
     };
-    services.smartd = {
+    smartd = {
       enable = true;
       autodetect = true;
       notifications = {
