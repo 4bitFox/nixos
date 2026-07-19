@@ -36,7 +36,29 @@
     };
   };
   
-  systemd.services.borgbackup-job-data = {
-    unitConfig.ConditionPathIsMountPoint = "/backup";
+  systemd.services = {
+    mariadb-dump = {
+      description = "Dump MariaDB databases for Borg backup";
+      serviceConfig = {
+      Type = "oneshot";
+      ExecStart = ''
+        ${pkgs.bash}/bin/bash -c '${pkgs.mariadb}/bin/mariadb-dump \
+          --all-databases \
+          --single-transaction \
+          --routines \
+          --events \
+          > /data/mariadb/db_dump.sql'
+      '';
+    };
+    
+    borgbackup-job-data = {
+      unitConfig.ConditionPathIsMountPoint = "/backup";
+      after = [
+        "mariadb-dump.service"
+      ];
+      requires = [
+        "mariadb-dump.service"
+      ];
+    };
   };
 }
