@@ -40,5 +40,6 @@
         test = false;
       };
     };
+    fwupd.enable = true;
   };
 }

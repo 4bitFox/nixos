@@ -34,6 +34,7 @@
       syncModels = true;
       rocmOverrideGfx = "11.0.2";
     };
+    protonmail-bridge.enable = true;
   };
 
   environment = {
