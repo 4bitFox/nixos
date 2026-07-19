@@ -40,5 +40,6 @@
         test = true;
       };
     };
+    systembus-notify.enable = true;
   };
 }
