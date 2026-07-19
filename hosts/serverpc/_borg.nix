@@ -18,12 +18,19 @@
           exclude = [
             "/data/*"
           ];
+          prune.keep = {
+            within = "1d"; # Keep all archives from the last day
+            daily = 7;
+            weekly = 4;
+            monthly = -1; # Keep at least one archive for each month
+          };
           doInit = true;
-          compression = "zstd,3";
+          compression = "auto,zstd,5";
           startAt = [];
           # startAt = "daily";
           removableDevice = true;
           encryption.mode = "none";
+          appendFailedSuffix = true;
         };
       };
     };
