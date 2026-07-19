@@ -35,7 +35,7 @@
       enable = true;
       autodetect = true;
       notifications = {
-        wall.enable = true;
+        wall.enable = false;
         systembus-notify.enable = true;
         test = true;
       };
