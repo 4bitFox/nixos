@@ -54,8 +54,8 @@
   systemd.services = {
     mariadb-dump = {
       description = "Dump MariaDB databases for Borg backup";
-      after = [ "mariadb.service" ];
-      requires = [ "mariadb.service" ];
+      after = [ "mysql.service" ];
+      requires = [ "mysql.service" ];
       serviceConfig = {
       Type = "oneshot";
       ExecStart = ''
@@ -85,8 +85,9 @@
   programs = {
     bash = {
       shellAliases = {
-        borgbackup-data-startbackup = "sudo systemctl start borgbackup-job-data.service";
-        borgbackup-data-status = "journalctl -fu borgbackup-job-data.service";
+        borg-startbackup-data = "sudo systemctl start borgbackup-job-data.service";
+        borg-status-data = "journalctl -fu borgbackup-job-data.service";
+        borg-listbackups-data = "sudo borg list /backup/borg/data";
       };
     };
   };
