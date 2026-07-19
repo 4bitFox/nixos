@@ -48,6 +48,7 @@
     systemPackages = with pkgs; [
       radeontop
       rocmPackages.rocminfo
+      protonmail-bridge-gui
     ];
     variables = {
       RUSTICL_ENABLE = "radeonsi";
