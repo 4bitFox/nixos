@@ -35,11 +35,10 @@
       enable = true;
       autodetect = true;
       notifications = {
-        wall.enable = false;
+        wall.enable = true;
         systembus-notify.enable = true;
-        test = true;
+        test = false;
       };
     };
-    systembus-notify.enable = true;
   };
 }
