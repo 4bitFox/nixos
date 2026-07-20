@@ -51,6 +51,7 @@
             "--progress"
             "--stats"
           ];
+          inhibitsSleep = true;
         };
       };
     };
@@ -63,7 +64,6 @@
       requires = [ "mysql.service" ];
       serviceConfig = {
         Type = "oneshot";
-        RemainAfterExit = true;
         ExecStart = ''
           ${pkgs.bash}/bin/bash -c '${pkgs.mariadb}/bin/mariadb-dump \
           --all-databases \
@@ -80,10 +80,6 @@
     borgbackup-job-data = {
       unitConfig = {
         ConditionPathIsMountPoint = "/backup";
-        RefuseManualStop = true;
-      };
-      serviceConfig = {
-        OOMPolicy = "continue";
       };
       restartIfChanged = false;
       after = [
