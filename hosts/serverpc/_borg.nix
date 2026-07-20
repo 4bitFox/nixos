@@ -47,7 +47,9 @@
           encryption.mode = "none";
           appendFailedSuffix = true;
           extraCreateArgs = [
+            "--show-version"
             "--progress"
+            "--stats"
           ];
         };
       };
