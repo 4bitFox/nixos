@@ -83,8 +83,6 @@
         RefuseManualStop = true;
       };
       serviceConfig = {
-        TimeoutStopSec = "infinity";
-        KillMode = "process";
         OOMPolicy = "continue";
       };
       restartIfChanged = false;
