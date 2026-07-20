@@ -46,6 +46,9 @@
           removableDevice = true;
           encryption.mode = "none";
           appendFailedSuffix = true;
+          extraCreateArgs = [
+            "--progress"
+          ];
         };
       };
     };
@@ -73,6 +76,7 @@
     
     borgbackup-job-data = {
       unitConfig.ConditionPathIsMountPoint = "/backup";
+      serviceConfig.TimeoutStopSec = "1h";
       after = [
         "mariadb-dump.service"
       ];
