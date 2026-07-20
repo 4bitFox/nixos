@@ -62,9 +62,10 @@
       after = [ "mysql.service" ];
       requires = [ "mysql.service" ];
       serviceConfig = {
-      Type = "oneshot";
-      ExecStart = ''
-        ${pkgs.bash}/bin/bash -c '${pkgs.mariadb}/bin/mariadb-dump \
+        Type = "oneshot";
+        RemainAfterExit = true;
+        ExecStart = ''
+          ${pkgs.bash}/bin/bash -c '${pkgs.mariadb}/bin/mariadb-dump \
           --all-databases \
           --single-transaction \
           --routines \
@@ -72,13 +73,21 @@
           --triggers \
           --hex-blob \
           > /data/mariadb/db_dump.sql'
-      '';
+        '';
       };
     };
     
     borgbackup-job-data = {
-      unitConfig.ConditionPathIsMountPoint = "/backup";
-      serviceConfig.TimeoutStopSec = "1h";
+      unitConfig = {
+        ConditionPathIsMountPoint = "/backup";
+        RefuseManualStop = true;
+      };
+      serviceConfig = {
+        TimeoutStopSec = "infinity";
+        KillMode = "process";
+        OOMPolicy = "continue";
+      };
+      restartIfChanged = false;
       after = [
         "mariadb-dump.service"
       ];
