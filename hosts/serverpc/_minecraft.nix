@@ -62,7 +62,7 @@
   programs = {
     bash = {
       shellAliases = {
-        minecraftserver-status-minecraft = "journalctl -fu borgbackup-job-data.service";
+        minecraftserver-status-minecraft = "journalctl -fu minecraft-server.service";
       };
     };
   };
