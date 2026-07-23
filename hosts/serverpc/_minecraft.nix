@@ -18,7 +18,7 @@
           ${pkgs.screen}/bin/screen -DmS minecraft ${pkgs.bash}/bin/bash -c "exec ${pkgs.jdk21}/bin/java -Xms2048M -Xmx16384M -XX:+UseG1GC -XX:MaxGCPauseMillis=200 -XX:InitiatingHeapOccupancyPercent=40 -XX:G1ReservePercent=10 -XX:MinHeapFreeRatio=10 -XX:MaxHeapFreeRatio=20 -XX:G1HeapRegionSize=8M -jar ./paper-*.jar nogui"
         '';
         ExecStop = ''
-          ${pkgs.screen}/bin/screen -S minecraft -p 0 -X stuff "stop$(printf '\r')"
+          ${pkgs.screen}/bin/screen -S minecraft -p 0 -X stuff "stop\r"
         '';
         RestartSec = 120;
         Restart = "no";
