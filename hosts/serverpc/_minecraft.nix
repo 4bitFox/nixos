@@ -95,8 +95,11 @@
     bash = {
       shellAliases = {
         minecraftserver-console-minecraft = "journalctl -fu minecraft-server.service";
+        minecraftserver-log-minecraft = "cat /data/minecraft/server.log";
         minecraftserver-console-minecraft_b173 = "sudo -u minecraftuser screen -r minecraft_b173";
+        minecraftserver-log-minecraft_b173 = "cat /data/minecraft_b173/server.log";
         minecraftserver-console-minecraft_b173_viaproxy = "journalctl -fu minecraft_b173_viaproxy-server.service";
+        minecraftserver-log-minecraft_b173_viaproxy = "cat /data/minecraft_b173/ViaProxy/logs/latest.log";
       };
     };
   };
