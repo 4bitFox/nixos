@@ -37,6 +37,7 @@
         ExecStop = ''
           ${pkgs.screen}/bin/screen -S minecraft_b173 -p 0 -X stuff "stop^M"
         '';
+        Environment = "PATH=${pkgs.bash}/bin:${pkgs.coreutils}/bin";
         Restart = "always";
         RestartSec = 5;
       };
