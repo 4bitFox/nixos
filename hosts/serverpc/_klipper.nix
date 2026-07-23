@@ -16,6 +16,12 @@
       settings = {
         # https://moonraker.readthedocs.io/en/latest/configuration/
         authorization = {
+          cors_domains = [
+            "http://localhost:7126"
+            "http://127.0.0.1:7126"
+            "http://192.168.1.7:7126"
+            "http://caroline:7126"
+          ];
           trusted_clients = [
             "127.0.0.1"
             "192.168.1.0/24"
