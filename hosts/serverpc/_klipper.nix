@@ -30,6 +30,13 @@
 
     mainsail = {
       enable = true;
+      nginx = {
+        listen = {
+          aquila = {
+            port = 8081;
+          }:
+        };
+      };
     };
   };
 
