@@ -30,11 +30,9 @@
         User = "minecraftuser";
         Group = "minecraftgroup";
         WorkingDirectory = "/data/minecraft_b173";
-#        KillSignal = "SIGINT";
         TimeoutStopSec = "180s";
-#        SuccessExitStatus = "130";
         ExecStart = ''
-          ${pkgs.screen}/bin/screen -DmS minecraft_b173 ${pkgs.bash}/bin/bash -c "${pkgs.jdk8}/bin/java -Xms2048M -Xmx16384M -jar poseidon-craftbukkit*.jar" # ${pkgs.bash}/bin/bash -c "exec ${pkgs.jdk8}/bin/java -Xms2048M -Xmx16384M -Djline.terminal=jline.UnsupportedTerminal -Dterminal.jline=false -Dterminal.ansi=false -jar poseidon-craftbukkit*.jar nogui"
+          ${pkgs.screen}/bin/screen -DmS minecraft_b173 ${pkgs.bash}/bin/bash -c "${pkgs.jdk8}/bin/java -Xms2048M -Xmx16384M -jar poseidon-craftbukkit*.jar nogui"
         '';
         ExecStop = ''
           ${pkgs.screen}/bin/screen -S minecraft_b173 -p 0 -X stuff "stop^M"
