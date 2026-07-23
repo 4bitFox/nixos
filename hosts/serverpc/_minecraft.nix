@@ -38,7 +38,7 @@
           ${pkgs.screen}/bin/screen -DmS minecraft_b173 ${pkgs.bash}/bin/bash -c "${pkgs.jdk8}/bin/java -Xms2048M -Xmx16384M -jar poseidon-craftbukkit*.jar nogui"
         '';
         ExecStop = ''
-          ${pkgs.screen}/bin/screen -S minecraft_b173 -p 0 -X stuff "stop$(printf '\r')"
+          ${pkgs.screen}/bin/screen -S minecraft_b173 -p 0 -X stuff "stop\r"
         '';
         Environment = "PATH=${pkgs.bash}/bin:${pkgs.coreutils}/bin";
         RestartSec = 120;
@@ -59,7 +59,7 @@
           ${pkgs.screen}/bin/screen -DmS minecraft_b173_viaproxy ${pkgs.bash}/bin/bash -c "exec ${pkgs.jdk8}/bin/java -jar ViaProxy*.jar config viaproxy.yml"
         '';
         ExecStop = ''
-          ${pkgs.screen}/bin/screen -S minecraft_b173_viaproxy -p 0 -X stuff "stop$(printf '\r')"
+          ${pkgs.screen}/bin/screen -S minecraft_b173_viaproxy -p 0 -X stuff "stop\r"
         '';
         Restart = "no";
         RestartSec = 120;
