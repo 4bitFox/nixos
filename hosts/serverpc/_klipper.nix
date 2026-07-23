@@ -48,8 +48,8 @@
 #            proxyPass = "http://127.0.0.1:7125/";
 #            proxyWebsockets = true;
 #          };
-          "/websocket" = lib.mkForce {
-            proxyPass = "http://127.0.0.1:7125/";
+          "/websocket" = {
+            lib.mkForce proxyPass = "http://127.0.0.1:7125/";
             proxyWebsockets = true;
           };
         };
