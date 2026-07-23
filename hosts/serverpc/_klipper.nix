@@ -24,10 +24,16 @@
       };
       allowSystemControl = false;
       stateDir = "/persist/var/lib/moonraker";
+      user = "moonraker";
+      group = "moonraker";
     };
 
     mainsail = {
       enable = true;
     };
   };
+
+  systemd.tmpfiles.rules = [
+      "d /persist/var/lib/moonraker/logs 0755 moonraker moonraker -" # stop moonraker from crying like a baby
+    ];
 }
