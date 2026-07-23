@@ -50,4 +50,8 @@
   systemd.tmpfiles.rules = [
       "d /persist/var/lib/moonraker/logs 0755 moonraker moonraker -" # stop moonraker from crying like a baby
     ];
+
+  networking.firewall.allowedTCPPorts = [
+    7126
+  ];
 }
