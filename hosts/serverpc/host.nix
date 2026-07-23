@@ -11,7 +11,7 @@
     ./_mariadb.nix
     ./_borg.nix
     ./_minecraft.nix
-#    ./_klipper.nix
+    ./_klipper.nix
   ];
 
   networking.hostId = "9e40f792"; # required for ZFS
