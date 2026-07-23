@@ -21,6 +21,7 @@
         Restart = "unless-stopped";
         RestartSec = 5;
       };
+    };
     minecraft_b173-server = {
       description = "Minecraft Beta 1.7.3 Server";
       after = [ "network.target" ];
@@ -38,6 +39,7 @@
         Restart = "unless-stopped";
         RestartSec = 5;
       };
+    };
     minecraft_b173_viaproxy-server = {
       description = "Minecraft Beta 1.7.3 Server ViaProxy";
       after = [ "network.target" ];
