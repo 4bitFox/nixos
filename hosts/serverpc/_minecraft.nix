@@ -18,7 +18,7 @@
         ExecStart = ''
           ${pkgs.bash}/bin/bash -c "exec ${pkgs.jdk21}/bin/java -Xms2048M -Xmx16384M -XX:+UseG1GC -XX:MaxGCPauseMillis=200 -XX:InitiatingHeapOccupancyPercent=40 -XX:G1ReservePercent=10 -XX:MinHeapFreeRatio=10 -XX:MaxHeapFreeRatio=20 -XX:G1HeapRegionSize=8M -jar ./paper-*.jar nogui"
         '';
-        Restart = "unless-stopped";
+        Restart = "always";
         RestartSec = 5;
       };
     };
@@ -36,7 +36,7 @@
         ExecStart = ''
           ${pkgs.bash}/bin/bash -c "exec ${pkgs.jdk8}/bin/java -jar poseidon-craftbukkit*.jar"
         '';
-        Restart = "unless-stopped";
+        Restart = "always";
         RestartSec = 5;
       };
     };
@@ -54,7 +54,7 @@
         ExecStart = ''
           ${pkgs.bash}/bin/bash -c "exec ${pkgs.jdk8}/bin/java -jar ViaProxy*.jar config viaproxy.yml"
         '';
-        Restart = "unless-stopped";
+        Restart = "always";
         RestartSec = 5;
       };
     };
