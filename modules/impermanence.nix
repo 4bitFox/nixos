@@ -150,7 +150,6 @@ in
     };
   };
 
-  ### /etc/shadow ### hacky code snippet from thundertheidiot on Sep 30, 2024; thank you! :D : https://github.com/nix-community/impermanence/issues/120#issuecomment-2382674299
   system.activationScripts = {
     etc_shadow = ''
       [ -f "/etc/shadow" ] && cp /etc/shadow /persist/etc/shadow
@@ -198,12 +197,7 @@ in
     };
     tmpfiles.rules = [
       "d /persist/rootfs/etc/ 0755 root root -" # make sure /persist/etc exists
+      "d /persist/var/lib/private 0700 root root -" # Fix permissions for /var/lib/private
     ];
   };
-  ### /etc/shadow (end) ###
-
-  systemd.tmpfiles.rules = [
-    "d /persist/var/lib/private 0700 root root -"
-  ];
-
 }
