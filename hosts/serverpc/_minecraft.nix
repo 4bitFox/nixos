@@ -89,7 +89,8 @@
   };
 
   systemd.tmpfiles.rules = [
-    "d /run/home/minecraftuser/.screen 0755 minecraftuser minecraftgroup -"
+    "d /run/home/minecraftuser 0755 minecraftuser minecraftgroup -"
+    "d /run/home/minecraftuser/.screen 0700 minecraftuser minecraftgroup -"
   ];
   
   programs = {
