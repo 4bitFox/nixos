@@ -95,7 +95,7 @@
     bash = {
       shellAliases = {
         minecraftserver-console-minecraft = "sudo -u minecraftuser screen -r minecraft";
-        minecraftserver-log-minecraft = "cat /data/minecraft/server.log";
+        minecraftserver-log-minecraft = "cat /data/minecraft/logs/latest.log";
         minecraftserver-console-minecraft_b173 = "sudo -u minecraftuser screen -r minecraft_b173";
         minecraftserver-log-minecraft_b173 = "cat /data/minecraft_b173/server.log";
         minecraftserver-console-minecraft_b173_viaproxy = "sudo -u minecraftuser screen -r minecraft_b173_viaproxy";
