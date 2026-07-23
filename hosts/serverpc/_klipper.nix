@@ -34,7 +34,7 @@
         listen = {
           aquila = {
             port = 8081;
-          }:
+          };
         };
       };
     };
