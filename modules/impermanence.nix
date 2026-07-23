@@ -58,6 +58,7 @@ in
         "/var/lib/waydroid"
         "/var/lib/private"
         "/var/lib/private/ollama"
+        "/var/lib/private/klipper"
         "/var/lib/libvirt"
         "/var/lib/flatpak"
         "/etc/zfs"
