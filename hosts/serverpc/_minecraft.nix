@@ -79,7 +79,7 @@
     users = {
       minecraftuser = {
         isSystemUser = true;
-        home = "/var/empty";
+#        home = "/var/empty";
         createHome = false;
         shell = "${pkgs.shadow}/bin/nologin";
         uid = 3000;
