@@ -35,11 +35,15 @@
           ${pkgs.screen}/bin/screen -DmS minecraft_b173 ${pkgs.bash}/bin/bash -c "${pkgs.jdk8}/bin/java -Xms2048M -Xmx16384M -jar poseidon-craftbukkit*.jar nogui"
         '';
         ExecStop = ''
-          ${pkgs.screen}/bin/screen -S minecraft_b173 -p 0 -X stuff "stop^M"
+          ${pkgs.screen}/bin/screen -S minecraft_b173 -p 0 -X stuff "stop$(printf '\r')"
+          while ${pkgs.screen}/bin/screen -list | grep -q minecraft_b173; do
+            sleep 1
+          done
         '';
         Environment = "PATH=${pkgs.bash}/bin:${pkgs.coreutils}/bin";
         Restart = "always";
         RestartSec = 5;
+        KillMode = "none";
       };
     };
     minecraft_b173_viaproxy-server = {
