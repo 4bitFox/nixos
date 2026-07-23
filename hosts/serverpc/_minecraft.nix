@@ -34,7 +34,7 @@
         TimeoutStopSec = "180s";
         SuccessExitStatus = "130";
         ExecStart = ''
-          ${pkgs.bash}/bin/bash -c "exec ${pkgs.jdk8}/bin/java -jar poseidon-craftbukkit*.jar"
+          ${pkgs.bash}/bin/bash -c "exec ${pkgs.jdk8}/bin/java -Xms2048M -Xmx16384M -Dterminal.jline=false -Dterminal.ansi=false -jar poseidon-craftbukkit*.jar nogui"
         '';
         Restart = "always";
         RestartSec = 5;
