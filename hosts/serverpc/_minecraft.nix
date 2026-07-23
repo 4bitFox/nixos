@@ -87,6 +87,10 @@
       };
     };
   };
+
+  systemd.tmpfiles.rules = [
+    "d /run/home/minecraftuser/.screen 0755 minecraftuser minecraftgroup -"
+  ];
   
   programs = {
     bash = {
