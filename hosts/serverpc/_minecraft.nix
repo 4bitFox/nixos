@@ -38,6 +38,7 @@
         '';
         Restart = "always";
         RestartSec = 5;
+        StandardInput = "null";
       };
     };
     minecraft_b173_viaproxy-server = {
