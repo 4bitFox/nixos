@@ -14,6 +14,7 @@
         WorkingDirectory = "/data/minecraft";
         KillSignal = "SIGINT";
         TimeoutStopSec = "180s";
+        SuccessExitStatus = "130";
         ExecStart = ''
           ${pkgs.bash}/bin/bash -c "exec ${pkgs.jdk21}/bin/java -Xms2048M -Xmx16384M -XX:+UseG1GC -XX:MaxGCPauseMillis=200 -XX:InitiatingHeapOccupancyPercent=40 -XX:G1ReservePercent=10 -XX:MinHeapFreeRatio=10 -XX:MaxHeapFreeRatio=20 -XX:G1HeapRegionSize=8M -jar ./paper-*.jar nogui"
         '';
