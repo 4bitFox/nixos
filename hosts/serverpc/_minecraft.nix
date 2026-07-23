@@ -12,14 +12,16 @@
         User = "minecraftuser";
         Group = "minecraftgroup";
         WorkingDirectory = "/data/minecraft";
-        KillSignal = "SIGINT";
         TimeoutStopSec = "180s";
-        SuccessExitStatus = "130";
+        KillMode = "none";
         ExecStart = ''
-          ${pkgs.bash}/bin/bash -c "exec ${pkgs.jdk21}/bin/java -Xms2048M -Xmx16384M -XX:+UseG1GC -XX:MaxGCPauseMillis=200 -XX:InitiatingHeapOccupancyPercent=40 -XX:G1ReservePercent=10 -XX:MinHeapFreeRatio=10 -XX:MaxHeapFreeRatio=20 -XX:G1HeapRegionSize=8M -jar ./paper-*.jar nogui"
+          ${pkgs.screen}/bin/screen -DmS minecraft ${pkgs.bash}/bin/bash -c "exec ${pkgs.jdk21}/bin/java -Xms2048M -Xmx16384M -XX:+UseG1GC -XX:MaxGCPauseMillis=200 -XX:InitiatingHeapOccupancyPercent=40 -XX:G1ReservePercent=10 -XX:MinHeapFreeRatio=10 -XX:MaxHeapFreeRatio=20 -XX:G1HeapRegionSize=8M -jar ./paper-*.jar nogui"
         '';
-        Restart = "always";
-        RestartSec = 5;
+        ExecStop = ''
+          ${pkgs.screen}/bin/screen -S minecraft -p 0 -X stuff "stop$(printf '\r')"
+        '';
+        RestartSec = 120;
+        Restart = "no";
       };
     };
     minecraft_b173-server = {
@@ -39,6 +41,8 @@
           ${pkgs.screen}/bin/screen -S minecraft_b173 -p 0 -X stuff "stop$(printf '\r')"
         '';
         Environment = "PATH=${pkgs.bash}/bin:${pkgs.coreutils}/bin";
+        RestartSec = 120;
+        Restart = "no";
       };
     };
     minecraft_b173_viaproxy-server = {
@@ -49,14 +53,16 @@
         User = "minecraftuser";
         Group = "minecraftgroup";
         WorkingDirectory = "/data/minecraft_b173/ViaProxy";
-        KillSignal = "SIGINT";
         TimeoutStopSec = "180s";
-        SuccessExitStatus = "130";
+        KillMode = "none";
         ExecStart = ''
-          ${pkgs.bash}/bin/bash -c "exec ${pkgs.jdk8}/bin/java -jar ViaProxy*.jar config viaproxy.yml"
+          ${pkgs.screen}/bin/screen -DmS minecraft_b173_viaproxy ${pkgs.bash}/bin/bash -c "exec ${pkgs.jdk8}/bin/java -jar ViaProxy*.jar config viaproxy.yml"
         '';
-        Restart = "always";
-        RestartSec = 5;
+        ExecStop = ''
+          ${pkgs.screen}/bin/screen -S minecraft_b173_viaproxy -p 0 -X stuff "stop$(printf '\r')"
+        '';
+        Restart = "no";
+        RestartSec = 120;
       };
     };
   };
@@ -77,7 +83,7 @@
       minecraftuser = {
         isSystemUser = true;
         home = "/run/home/minecraftuser";
-#        createHome = false;
+        createHome = true;
         shell = "${pkgs.shadow}/bin/nologin";
         uid = 3000;
         group = "minecraftgroup";
@@ -85,17 +91,12 @@
     };
   };
 
-#  systemd.tmpfiles.rules = [
-#    "d /run/home/minecraftuser 0755 minecraftuser minecraftgroup -"
-#    "d /run/home/minecraftuser/.screen 0700 minecraftuser minecraftgroup -"
-#  ];
-  
   programs = {
     bash = {
       shellAliases = {
-        minecraftserver-status-minecraft = "journalctl -fu minecraft-server.service";
+        minecraftserver-console-minecraft = "journalctl -fu minecraft-server.service";
         minecraftserver-console-minecraft_b173 = "sudo -u minecraftuser screen -r minecraft_b173";
-        minecraftserver-status-minecraft_b173_viaproxy = "journalctl -fu minecraft_b173_viaproxy-server.service";
+        minecraftserver-console-minecraft_b173_viaproxy = "journalctl -fu minecraft_b173_viaproxy-server.service";
       };
     };
   };
