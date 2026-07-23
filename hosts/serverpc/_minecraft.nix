@@ -43,7 +43,6 @@
         Environment = "PATH=${pkgs.bash}/bin:${pkgs.coreutils}/bin";
         Restart = "always";
         RestartSec = 5;
-        KillMode = "none";
       };
     };
     minecraft_b173_viaproxy-server = {
