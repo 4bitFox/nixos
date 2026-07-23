@@ -94,9 +94,11 @@
   programs = {
     bash = {
       shellAliases = {
-        borg-startbackup-data = "sudo systemctl start borgbackup-job-data.service";
-        borg-status-data = "journalctl -fu borgbackup-job-data.service";
-        borg-listbackups-data = "sudo borg list /backup/borg/data";
+        borg-backupstart-data = "sudo systemctl start borgbackup-job-data.service";
+        borg-backupstatus-data = "journalctl -fu borgbackup-job-data.service";
+        borg-list-data = "sudo borg list /backup/borg/data";
+        borg-check-data = "sudo borg check /backup/borg/data";
+        borg-compact-data = "sudo borg compact /backup/borg/data";
       };
     };
   };

@@ -10,6 +10,7 @@
     ./_cloudflared.nix
     ./_mariadb.nix
     ./_borg.nix
+    ./_minecraft.nix
   ];
 
   networking.hostId = "9e40f792"; # required for ZFS
