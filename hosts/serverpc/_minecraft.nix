@@ -15,7 +15,7 @@
         TimeoutStopSec = "180s";
         KillMode = "none";
         ExecStart = ''
-          ${pkgs.screen}/bin/screen -DmS minecraft ${pkgs.bash}/bin/bash -c "exec ${pkgs.jdk21}/bin/java -Xms2048M -Xmx16384M -XX:+UseG1GC -XX:MaxGCPauseMillis=200 -XX:InitiatingHeapOccupancyPercent=40 -XX:G1ReservePercent=10 -XX:MinHeapFreeRatio=10 -XX:MaxHeapFreeRatio=20 -XX:G1HeapRegionSize=8M -jar ./paper-*.jar nogui"
+          ${pkgs.screen}/bin/screen -DmS minecraft ${pkgs.bash}/bin/bash -c "${pkgs.jdk21}/bin/java -Xms2048M -Xmx16384M -XX:+UseG1GC -XX:MaxGCPauseMillis=200 -XX:InitiatingHeapOccupancyPercent=40 -XX:G1ReservePercent=10 -XX:MinHeapFreeRatio=10 -XX:MaxHeapFreeRatio=20 -XX:G1HeapRegionSize=8M -jar ./paper-*.jar nogui"
         '';
         ExecStop = ''
           ${pkgs.screen}/bin/screen -S minecraft -p 0 -X stuff "stop\r"
@@ -56,7 +56,7 @@
         TimeoutStopSec = "180s";
         KillMode = "none";
         ExecStart = ''
-          ${pkgs.screen}/bin/screen -DmS minecraft_b173_viaproxy ${pkgs.bash}/bin/bash -c "exec ${pkgs.jdk8}/bin/java -jar ViaProxy*.jar config viaproxy.yml"
+          ${pkgs.screen}/bin/screen -LDmS minecraft_b173_viaproxy ${pkgs.bash}/bin/bash -c "${pkgs.jdk8}/bin/java -jar ViaProxy*.jar config viaproxy.yml"
         '';
         ExecStop = ''
           ${pkgs.screen}/bin/screen -S minecraft_b173_viaproxy -p 0 -X stuff "stop\r"
