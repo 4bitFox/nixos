@@ -34,7 +34,7 @@
         TimeoutStopSec = "180s";
         SuccessExitStatus = "130";
         ExecStart = ''
-          ${pkgs.bash}/bin/bash -c "exec ${pkgs.jdk8}/bin/java -Xms2048M -Xmx16384M -Djline.terminal=jline.UnsupportedTerminal -Dterminal.jline=false -Dterminal.ansi=false -jar poseidon-craftbukkit*.jar nogui </dev/null"
+          ${pkgs.bash}/bin/bash -c "exec ${pkgs.jdk8}/bin/java -Xms2048M -Xmx16384M -Djline.terminal=jline.UnsupportedTerminal -Dterminal.jline=false -Dterminal.ansi=false -Djline.shutdownhook=false -jar poseidon-craftbukkit*.jar nogui"
         '';
         Restart = "always";
         RestartSec = 5;
