@@ -80,7 +80,7 @@
       minecraftuser = {
         isSystemUser = true;
         home = "/run/home/minecraftuser";
-        createHome = false;
+#        createHome = false;
         shell = "${pkgs.shadow}/bin/nologin";
         uid = 3000;
         group = "minecraftgroup";
@@ -88,10 +88,10 @@
     };
   };
 
-  systemd.tmpfiles.rules = [
-    "d /run/home/minecraftuser 0755 minecraftuser minecraftgroup -"
-    "d /run/home/minecraftuser/.screen 0700 minecraftuser minecraftgroup -"
-  ];
+#  systemd.tmpfiles.rules = [
+#    "d /run/home/minecraftuser 0755 minecraftuser minecraftgroup -"
+#    "d /run/home/minecraftuser/.screen 0700 minecraftuser minecraftgroup -"
+#  ];
   
   programs = {
     bash = {
