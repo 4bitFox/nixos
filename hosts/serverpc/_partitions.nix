@@ -3,6 +3,10 @@
 
 
 {
+  environment.systemPackages = with pkgs; [
+    cifs-utils
+  ];
+
   boot = {
     ### swap for hibernation ###
     resumeDevice = "/dev/dm-0"; # use "swapon -s" for path
@@ -17,6 +21,19 @@
       options = [
         "nofail"
         "x-systemd.automount"
+      ];
+    };
+    "/share" = {
+      device = "//127.0.0.1/share";
+      fsType = "cifs";
+      options = [
+        "nofail"
+        "noauto"
+        "x-systemd.automount"
+        "x-systemd.idle-timeout=1h"
+        "x-systemd.device-timeout=5s"
+        "x-systemd.mount-timeout=5s"
+        "credentials=/home/alya/.smb-share.secret"
       ];
     };
   };

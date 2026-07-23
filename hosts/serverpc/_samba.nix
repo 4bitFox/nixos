@@ -4,6 +4,10 @@
 # https://wiki.nixos.org/wiki/Samba
 
 {
+  environment.systemPackages = with pkgs; [
+    cifs-utils
+  ];
+
   services = {
     samba = {
       enable = true;
