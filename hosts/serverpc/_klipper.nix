@@ -34,7 +34,7 @@
         listen = [
           {
             addr = "0.0.0.0";
-            port = 7125;
+            port = 7126;
           }
         ];
         extraConfig = ''
