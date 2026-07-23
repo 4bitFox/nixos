@@ -56,7 +56,7 @@
         TimeoutStopSec = "180s";
         KillMode = "none";
         ExecStart = ''
-          ${pkgs.screen}/bin/screen -LDmS minecraft_b173_viaproxy ${pkgs.bash}/bin/bash -c "${pkgs.jdk8}/bin/java -jar ViaProxy*.jar config viaproxy.yml"
+          ${pkgs.screen}/bin/screen -DmS minecraft_b173_viaproxy ${pkgs.bash}/bin/bash -c "${pkgs.jdk21}/bin/java -jar ViaProxy*.jar config viaproxy.yml"
         '';
         ExecStop = ''
           ${pkgs.screen}/bin/screen -S minecraft_b173_viaproxy -p 0 -X stuff "stop\r"
