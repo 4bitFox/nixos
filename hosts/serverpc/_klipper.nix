@@ -6,10 +6,6 @@
   services = {
     klipper = {
       enable = true;
-      settings = {
-        # https://www.klipper3d.org/Overview.html#configuration-and-tuning-guides
-      };
-      configDir = "/persist/var/lib/klipper";
       configFile = klipper/printer.cfg;
     };
 
