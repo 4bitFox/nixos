@@ -18,16 +18,50 @@
         ExecStart = ''
           ${pkgs.bash}/bin/bash -c "exec ${pkgs.jdk21}/bin/java -Xms2048M -Xmx16384M -XX:+UseG1GC -XX:MaxGCPauseMillis=200 -XX:InitiatingHeapOccupancyPercent=40 -XX:G1ReservePercent=10 -XX:MinHeapFreeRatio=10 -XX:MaxHeapFreeRatio=20 -XX:G1HeapRegionSize=8M -jar ./paper-*.jar nogui"
         '';
-#        Restart = "unless-stopped";
-#        RestartSec = 5;
+        Restart = "unless-stopped";
+        RestartSec = 5;
+      };
+    minecraft_b173-server = {
+      description = "Minecraft Beta 1.7.3 Server";
+      after = [ "network.target" ];
+      wantedBy = [ "multi-user.target" ];
+      serviceConfig = {
+        User = "minecraftuser";
+        Group = "minecraftgroup";
+        WorkingDirectory = "/data/minecraft_b173";
+        KillSignal = "SIGINT";
+        TimeoutStopSec = "180s";
+        SuccessExitStatus = "130";
+        ExecStart = ''
+          ${pkgs.bash}/bin/bash -c "exec ${pkgs.jdk8}/bin/java -jar poseidon-craftbukkit*.jar"
+        '';
+        Restart = "unless-stopped";
+        RestartSec = 5;
+      };
+    minecraft_b173_viaproxy-server = {
+      description = "Minecraft Beta 1.7.3 Server ViaProxy";
+      after = [ "network.target" ];
+      wantedBy = [ "multi-user.target" ];
+      serviceConfig = {
+        User = "minecraftuser";
+        Group = "minecraftgroup";
+        WorkingDirectory = "/data/minecraft_b173/ViaProxy";
+        KillSignal = "SIGINT";
+        TimeoutStopSec = "180s";
+        SuccessExitStatus = "130";
+        ExecStart = ''
+          ${pkgs.bash}/bin/bash -c "exec ${pkgs.jdk8}/bin/java -jar ViaProxy*.jar config viaproxy.yml"
+        '';
+        Restart = "unless-stopped";
+        RestartSec = 5;
       };
     };
   };
 
   networking.firewall.allowedTCPPorts = [
-    25565 # proxy
-    25566 # paper
-    25567 # poseidon
+    25565 # minecraft
+    35565 # minecraft_b173
+    35568 # minecraft_b173_ViaProxy
   ];
 
   users = {
@@ -52,6 +86,8 @@
     bash = {
       shellAliases = {
         minecraftserver-status-minecraft = "journalctl -fu minecraft-server.service";
+        minecraftserver-status-minecraft_b173 = "journalctl -fu minecraft_b173-server.service";
+        minecraftserver-status-minecraft_b173_viaproxy = "journalctl -fu minecraft_b173_viaproxy-server.service";
       };
     };
   };
