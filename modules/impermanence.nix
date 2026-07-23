@@ -59,6 +59,7 @@ in
         "/var/lib/private"
         "/var/lib/private/ollama"
         "/var/lib/private/klipper"
+        "/var/lib/moonraker"
         "/var/lib/libvirt"
         "/var/lib/flatpak"
         "/etc/zfs"
