@@ -31,11 +31,15 @@
     mainsail = {
       enable = true;
       nginx = {
-        listen = {
-          aquila = {
+        listen = [
+          {
             port = 8081;
-          };
-        };
+          }
+        ];
+        extraConfig = ''
+          allow 192.168.1.0/24;
+          deny all;
+        '';
       };
     };
   };
