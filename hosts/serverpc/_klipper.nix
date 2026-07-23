@@ -11,8 +11,8 @@
 
     moonraker = {
       enable = true;
-      address = "0.0.0.0";
-      port = 7125;
+#      address = "0.0.0.0";
+#      port = 7125;
       settings = {
         # https://moonraker.readthedocs.io/en/latest/configuration/
         authorization = {
