@@ -15,7 +15,7 @@
         KillSignal = "SIGINT";
         TimeoutStopSec = "180s";
         ExecStart = ''
-          ${pkgs.bash}/bin/bash -c '
+          ${pkgs.bash}/bin/bash -c "
             exec ${pkgs.jdk21}/bin/java \
             -Xms2048M \
             -Xmx16384M \
@@ -27,7 +27,7 @@
             -XX:MaxHeapFreeRatio=20 \
             -XX:G1HeapRegionSize=8M \
             -jar ./paper-*.jar nogui
-          '
+          "
         '';
 #        Restart = "unless-stopped";
 #        RestartSec = 5;
@@ -55,6 +55,14 @@
         shell = "${pkgs.shadow}/bin/nologin";
         uid = 3000;
         group = "minecraftgroup";
+      };
+    };
+  };
+  
+  programs = {
+    bash = {
+      shellAliases = {
+        minecraftserver-status-minecraft = "journalctl -fu borgbackup-job-data.service";
       };
     };
   };
