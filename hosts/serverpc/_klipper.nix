@@ -11,8 +11,8 @@
 
     moonraker = {
       enable = true;
-#      address = "0.0.0.0";
-#      port = 7125;
+      address = "0.0.0.0";
+      port = 7125;
       settings = {
         # https://moonraker.readthedocs.io/en/latest/configuration/
         authorization = {
@@ -30,26 +30,26 @@
 
     mainsail = {
       enable = true;
-#      nginx = {
-#        listen = [
-#          {
-#            addr = "0.0.0.0";
-#            port = 7126;
-#          }
-#        ];
-#        extraConfig = ''
-#          allow 127.0.0.1;
-#          allow 192.168.1.0/24;
-#          deny all;
-#          client_max_body_size 1000m;
-#        '';
-#        locations = {
-#          "/moonraker/" = {
-#            proxyPass = "http://127.0.0.1:7125/";
-#            proxyWebsockets = true;
-#          };
-#        };
-#      };
+      nginx = {
+        listen = [
+          {
+            addr = "0.0.0.0";
+            port = 7126;
+          }
+        ];
+        extraConfig = ''
+          allow 127.0.0.1;
+          allow 192.168.1.0/24;
+          deny all;
+          client_max_body_size 1000m;
+        '';
+        locations = {
+          "/moonraker/" = {
+            proxyPass = "http://127.0.0.1:7125/";
+            proxyWebsockets = true;
+          };
+        };
+      };
     };
   };
 
