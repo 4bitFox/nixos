@@ -56,6 +56,7 @@ in
         "/var/lib/docker"
         "/var/lib/upower"
         "/var/lib/waydroid"
+        "/var/lib/private"
         "/var/lib/private/ollama"
         "/var/lib/libvirt"
         "/var/lib/flatpak"
@@ -200,5 +201,9 @@ in
     ];
   };
   ### /etc/shadow (end) ###
+
+  systemd.tmpfiles.rules = [
+    "d /persist/var/lib/private 0700 root root -"
+  ];
 
 }
