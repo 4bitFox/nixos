@@ -34,7 +34,11 @@
         TimeoutStopSec = "180s";
         SuccessExitStatus = "130";
         ExecStart = ''
-          ${pkgs.bash}/bin/bash -c "exec ${pkgs.jdk8}/bin/java -Xms2048M -Xmx16384M -Djline.terminal=jline.UnsupportedTerminal -Dterminal.jline=false -Dterminal.ansi=false -Djline.shutdownhook=false -jar poseidon-craftbukkit*.jar nogui"
+          ${pkgs.screen}/bin/screen -DmS minecraft_b173 ${pkgs.jdk8}/bin/java -Xms2048M -Xmx16384M -jar poseidon-craftbukkit*.jar nogui
+#          ${pkgs.bash}/bin/bash -c "exec ${pkgs.jdk8}/bin/java -Xms2048M -Xmx16384M -Djline.terminal=jline.UnsupportedTerminal -Dterminal.jline=false -Dterminal.ansi=false -jar poseidon-craftbukkit*.jar nogui"
+        '';
+        ExecStop = ''
+          ${pkgs.screen}/bin/screen -S minecraft_b173 -p 0 -X stuff "stop^M"
         '';
         Restart = "always";
         RestartSec = 5;
@@ -88,7 +92,7 @@
     bash = {
       shellAliases = {
         minecraftserver-status-minecraft = "journalctl -fu minecraft-server.service";
-        minecraftserver-status-minecraft_b173 = "journalctl -fu minecraft_b173-server.service";
+        minecraftserver-console-minecraft_b173 = "sudo -u minecraftuser screen -r minecraft_b173";
         minecraftserver-status-minecraft_b173_viaproxy = "journalctl -fu minecraft_b173_viaproxy-server.service";
       };
     };
