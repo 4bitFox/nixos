@@ -42,7 +42,7 @@
           allow 192.168.1.0/24;
           deny all;
         '';
-        locations."/websocket/" = {
+        locations."/moonraker/" = {
           proxyPass = "http://127.0.0.1:7125/";
           proxyWebsockets = true;
         };
