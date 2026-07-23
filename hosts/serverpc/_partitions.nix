@@ -23,7 +23,7 @@
         "x-systemd.automount"
       ];
     };
-    "/share" = {
+    "/home/alya/Network/share" = {
       device = "//127.0.0.1/share";
       fsType = "cifs";
       options = [
@@ -34,6 +34,8 @@
         "x-systemd.device-timeout=5s"
         "x-systemd.mount-timeout=5s"
         "credentials=/home/alya/.smb-share.secret"
+        "uid=1000"
+        "gid=100"
       ];
     };
   };
