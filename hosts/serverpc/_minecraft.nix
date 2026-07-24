@@ -13,19 +13,10 @@
         Group = "minecraftgroup";
         WorkingDirectory = "/data/minecraft";
         TimeoutStopSec = "180s";
+        SuccessExitStatus = "130";
         ExecStart = ''
-          ${pkgs.screen}/bin/screen -DmS minecraft ${pkgs.bash}/bin/bash -c "${pkgs.jdk21}/bin/java -Xms2048M -Xmx16384M -XX:+UseG1GC -XX:MaxGCPauseMillis=200 -XX:InitiatingHeapOccupancyPercent=40 -XX:G1ReservePercent=10 -XX:MinHeapFreeRatio=10 -XX:MaxHeapFreeRatio=20 -XX:G1HeapRegionSize=8M -jar ./paper-*.jar nogui"
-          while ${pkgs.screen}/bin/screen -list 2>/dev/null | grep -q minecraft; do
-            sleep 1
-          done
+          ${pkgs.bash}/bin/bash -c "exec ${pkgs.jdk21}/bin/java -Xms2048M -Xmx16384M -XX:+UseG1GC -XX:MaxGCPauseMillis=200 -XX:InitiatingHeapOccupancyPercent=40 -XX:G1ReservePercent=10 -XX:MinHeapFreeRatio=10 -XX:MaxHeapFreeRatio=20 -XX:G1HeapRegionSize=8M -jar ./paper-*.jar nogui"
         '';
-        ExecStop = ''
-          ${pkgs.screen}/bin/screen -S minecraft -p 0 -X stuff "stop\r" || true
-          while ${pkgs.screen}/bin/screen -list 2>/dev/null | grep -q minecraft; do
-            sleep 1
-          done
-        '';
-        KillMode = "none";
         RestartSec = 5;
         Restart = "no";
       };
@@ -39,20 +30,11 @@
         Group = "minecraftgroup";
         WorkingDirectory = "/data/minecraft_b173";
         TimeoutStopSec = "180s";
+        SuccessExitStatus = "130";
         ExecStart = ''
-          ${pkgs.screen}/bin/screen -DmS minecraft_b173 ${pkgs.bash}/bin/bash -c "${pkgs.jdk8}/bin/java -Xms2048M -Xmx16384M -jar poseidon-craftbukkit*.jar nogui"
-          while ${pkgs.screen}/bin/screen -list 2>/dev/null | grep -q minecraft_b173; do
-            sleep 1
-          done
-        '';
-        ExecStop = ''
-          ${pkgs.screen}/bin/screen -S minecraft_b173 -p 0 -X stuff "stop\r" || true
-          while ${pkgs.screen}/bin/screen -list 2>/dev/null | grep -q minecraft_b173; do
-            sleep 1
-          done
+          ${pkgs.bash}/bin/bash -c "exec ${pkgs.jdk8}/bin/java -Xms2048M -Xmx16384M -Djline.terminal=jline.UnsupportedTerminal -Dterminal.jline=false -Dterminal.ansi=false -jar poseidon-craftbukkit*.jar nogui"
         '';
         Environment = "PATH=${pkgs.bash}/bin:${pkgs.coreutils}/bin";
-        KillMode = "none";
         RestartSec = 5;
         Restart = "no";
       };
@@ -66,19 +48,10 @@
         Group = "minecraftgroup";
         WorkingDirectory = "/data/minecraft_b173/ViaProxy";
         TimeoutStopSec = "180s";
+        SuccessExitStatus = "130";
         ExecStart = ''
-          ${pkgs.screen}/bin/screen -DmS minecraft_b173_viaproxy ${pkgs.bash}/bin/bash -c "${pkgs.jdk21}/bin/java -jar ViaProxy*.jar config viaproxy.yml"
-          while ${pkgs.screen}/bin/screen -list 2>/dev/null | grep -q minecraft_b173_viaproxy; do
-            sleep 1
-          done
+          ${pkgs.bash}/bin/bash -c "exec ${pkgs.jdk21}/bin/java -jar ViaProxy*.jar config viaproxy.yml"
         '';
-        ExecStop = ''
-          ${pkgs.screen}/bin/screen -S minecraft_b173_viaproxy -p 0 -X stuff "stop\r" || true
-          while ${pkgs.screen}/bin/screen -list 2>/dev/null | grep -q minecraft_b173_viaproxy; do
-            sleep 1
-          done
-        '';
-        KillMode = "none";
         Restart = "no";
         RestartSec = 5;
       };
@@ -112,11 +85,11 @@
   programs = {
     bash = {
       shellAliases = {
-        minecraftserver-console-minecraft = "sudo -u minecraftuser screen -r minecraft";
+        minecraftserver-journal-minecraft = "journalctl -fu minecraft-server.service";
         minecraftserver-log-minecraft = "cat /data/minecraft/logs/latest.log";
-        minecraftserver-console-minecraft_b173 = "sudo -u minecraftuser screen -r minecraft_b173";
+        minecraftserver-journal-minecraft_b173 = "journalctl -fu minecraft_b173-server.service";
         minecraftserver-log-minecraft_b173 = "cat /data/minecraft_b173/server.log";
-        minecraftserver-console-minecraft_b173_viaproxy = "sudo -u minecraftuser screen -r minecraft_b173_viaproxy";
+        minecraftserver-journal-minecraft_b173_viaproxy = "journalctl -fu minecraft_b173_viaproxy-server.service";
         minecraftserver-log-minecraft_b173_viaproxy = "cat /data/minecraft_b173/ViaProxy/logs/latest.log";
       };
     };
