@@ -17,11 +17,6 @@
       hyprpolkitagent
       xwayland-satellite
     ];
-    etc = {
-      "systemd/user-generators/systemd-xdg-autostart-generator" = {
-        source = "/dev/null"; # disable generated autostart units, i hate them lol xD
-      };
-    };
   };
 
   services = {
@@ -63,5 +58,12 @@
       xdg-desktop-portal-gnome
       xdg-desktop-portal-gtk
     ];
+  };
+
+  system.activationScripts.maskXdgAutostartGenerator = {
+    text = ''
+      mkdir -p /etc/systemd/user-generators
+      ln -sfn /dev/null /etc/systemd/user-generators/systemd-xdg-autostart-generator
+    '';
   };
 }
