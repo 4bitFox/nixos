@@ -60,10 +60,7 @@
     ];
   };
 
-  system.activationScripts.maskXdgAutostartGenerator = {
-    text = ''
-      mkdir -p /etc/systemd/user-generators
-      ln -sfn /dev/null /etc/systemd/user-generators/systemd-xdg-autostart-generator
-    '';
+  systemd.user.generators = {
+    systemd-xdg-autostart-generator = "/dev/null";
   };
 }
