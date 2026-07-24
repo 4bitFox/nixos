@@ -15,6 +15,9 @@
         TimeoutStopSec = "180s";
         ExecStart = ''
           ${pkgs.screen}/bin/screen -DmS minecraft ${pkgs.bash}/bin/bash -c "${pkgs.jdk21}/bin/java -Xms2048M -Xmx16384M -XX:+UseG1GC -XX:MaxGCPauseMillis=200 -XX:InitiatingHeapOccupancyPercent=40 -XX:G1ReservePercent=10 -XX:MinHeapFreeRatio=10 -XX:MaxHeapFreeRatio=20 -XX:G1HeapRegionSize=8M -jar ./paper-*.jar nogui"
+          while ${pkgs.screen}/bin/screen -list 2>/dev/null | grep -q minecraft; do
+            sleep 1
+          done
         '';
         ExecStop = ''
           ${pkgs.screen}/bin/screen -S minecraft -p 0 -X stuff "stop\r" || true
@@ -24,7 +27,7 @@
         '';
         KillMode = "none";
         RestartSec = 5;
-        Restart = "always";
+        Restart = "no";
       };
     };
     minecraft_b173-server = {
@@ -38,6 +41,9 @@
         TimeoutStopSec = "180s";
         ExecStart = ''
           ${pkgs.screen}/bin/screen -DmS minecraft_b173 ${pkgs.bash}/bin/bash -c "${pkgs.jdk8}/bin/java -Xms2048M -Xmx16384M -jar poseidon-craftbukkit*.jar nogui"
+          while ${pkgs.screen}/bin/screen -list 2>/dev/null | grep -q minecraft_b173; do
+            sleep 1
+          done
         '';
         ExecStop = ''
           ${pkgs.screen}/bin/screen -S minecraft_b173 -p 0 -X stuff "stop\r" || true
@@ -48,7 +54,7 @@
         Environment = "PATH=${pkgs.bash}/bin:${pkgs.coreutils}/bin";
         KillMode = "none";
         RestartSec = 5;
-        Restart = "always";
+        Restart = "no";
       };
     };
     minecraft_b173_viaproxy-server = {
@@ -62,6 +68,9 @@
         TimeoutStopSec = "180s";
         ExecStart = ''
           ${pkgs.screen}/bin/screen -DmS minecraft_b173_viaproxy ${pkgs.bash}/bin/bash -c "${pkgs.jdk21}/bin/java -jar ViaProxy*.jar config viaproxy.yml"
+          while ${pkgs.screen}/bin/screen -list 2>/dev/null | grep -q minecraft_b173_viaproxy; do
+            sleep 1
+          done
         '';
         ExecStop = ''
           ${pkgs.screen}/bin/screen -S minecraft_b173_viaproxy -p 0 -X stuff "stop\r" || true
@@ -70,7 +79,7 @@
           done
         '';
         KillMode = "none";
-        Restart = "always";
+        Restart = "no";
         RestartSec = 5;
       };
     };
