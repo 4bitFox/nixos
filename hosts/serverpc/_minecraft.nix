@@ -31,8 +31,12 @@
         WorkingDirectory = "/data/minecraft_b173";
         TimeoutStopSec = "180s";
         SuccessExitStatus = "130";
+        StandardInput = "tty";
+        StandardOutput = "tty";
+        StandardError = "tty";
+        TTYPath = "/dev/tty10";
         ExecStart = ''
-          ${pkgs.util-linux}/bin/script -qefc '${pkgs.bash}/bin/bash -c "exec ${pkgs.jdk8}/bin/java -Xms2048M -Xmx16384M -Djline.terminal=jline.UnsupportedTerminal -Dterminal.jline=false -Dterminal.ansi=false -jar poseidon-craftbukkit*.jar nogui"' /dev/null
+          ${pkgs.bash}/bin/bash -c "exec ${pkgs.jdk8}/bin/java -Xms2048M -Xmx16384M -Djline.terminal=jline.UnsupportedTerminal -Dterminal.jline=false -Dterminal.ansi=false -jar poseidon-craftbukkit*.jar nogui"
         '';
         Environment = "PATH=${pkgs.bash}/bin:${pkgs.coreutils}/bin";
         RestartSec = 5;
