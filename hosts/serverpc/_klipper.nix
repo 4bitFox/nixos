@@ -7,8 +7,6 @@
     klipper = {
       enable = true;
       configFile = klipper/printer.cfg;
-      user = "klipper";
-      group = "klipper";
     };
 
     moonraker = {
