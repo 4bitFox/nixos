@@ -13,15 +13,14 @@
         Group = "minecraftgroup";
         WorkingDirectory = "/data/minecraft";
         TimeoutStopSec = "180s";
-        KillMode = "none";
         ExecStart = ''
           ${pkgs.screen}/bin/screen -DmS minecraft ${pkgs.bash}/bin/bash -c "${pkgs.jdk21}/bin/java -Xms2048M -Xmx16384M -XX:+UseG1GC -XX:MaxGCPauseMillis=200 -XX:InitiatingHeapOccupancyPercent=40 -XX:G1ReservePercent=10 -XX:MinHeapFreeRatio=10 -XX:MaxHeapFreeRatio=20 -XX:G1HeapRegionSize=8M -jar ./paper-*.jar nogui"
         '';
         ExecStop = ''
           ${pkgs.screen}/bin/screen -S minecraft -p 0 -X stuff "stop\r"
         '';
-        RestartSec = 120;
-        Restart = "no";
+        RestartSec = 5;
+        Restart = "always";
       };
     };
     minecraft_b173-server = {
@@ -33,7 +32,6 @@
         Group = "minecraftgroup";
         WorkingDirectory = "/data/minecraft_b173";
         TimeoutStopSec = "180s";
-        KillMode = "none";
         ExecStart = ''
           ${pkgs.screen}/bin/screen -DmS minecraft_b173 ${pkgs.bash}/bin/bash -c "${pkgs.jdk8}/bin/java -Xms2048M -Xmx16384M -jar poseidon-craftbukkit*.jar nogui"
         '';
@@ -41,8 +39,8 @@
           ${pkgs.screen}/bin/screen -S minecraft_b173 -p 0 -X stuff "stop\r"
         '';
         Environment = "PATH=${pkgs.bash}/bin:${pkgs.coreutils}/bin";
-        RestartSec = 120;
-        Restart = "no";
+        RestartSec = 5;
+        Restart = "always";
       };
     };
     minecraft_b173_viaproxy-server = {
@@ -54,15 +52,14 @@
         Group = "minecraftgroup";
         WorkingDirectory = "/data/minecraft_b173/ViaProxy";
         TimeoutStopSec = "180s";
-        KillMode = "none";
         ExecStart = ''
           ${pkgs.screen}/bin/screen -DmS minecraft_b173_viaproxy ${pkgs.bash}/bin/bash -c "${pkgs.jdk21}/bin/java -jar ViaProxy*.jar config viaproxy.yml"
         '';
         ExecStop = ''
           ${pkgs.screen}/bin/screen -S minecraft_b173_viaproxy -p 0 -X stuff "stop\r"
         '';
-        Restart = "no";
-        RestartSec = 120;
+        Restart = "always";
+        RestartSec = 5;
       };
     };
   };
