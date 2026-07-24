@@ -154,13 +154,12 @@ spawn-at-startup "mako" // Notifications
 // spawn-at-startup "fuzzel" // Launcher
 spawn-at-startup "xwayland-satellite" // XWayland
 spawn-at-startup "/home/alya/.config/niri/battery-low-warning.bash" // Low battery notification
-// spawn-at-startup "pasystray" // Audio
-// spawn-at-startup "nm-applet" // Network
+spawn-at-startup "pasystray" // Audio
+spawn-at-startup "nm-applet" // Network
 spawn-at-startup "bash" "-c" "sleep 1 && nm-applet"
-// spawn-at-startup "blueman-applet" // Bluetooth
+spawn-at-startup "blueman-applet" // Bluetooth
 spawn-at-startup "bash" "-c" "sleep 2 && blueman-applet"
 spawn-at-startup "system-config-printer-applet" // Printer
-// spawn-at-startup "systemctl" "--user" "start" "plasma-polkit-agent.service" // Polkit
 spawn-at-startup "systemctl" "--user" "start" "hyprpolkitagent.service" // Polkit
 spawn-at-startup "/home/alya/.local/opt/DavMail/davmail" // DavMail
 spawn-at-startup "bash" "-c" "sleep 3 && /opt/tuxedo-control-center/tuxedo-control-center --tray" // Tuxedo Control Center
