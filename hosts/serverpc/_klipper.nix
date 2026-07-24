@@ -13,7 +13,7 @@
           enable = true;
           configFile = klipper/klipper-firmware_voxelab-aquila.cfg;
           serial = "/dev/serial/by-id/usb-1a86_USB_Serial-if00-port0";
-          enableKlipperFlash = true;
+          enableKlipperFlash = false;
         };
       };
     };
@@ -58,10 +58,14 @@
     };
   };
 
-#  users.users.moonraker.extraGroups = [ "klipper" ];
   systemd.services.moonraker.serviceConfig = {
     SupplementaryGroups = [ "klipper" ];
   };
+
+  system.activationScripts.klipperFirmwareLink = ''
+    mkdir -p /persist/var/lib/klipper/firmware
+    ln -sfn ${config.services.klipper.firmwares.mcu.package}/klipper.bin /persist/var/lib/klipper/firmware/klipper.bin
+  '';
 
   systemd.tmpfiles.rules = [
       "d /persist/var/lib/moonraker/logs 0755 moonraker moonraker -" # stop moonraker from crying like a baby
