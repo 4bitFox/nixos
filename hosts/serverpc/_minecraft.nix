@@ -13,7 +13,11 @@
         Group = "minecraftgroup";
         WorkingDirectory = "/data/minecraft";
         TimeoutStopSec = "180s";
-        SuccessExitStatus = "130";
+        SuccessExitStatus = "143";
+        StandardInput = "tty";
+        StandardOutput = "tty";
+        StandardError = "tty";
+        TTYPath = "/dev/tty9";
         ExecStart = ''
           ${pkgs.bash}/bin/bash -c "exec ${pkgs.jdk21}/bin/java -Xms2048M -Xmx16384M -XX:+UseG1GC -XX:MaxGCPauseMillis=200 -XX:InitiatingHeapOccupancyPercent=40 -XX:G1ReservePercent=10 -XX:MinHeapFreeRatio=10 -XX:MaxHeapFreeRatio=20 -XX:G1HeapRegionSize=8M -jar ./paper-*.jar nogui"
         '';
@@ -30,7 +34,7 @@
         Group = "minecraftgroup";
         WorkingDirectory = "/data/minecraft_b173";
         TimeoutStopSec = "180s";
-        SuccessExitStatus = "130";
+        SuccessExitStatus = "143";
         StandardInput = "tty";
         StandardOutput = "tty";
         StandardError = "tty";
@@ -52,7 +56,7 @@
         Group = "minecraftgroup";
         WorkingDirectory = "/data/minecraft_b173/ViaProxy";
         TimeoutStopSec = "180s";
-        SuccessExitStatus = "130";
+        SuccessExitStatus = "143";
         ExecStart = ''
           ${pkgs.bash}/bin/bash -c "exec ${pkgs.jdk21}/bin/java -jar ViaProxy*.jar config viaproxy.yml"
         '';
