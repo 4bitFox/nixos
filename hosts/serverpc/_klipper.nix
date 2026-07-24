@@ -13,7 +13,7 @@
           enable = true;
           configFile = klipper/klipper-firmware_voxelab-aquila.cfg;
           serial = "/dev/serial/by-id/usb-1a86_USB_Serial-if00-port0";
-          enableKlipperFlash = false;
+          enableKlipperFlash = true;
         };
       };
     };
