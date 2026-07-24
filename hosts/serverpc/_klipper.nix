@@ -7,6 +7,8 @@
     klipper = {
       enable = true;
       configFile = klipper/printer.cfg;
+      user = "klipper";
+      group = "klipper";
     };
 
     moonraker = {
@@ -48,6 +50,8 @@
       };
     };
   };
+
+  users.users.moonraker.extraGroups = [ "klipper" ];
 
   systemd.tmpfiles.rules = [
       "d /persist/var/lib/moonraker/logs 0755 moonraker moonraker -" # stop moonraker from crying like a baby
