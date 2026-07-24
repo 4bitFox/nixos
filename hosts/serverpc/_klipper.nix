@@ -50,7 +50,10 @@
     };
   };
 
-  users.users.moonraker.extraGroups = [ "klipper" ];
+#  users.users.moonraker.extraGroups = [ "klipper" ];
+  systemd.services.moonraker.serviceConfig = {
+    SupplementaryGroups = [ "klipper" ];
+  };
 
   systemd.tmpfiles.rules = [
       "d /persist/var/lib/moonraker/logs 0755 moonraker moonraker -" # stop moonraker from crying like a baby
