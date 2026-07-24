@@ -14,10 +14,14 @@
 
   environment = {
     systemPackages = with pkgs; [
-      # kdePackages.polkit-kde-agent-1
       hyprpolkitagent
       xwayland-satellite
     ];
+    etc = {
+      "systemd/user-generators/systemd-xdg-autostart-generator" = {
+        source = "/dev/null"; # disable generated autostart units, i hate them lol xD
+      };
+    };
   };
 
   services = {
@@ -60,16 +64,4 @@
       xdg-desktop-portal-gtk
     ];
   };
-
-  # get rid of that pesky autostart generator, omg I hate it.
-  # rebuildds a lot of pkgs tough :c
-#  nixpkgs.overlays = [
-#    (final: prev: {
-#      systemd = prev.systemd.overrideAttrs (old: {
-#        postInstall = (old.postInstall or "") + ''
-#          rm -f $out/lib/systemd/user-generators/systemd-xdg-autostart-generator
-#        '';
-#      });
-#    })
-#  ];
 }
