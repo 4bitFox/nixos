@@ -6,8 +6,16 @@
   services = {
     klipper = {
       enable = true;
-      configFile = klipper/printer.cfg;
+      configFile = klipper/printer_voxelab-aquila.cfg;
       group = "klipper";
+      firmwares = {
+        mcu = {
+          enable = true;
+          configFile = klipper/klipper-firmware_voxelab-aquila.cfg;
+          serial = "/dev/serial/by-id/usb-1a86_USB_Serial-if00-port0";
+          enableKlipperFlash = false;
+        };
+      };
     };
 
     moonraker = {
