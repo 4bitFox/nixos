@@ -60,7 +60,6 @@ in
       ".local/share/applications/doublecmd.desktop" = {
         source = ./homefiles/.local/opt/doublecmd/doublecmd.desktop;
       };
-    };
     ### Shijima-Qt ###
       ".local/opt/Shijima-Qt" = {
         source = ./homefiles/.local/opt/Shijima-Qt;
