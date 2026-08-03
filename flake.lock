@@ -76,13 +76,44 @@
         "type": "github"
       }
     },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1785692966,
+        "narHash": "sha256-vUfIeBEfpbAfZ5zjgIkYk7eHBeVfCYVjLbWnMkseYnk=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "643809054d65fdd466a63e3155b8c498cb483c04",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "declarative-flatpak": "declarative-flatpak",
         "home-manager": "home-manager",
         "impermanence": "impermanence",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "wl_shimeji": "wl_shimeji"
       }
+    },
+    "wl_shimeji": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_2"
+      },
+      "locked": {
+        "path": "./users/alya/home-manager/homefiles/.local/opt/wl_shimeji",
+        "type": "path"
+      },
+      "original": {
+        "path": "./users/alya/home-manager/homefiles/.local/opt/wl_shimeji",
+        "type": "path"
+      },
+      "parent": []
     }
   },
   "root": "root",
