@@ -58,8 +58,13 @@
     };
   };
 
-  systemd.services.moonraker.serviceConfig = {
-    SupplementaryGroups = [ "klipper" ];
+  systemd.services = {
+    klipper = {
+      restartIfChanged = false;
+    };
+    moonraker.serviceConfig = {
+      SupplementaryGroups = [ "klipper" ];
+    };
   };
 
   system.activationScripts.klipperFirmwareLink = ''

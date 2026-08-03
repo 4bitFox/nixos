@@ -105,6 +105,18 @@
       after = [ "nextcloud-setup.service" ];
       wantedBy = [ "multi-user.target" ];
     };
+    nextcloud-remove-calendar-appstore = {
+      before = [ "nextcloud-setup.service" ];
+      wantedBy = [ "nextcloud-setup.service" ];
+      path = [
+        config.services.nextcloud.occ
+      ];
+      script = ''
+        set +e
+        nextcloud-occ app:disable calendar
+        nextcloud-occ app:uninstall calendar
+      '';
+    };
   };
 
   programs = {
