@@ -111,6 +111,7 @@
       '';
       after = [ "nextcloud-setup.service" ];
       wantedBy = [ "multi-user.target" ];
+      };
     };
   };
 
