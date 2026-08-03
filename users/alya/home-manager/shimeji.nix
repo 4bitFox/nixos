@@ -2,7 +2,8 @@
 
 
 {  
-  home.file = {
+  home = {
+    file = {
       ".local/share/wl_shimeji" = {
         source = ./homefiles/.local/share/wl_shimeji;
         recursive = true;
