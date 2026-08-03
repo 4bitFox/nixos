@@ -9,7 +9,6 @@
       package = pkgs.nextcloud33; # Only ever increment by 1 to update (leaving out a major version is not supported)
       hostName = "nextcloud.tschudibacon.com";
 #      https = true;
-      };
       appstoreEnable = true;
       maxUploadSize = "100G";
       database.createLocally = true;
@@ -111,7 +110,6 @@
       '';
       after = [ "nextcloud-setup.service" ];
       wantedBy = [ "multi-user.target" ];
-      };
     };
   };
 
