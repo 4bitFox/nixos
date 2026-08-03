@@ -9,13 +9,6 @@
       package = pkgs.nextcloud33; # Only ever increment by 1 to update (leaving out a major version is not supported)
       hostName = "nextcloud.tschudibacon.com";
 #      https = true;
-      extraApps = {
-        inherit (config.services.nextcloud.package.packages.apps) 
-        news contacts calendar tasks bookmarks end_to_end_encryption forms impersonate mail maps notes onlyoffice spreed
-        twofactor_admin twofactor_webauthn
-        ;
-      };
-      extraAppsEnable = true;
       appstoreEnable = true;
       maxUploadSize = "100G";
       database.createLocally = true;
@@ -100,6 +93,19 @@
         nextcloud-occ app:disable user_status
         nextcloud-occ app:disable logreader
         nextcloud-occ app:install passwords
+        nextcloud-occ app:install contacts
+        nextcloud-occ app:install calendar
+        nextcloud-occ app:install tasks
+        nextcloud-occ app:install bookmarks
+        nextcloud-occ app:install end_to_end_encryption
+        nextcloud-occ app:install forms impersonate
+        nextcloud-occ app:install mail
+        nextcloud-occ app:install maps
+        nextcloud-occ app:install notes
+        nextcloud-occ app:install onlyoffice
+        nextcloud-occ app:install spreed
+        nextcloud-occ app:install twofactor_admin
+        nextcloud-occ app:install twofactor_webauthn
         nextcloud-occ config:system:set maintenance_window_start --type=integer --value=1
       '';
       after = [ "nextcloud-setup.service" ];

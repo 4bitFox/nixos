@@ -35,6 +35,7 @@ in
     ./dotfiles.nix
     ./homefiles.nix
     ./packages.nix
+    ./shimeji.nix
   ];
 
   home = {
