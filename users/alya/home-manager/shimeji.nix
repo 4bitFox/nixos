@@ -10,6 +10,7 @@
       ".local/share/wl_shimeji" = {
         source = ./homefiles/.local/share/wl_shimeji;
         recursive = true;
+        copy = true;
       };
       ".local/opt/wl_shimeji" = {
         source = ./homefiles/.local/opt/wl_shimeji;
