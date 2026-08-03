@@ -266,6 +266,23 @@ window-rule {
     }
 }
 
+// doublecmd startup popup that has other title on serverpc for some reason????
+window-rule {
+    match app-id="doublecmd" title="^Double Commander$"
+    open-floating true
+    open-focused false
+    opacity 0.0
+    border {
+        off
+    }
+    focus-ring {
+        off
+    }
+    shadow {
+        off
+    }
+}
+
 
 binds {
     // Keys consist of modifiers separated by + signs, followed by an XKB key name
