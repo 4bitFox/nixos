@@ -360,9 +360,9 @@ binds {
     Ctrl+Alt+Delete allow-inhibiting=false { quit; }
     Mod+Shift+P allow-inhibiting=false { power-off-monitors; }
     Mod+Shift+M allow-inhibiting=false { spawn "bash" "-c" "/home/alya/.local/opt/wl_shimeji/result/bin/shimejictl dismiss"; }
-    Mod+M allow-inhibiting=false { spawn "bash" "-c" "/home/alya/.local/opt/wl_shimeji/result/bin/shimejictl spawn alula"; }
+    Mod+M allow-inhibiting=false { spawn "bash" "-c" "/home/alya/.local/opt/wl_shimeji/result/bin/shimejictl summon alula"; }
     Mod+Shift+N allow-inhibiting=false { spawn "bash" "-c" "/home/alya/.local/opt/wl_shimeji/result/bin/shimejictl dismiss"; }
-    Mod+N allow-inhibiting=false { spawn "bash" "-c" "/home/alya/.local/opt/wl_shimeji/result/bin/shimejictl spawn calamus"; }
+    Mod+N allow-inhibiting=false { spawn "bash" "-c" "/home/alya/.local/opt/wl_shimeji/result/bin/shimejictl summon calamus"; }
 }
 
 
