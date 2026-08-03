@@ -3,6 +3,9 @@
 
 {  
   home = {
+    packages = [
+      wl_shimeji.packages.${pkgs.system}.default
+    ];
     file = {
       ".local/share/wl_shimeji" = {
         source = ./homefiles/.local/share/wl_shimeji;

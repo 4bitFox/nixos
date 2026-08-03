@@ -11,10 +11,12 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     ### declarative-flatpak ###
     declarative-flatpak.url = "github:in-a-dil-emma/declarative-flatpak/latest";
-    # ### impermanence ###
+    ### impermanence ###
     impermanence.url = "github:nix-community/impermanence";
     impermanence.inputs.nixpkgs.follows = "nixpkgs";
     impermanence.inputs.home-manager.follows = "home-manager";
+    ### wl_shimeji ###
+    wl_shimeji.url = "path:./users/alya/home-manager/homefiles/.local/opt/wl_shimeji";
   };
 
 
