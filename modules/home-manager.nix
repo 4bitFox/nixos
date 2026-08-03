@@ -13,6 +13,7 @@
     useUserPackages = true;
     extraSpecialArgs = {
       inherit declarative-flatpak;
+      inherit wl_shimeji;
     };
   };
 }
