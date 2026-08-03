@@ -361,8 +361,10 @@ binds {
     Ctrl+Alt+Delete allow-inhibiting=false { quit; }
     Mod+Shift+P allow-inhibiting=false { power-off-monitors; }
     Mod+Shift+M allow-inhibiting=false { spawn "bash" "-c" "shimejictl dismiss"; }
+    Mod+Ctrl+Shift+M allow-inhibiting=false { spawn "bash" "-c" "shimejictl stop"; }
     Mod+M allow-inhibiting=false { spawn "bash" "-c" "shimejictl summon alula"; }
     Mod+Shift+N allow-inhibiting=false { spawn "bash" "-c" "shimejictl dismiss"; }
+    Mod+Ctrl+Shift+N allow-inhibiting=false { spawn "bash" "-c" "shimejictl stop"; }
     Mod+N allow-inhibiting=false { spawn "bash" "-c" "shimejictl summon calamus"; }
 }
 
