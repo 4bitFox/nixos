@@ -10,6 +10,7 @@
       rm -rf "$HOME/.local/share/wl_shimeji"
       mkdir -p "$HOME/.local/share/wl_shimeji"
       cp -r ${./homefiles/.local/share/wl_shimeji}/* "$HOME/.local/share/wl_shimeji/"
+      chmod -R u+rwX "$HOME/.local/share/wl_shimeji"
     '';
   };
 }
