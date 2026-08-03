@@ -131,8 +131,8 @@ spawn-at-startup "/home/alya/.local/opt/DavMail/davmail" // DavMail
 spawn-at-startup "bash" "-c" "sleep 3 && /opt/tuxedo-control-center/tuxedo-control-center --tray" // Tuxedo Control Center
 spawn-at-startup "bash" "-c" "sleep 5 && /usr/lib/protonmail/bridge/proton-bridge --no-window" // Proton Mail Bridge
 spawn-at-startup "/mnt/fd/autorun.sh" // Autorun Floppy for kiosk
-spawn-at-startup "bash" "-c" "sleep 5 && /home/alya/.local/opt/wl_shimeji/result/bin/shimejictl spawn alula" // shimeji
-spawn-at-startup "bash" "-c" "sleep 5 && /home/alya/.local/opt/wl_shimeji/result/bin/shimejictl spawn calamus" // shimeji
+spawn-at-startup "bash" "-c" "sleep 5 && PATH=/home/alya/.local/opt/wl_shimeji/result/bin:$PATH /home/alya/.local/opt/wl_shimeji/result/bin/shimejictl summon alula" // shimeji
+spawn-at-startup "bash" "-c" "sleep 5 && PATH=/home/alya/.local/opt/wl_shimeji/result/bin:$PATH /home/alya/.local/opt/wl_shimeji/result/bin/shimejictl summon calamus" // shimeji
 
 prefer-no-csd
 
@@ -360,9 +360,9 @@ binds {
     Ctrl+Alt+Delete allow-inhibiting=false { quit; }
     Mod+Shift+P allow-inhibiting=false { power-off-monitors; }
     Mod+Shift+M allow-inhibiting=false { spawn "bash" "-c" "/home/alya/.local/opt/wl_shimeji/result/bin/shimejictl dismiss"; }
-    Mod+M allow-inhibiting=false { spawn "bash" "-c" "/home/alya/.local/opt/wl_shimeji/result/bin/shimejictl summon alula"; }
+    Mod+M allow-inhibiting=false { spawn "bash" "-c" "PATH=/home/alya/.local/opt/wl_shimeji/result/bin:$PATH /home/alya/.local/opt/wl_shimeji/result/bin/shimejictl summon alula"; }
     Mod+Shift+N allow-inhibiting=false { spawn "bash" "-c" "/home/alya/.local/opt/wl_shimeji/result/bin/shimejictl dismiss"; }
-    Mod+N allow-inhibiting=false { spawn "bash" "-c" "/home/alya/.local/opt/wl_shimeji/result/bin/shimejictl summon calamus"; }
+    Mod+N allow-inhibiting=false { spawn "bash" "-c" "PATH=/home/alya/.local/opt/wl_shimeji/result/bin:$PATH /home/alya/.local/opt/wl_shimeji/result/bin/shimejictl summon calamus"; }
 }
 
 
