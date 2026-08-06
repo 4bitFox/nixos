@@ -20,9 +20,14 @@ let
         ip = "192.168.50.1";
         prefix = 24;
       };
-      firewallPorts = { 
+      dhcpRange = {
+        start = "192.168.50.50";
+        end = "192.168.50.150";
+        lease = "24h";
+      };
+      firewallPorts = {
+        tcp = [ 22 53 ];
         udp = [ 53 67 ];
-        tcp = [ 22 53 ]; 
       };
       hosts = [
         { mac = "aa:bb:cc:dd:ee:01"; ip = "192.168.50.10"; name = "EXAMPLE1"; }
@@ -41,9 +46,14 @@ let
         ip = "192.168.60.1";
         prefix = 24;
       };
+      dhcpRange = {
+        start = "192.168.60.50";
+        end = "192.168.60.150";
+        lease = "24h";
+      };
       firewallPorts = {
-        udp = [ 53 67 ];
         tcp = [ 53 ];
+        udp = [ 53 67 ];
       };
       hosts = [ ];
       portForwards = [ ];
@@ -58,7 +68,6 @@ in
 
 {
   networking = {
-    ### generate from let in ###
     interfaces = builtins.listToAttrs (
       map (bridge: {
         name = bridge.name;
@@ -91,7 +100,6 @@ in
         (map (bridge: "interface-name:${bridge}") bridgeNames)
       ;
     };
-    ### generate from let in (end) ###
 
     nftables.enable = true;
 
@@ -115,8 +123,8 @@ in
           map (b: {
             name = b.name;
             value = {
-              allowedUDPPorts = lib.mkForce b.firewallPorts.udp;
               allowedTCPPorts = lib.mkForce b.firewallPorts.tcp;
+              allowedUDPPorts = lib.mkForce b.firewallPorts.udp;
             };
           }
         ) allBridgeValues)
@@ -151,20 +159,19 @@ in
       settings = {
         interface = bridgeNames;     # lan-br, guest-br only — never eno1
         bind-interfaces = true;
-
         no-resolv = true;            # don't read /etc/resolv.conf for upstream either
         server = [ "1.1.1.1" "1.0.0.1" ];   # dnsmasq's own fixed upstream for LAN/guest queries
-
-        dhcp-range = [
-          "${bridges.lan.name},192.168.50.50,192.168.50.150,24h"
-          "${bridges.guest.name},192.168.60.50,192.168.60.150,24h"
-        ];
-        dhcp-option = [
-          "${bridges.lan.name},3,${bridges.lan.address.ip}"
-          "${bridges.lan.name},6,${bridges.lan.address.ip}"
-          "${bridges.guest.name},3,${bridges.guest.address.ip}"
-          "${bridges.guest.name},6,${bridges.guest.address.ip}"
-        ];
+        dhcp-range = 
+          map (b: 
+            "${b.name},${b.dhcpRange.start},${b.dhcpRange.end},${b.dhcpRange.lease}"
+          ) allBridgeValues
+        ;
+        dhcp-option = lib.flatten (
+          map (b: [
+            "${b.name},3,${b.address.ip}"
+            "${b.name},6,${b.address.ip}"
+          ]) allBridgeValues
+        );
         domain-needed = true;
         bogus-priv = true;
         dhcp-host = lib.flatten (
