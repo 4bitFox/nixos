@@ -27,17 +27,17 @@ in
   networking = {
     interfaces = {
       lan-br = {
-        address = "192.168.50.1";
-        prefixLength = 24;
+        ipv4 = {
+          address = "192.168.50.1";
+          prefixLength = 24;
+        };
       };
     };
     bridges = {
       ### LAN network ###
       lan-br = {
-        ipv4 = {
-          interfaces = lan;
-          rstp = false;
-        };
+        interfaces = lan;
+        rstp = false;
       };
     };
     networkmanager = {
