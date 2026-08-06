@@ -27,7 +27,7 @@ let
       };
       firewallPorts = {
         tcp = [ 22 53 ];
-        udp = [ 53 67 ];
+        udp = [ 53 67 123 ];
       };
       firewallAllowOpenHostPorts = true;
       hosts = [
@@ -55,7 +55,7 @@ let
       };
       firewallPorts = {
         tcp = [ 53 ];
-        udp = [ 53 67 ];
+        udp = [ 53 67 123 ];
       };
       firewallAllowOpenHostPorts = false;
       hosts = [ ];
@@ -187,8 +187,9 @@ in
         ;
         dhcp-option = lib.flatten (
           map (b: [
-            "${b.name},3,${b.address.ip}"
-            "${b.name},6,${b.address.ip}"
+            "${b.name},3,${b.address.ip}" # gateway
+            "${b.name},6,${b.address.ip}" # DNS
+            "${b.name},42,${b.address.ip}" # NTP
           ]) allBridgeValues
         );
         domain-needed = true;
@@ -198,5 +199,7 @@ in
         );
       };
     };
+
+    timesyncd.enable = true; # NTP
   };
 }
