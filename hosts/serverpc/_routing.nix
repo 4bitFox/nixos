@@ -53,6 +53,12 @@ in
       }) (builtins.attrValues bridges)
     );
 
+    interfaces = {
+      ${interfaces.wan} = {
+        useDHCP = true;
+      };
+    };
+
     bridges = builtins.listToAttrs (
       map (bridge: {
         name = bridge.name;
@@ -71,5 +77,9 @@ in
         (map (bridge: "interface-name:${bridge}") bridgeNames)
       ;
     };
+  };
+
+  boot.kernel.sysctl = {
+    "net.ipv4.ip_forward" = 1;
   };
 }
