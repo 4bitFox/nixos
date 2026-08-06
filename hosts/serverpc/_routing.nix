@@ -29,8 +29,14 @@ let
 
   ### bridges ###
   bridges = {
-    lan = "lan-br";
-    guest = "guest-br";
+    lan = {
+      name = "lan-br";
+      interfaces = interfaces.lan;
+    };
+    guest = {
+      name = "guest-br";
+      interfaces = interfaces.guest;
+    };
   };
 in
 
@@ -54,17 +60,15 @@ in
         ];
       };
     };
-    bridges = {
-      ### LAN network ###
-      ${bridges.lan} = {
-        interfaces = interfaces.lan;
-        rstp = false;
-      };
-      ${bridges.guest} = {
-        interfaces = interfaces.guest;
-        rstp = false;
-      };
-    };
+    bridges = builtins.listToAttrs (
+      map (bridge: {
+        name = bridge.name;
+        value = {
+          interfaces = bridge.interfaces;
+          rstp = false;
+        };
+      }) (builtins.attrValues bridges)
+    );
     networkmanager = {
       unmanaged = 
         (map (iface: "interface-name:${iface}") (interfaces.lan ++ interfaces.guest)) ++
