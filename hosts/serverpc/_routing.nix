@@ -106,4 +106,31 @@ in
   boot.kernel.sysctl = {
     "net.ipv4.ip_forward" = 1;
   };
+
+  services = {
+    dnsmasq = {
+      enable = true;
+      resolveLocalQueries = false;   # don't let dnsmasq touch the host's own /etc/resolv.conf
+      settings = {
+        interface = bridgeNames;     # lan-br, guest-br only — never eno1
+        bind-interfaces = true;
+
+        no-resolv = true;            # don't read /etc/resolv.conf for upstream either
+        server = [ "1.1.1.1" "1.0.0.1" ];   # dnsmasq's own fixed upstream for LAN/guest queries
+
+        dhcp-range = [
+          "${bridges.lan.name},192.168.50.50,192.168.50.150,24h"
+          "${bridges.guest.name},192.168.60.50,192.168.60.150,24h"
+        ];
+        dhcp-option = [
+          "${bridges.lan.name},3,${bridges.lan.address.ip}"
+          "${bridges.lan.name},6,${bridges.lan.address.ip}"
+          "${bridges.guest.name},3,${bridges.guest.address.ip}"
+          "${bridges.guest.name},6,${bridges.guest.address.ip}"
+        ];
+        domain-needed = true;
+        bogus-priv = true;
+      };
+    };
+  };
 }
