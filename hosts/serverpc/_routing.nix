@@ -52,7 +52,7 @@ let
 
   bridgeNames = map (bridge: bridge.name) (builtins.attrValues bridges);
   allBridgeValues = builtins.attrValues bridges;
-  allPortForwards = lib.flatten (map (b: b.portForwards) allBridgeValues);
+  allPortForwards = lib.flatten (map (b: b.portForwards or []) allBridgeValues);
 
 in
 
@@ -130,11 +130,13 @@ in
           );
         };
       };
-      # Block guest <-> lan traffic in the forwarding path
-      extraForwardRules = ''
-        iifname "${bridges.guest.name}" oifname "${bridges.lan.name}" drop
-        iifname "${bridges.lan.name}" oifname "${bridges.guest.name}" drop
-      '';
+      extraForwardRules = 
+        lib.concatMapStrings (a:
+          lib.concatMapStrings (b:
+            if a == b then "" else ''iifname "${a}" oifname "${b}" drop${"\n"}''
+          ) bridgeNames
+        ) bridgeNames
+      ;
     };
   };
 
@@ -166,7 +168,7 @@ in
         domain-needed = true;
         bogus-priv = true;
         dhcp-host = lib.flatten (
-          map (b: map (h: "${h.mac},${h.ip},${h.name}") b.hosts) allBridgeValues
+          map (b: map (h: "${h.mac},${h.ip},${h.name}") (b.hosts or [])) allBridgeValues
         );
       };
     };
