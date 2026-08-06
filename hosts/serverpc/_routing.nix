@@ -29,6 +29,7 @@ let
         tcp = [ 22 53 ];
         udp = [ 53 67 ];
       };
+      firewallAllowOpenHostPorts = true;
       hosts = [
         { mac = "aa:bb:cc:dd:ee:01"; ip = "192.168.50.10"; name = "EXAMPLE1"; }
         { mac = "aa:bb:cc:dd:ee:02"; ip = "192.168.50.11"; name = "EXAMPLE2"; }
@@ -55,6 +56,7 @@ let
         tcp = [ 53 ];
         udp = [ 53 67 ];
       };
+      firewallAllowOpenHostPorts = false;
       hosts = [ ];
       portForwards = [ ];
     };
@@ -123,8 +125,16 @@ in
           map (b: {
             name = b.name;
             value = {
-              allowedTCPPorts = lib.mkForce b.firewallPorts.tcp;
-              allowedUDPPorts = lib.mkForce b.firewallPorts.udp;
+              allowedTCPPorts =
+                if b.firewallAllowOpenHostPorts or false
+                then b.firewallPorts.tcp
+                else lib.mkForce b.firewallPorts.tcp
+              ;
+              allowedUDPPorts =
+                if b.firewallAllowOpenHostPorts or false
+                then b.firewallPorts.udp
+                else lib.mkForce b.firewallPorts.udp
+              ;
             };
           }
         ) allBridgeValues)
