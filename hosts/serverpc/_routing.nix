@@ -32,6 +32,9 @@ let
       };
     };
   };
+
+  bridgeNames = map (bridge: bridge.name) (builtins.attrValues bridges);
+
 in
 
 {
@@ -64,11 +67,8 @@ in
       unmanaged = 
         (map (iface: "interface-name:${iface}")
           (lib.flatten (map (bridge: bridge.interfaces) (builtins.attrValues bridges)))
-        )
-        ++
-        (map (bridge: "interface-name:${bridge.name}")
-          (builtins.attrValues bridges)
-        )
+        ) ++ 
+        (map (bridge: "interface-name:${bridge}") bridgeNames)
       ;
     };
   };
