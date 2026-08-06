@@ -67,11 +67,8 @@ in
     };
     networkmanager = {
       unmanaged = 
-        (map (iface: "interface-name:${iface}") (interfaces.lan ++ interfaces.guest))
-        ++ [
-          bridges.lan
-          bridges.guest
-        ]
+        (map (iface: "interface-name:${iface}") (interfaces.lan ++ interfaces.guest)) ++
+        (map (bridge: "interface-name:${bridge}") (builtins.attrValues bridges))
       ;
     };
   };
