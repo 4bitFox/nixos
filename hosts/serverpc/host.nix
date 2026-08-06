@@ -12,6 +12,7 @@
     ./_borg.nix
     ./_minecraft.nix
     ./_klipper.nix
+    ./_routing.nix
   ];
 
   networking.hostId = "9e40f792"; # required for ZFS
