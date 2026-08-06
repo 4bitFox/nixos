@@ -5,8 +5,8 @@
 
   outputs = { self, nixpkgs }:
     let
-      stdenv.hostPlatform.system = "x86_64-linux";
-      pkgs = import nixpkgs { inherit (stdenv.hostPlatform.system); };
+      system = "x86_64-linux";
+      pkgs = import nixpkgs { inherit stdenv.hostPlatform.system; };
     in {
       packages.${system}.default = pkgs.stdenv.mkDerivation {
         pname = "wl_shimeji";
