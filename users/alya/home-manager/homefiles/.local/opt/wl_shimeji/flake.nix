@@ -9,7 +9,7 @@
       # pkgs = import nixpkgs { inherit system; };
       pkgs = nixpkgs.legacyPackages.${system};
     in {
-      packages.${system}.default = pkgs.stdenv.mkDerivation {
+      packages.${stdenv.hostPlatform.system}.default = pkgs.stdenv.mkDerivation {
         pname = "wl_shimeji";
         version = "unstable";
 
