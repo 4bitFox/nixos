@@ -39,6 +39,7 @@ in
 
 {
   networking = {
+    ### generate from let in ###
     interfaces = builtins.listToAttrs (
       map (bridge: {
         name = bridge.name;
@@ -71,6 +72,7 @@ in
         (map (bridge: "interface-name:${bridge}") bridgeNames)
       ;
     };
+    ### generate from let in (end) ###
 
     nftables.enable = true;
 
@@ -82,12 +84,16 @@ in
 
     firewall = {
       enable = true;
-      # LAN is fully trusted (can reach the router's services, DNS, SSH, etc)
-      trustedInterfaces = [ bridges.lan.name ];
-      # Guest only gets what it needs: DHCP + DNS from the router
-      interfaces.${bridges.guest.name} = {
-        allowedUDPPorts = [ 53 67 ];
-        allowedTCPPorts = [ 53 ];
+      interfaces = {
+        ${bridges.guest.name} = {
+          allowedUDPPorts = [ 53 67 ];
+          allowedTCPPorts = [ 53 ];
+        };
+        # Block inbound traffic on all ports on WAN
+        ${interfaces.wan} = {
+          allowedTCPPorts = lib.mkForce [ ];
+          allowedUDPPorts = lib.mkForce [ ];
+        };
       };
       # Block guest <-> lan traffic in the forwarding path
       extraForwardRules = ''
