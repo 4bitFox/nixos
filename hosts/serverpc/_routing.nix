@@ -85,6 +85,10 @@ in
     firewall = {
       enable = true;
       interfaces = {
+        ${bridges.lan.name} = {
+          allowedUDPPorts = [ 53 67 ];
+          allowedTCPPorts = [ 22 53 ];
+        };
         ${bridges.guest.name} = {
           allowedUDPPorts = [ 53 67 ];
           allowedTCPPorts = [ 53 ];
