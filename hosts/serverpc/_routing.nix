@@ -20,6 +20,13 @@ let
         ip = "192.168.50.1";
         prefix = 24;
       };
+      hosts = [
+        { mac = "aa:bb:cc:dd:ee:01"; ip = "192.168.50.10"; name = "EXAMPLE1"; }
+        { mac = "aa:bb:cc:dd:ee:02"; ip = "192.168.50.11"; name = "EXAMPLE2"; }
+      ];
+      portForwards = [
+        { wanPort = 25565; lanPort = 25565; lanIp = "192.168.50.10"; proto = "tcp"; }
+      ];
     };
     guest = {
       name = "guest-br";
@@ -30,10 +37,14 @@ let
         ip = "192.168.60.1";
         prefix = 24;
       };
+      hosts = [ ];
+      portForwards = [ ];
     };
   };
 
   bridgeNames = map (bridge: bridge.name) (builtins.attrValues bridges);
+  allBridgeValues = builtins.attrValues bridges;
+  allPortForwards = lib.flatten (map (b: b.portForwards) allBridgeValues);
 
 in
 
@@ -67,7 +78,7 @@ in
     networkmanager = {
       unmanaged = 
         (map (iface: "interface-name:${iface}")
-          (lib.flatten (map (bridge: bridge.interfaces) (builtins.attrValues bridges)))
+          (lib.flatten (map (bridge: bridge.interfaces) allBridgeValues))
         ) ++ 
         (map (bridge: "interface-name:${bridge}") bridgeNames)
       ;
@@ -90,8 +101,8 @@ in
           allowedTCPPorts = [ 22 53 ];
         };
         ${bridges.guest.name} = {
-          allowedUDPPorts = [ 53 67 ];
-          allowedTCPPorts = [ 53 ];
+          allowedUDPPorts = lib.mkForce [ 53 67 ];
+          allowedTCPPorts = lib.mkForce [ 53 ];
         };
         # Block inbound traffic on all ports on WAN
         ${interfaces.wan} = {
@@ -134,6 +145,9 @@ in
         ];
         domain-needed = true;
         bogus-priv = true;
+        dhcp-host = lib.flatten (
+          map (b: map (h: "${h.mac},${h.ip},${h.name}") b.hosts) allBridgeValues
+        );
       };
     };
   };
