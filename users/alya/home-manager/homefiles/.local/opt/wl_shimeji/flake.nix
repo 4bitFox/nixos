@@ -2,10 +2,6 @@
   description = "wl_shimeji package";
 
   # inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-  inputs = {
-    nixpkgs.follows = "nixpkgs";
-  };
-
 
   outputs = { self, nixpkgs }:
     let
