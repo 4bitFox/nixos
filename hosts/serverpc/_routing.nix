@@ -26,6 +26,12 @@ let
       prefix = 24;
     };
   };
+
+  ### bridges ###
+  bridges = {
+    lan = "lan-br";
+    guest = "guest-br";
+  };
 in
 
 {
@@ -50,11 +56,11 @@ in
     };
     bridges = {
       ### LAN network ###
-      lan-br = {
+      ${bridges.lan} = {
         interfaces = interfaces.lan;
         rstp = false;
       };
-      guest-br = {
+      ${bridges.guest} = {
         interfaces = interfaces.guest;
         rstp = false;
       };
@@ -63,8 +69,8 @@ in
       unmanaged = 
         (map (iface: "interface-name:${iface}") (interfaces.lan ++ interfaces.guest))
         ++ [
-          "interface-name:lan-br"
-          "interface-name:guest-br"
+          bridges.lan
+          bridges.guest
         ]
       ;
     };
