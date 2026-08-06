@@ -5,14 +5,6 @@ let
   ### interfaces ###
   interfaces = {
     wan = "eno1";
-    lan = [
-      "enp7s0f0"
-      "enp7s0f1"
-      "enp7s0f2"
-    ];
-    guest = [
-      "enp7s0f3"
-    ];
   };
 
   ### network addresses ###
@@ -31,11 +23,17 @@ let
   bridges = {
     lan = {
       name = "lan-br";
-      interfaces = interfaces.lan;
+      interfaces = [
+        "enp7s0f0"
+        "enp7s0f1"
+        "enp7s0f2"
+      ];
     };
     guest = {
       name = "guest-br";
-      interfaces = interfaces.guest;
+      interfaces = [
+        "enp7s0f3"
+      ];
     };
   };
 in
