@@ -20,6 +20,10 @@ let
         ip = "192.168.50.1";
         prefix = 24;
       };
+      firewallPorts = { 
+        udp = [ 53 67 ];
+        tcp = [ 22 53 ]; 
+      };
       hosts = [
         { mac = "aa:bb:cc:dd:ee:01"; ip = "192.168.50.10"; name = "EXAMPLE1"; }
         { mac = "aa:bb:cc:dd:ee:02"; ip = "192.168.50.11"; name = "EXAMPLE2"; }
@@ -36,6 +40,10 @@ let
       address = {
         ip = "192.168.60.1";
         prefix = 24;
+      };
+      firewallPorts = {
+        udp = [ 53 67 ];
+        tcp = [ 53 ];
       };
       hosts = [ ];
       portForwards = [ ];
@@ -102,15 +110,17 @@ in
 
     firewall = {
       enable = true;
-      interfaces = {
-        ${bridges.lan.name} = {
-          allowedUDPPorts = [ 53 67 ];
-          allowedTCPPorts = [ 22 53 ];
-        };
-        ${bridges.guest.name} = {
-          allowedUDPPorts = lib.mkForce [ 53 67 ];
-          allowedTCPPorts = lib.mkForce [ 53 ];
-        };
+      interfaces = (
+        builtins.listToAttrs (
+          map (b: {
+            name = b.name;
+            value = {
+              allowedUDPPorts = lib.mkForce b.firewallPorts.udp;
+              allowedTCPPorts = lib.mkForce b.firewallPorts.tcp;
+            };
+          }
+        ) allBridgeValues)
+      ) // {
         ${interfaces.wan} = {
           allowedTCPPorts = lib.mkForce (
             map (fw: fw.wanPort) (builtins.filter (fw: fw.proto == "tcp") allPortForwards)
