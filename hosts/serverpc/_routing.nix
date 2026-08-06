@@ -7,18 +7,6 @@ let
     wan = "eno1";
   };
 
-  ### network addresses ###
-  addresses = {
-    lan = {
-      ip = "192.168.50.1";
-      prefix = 24;
-    };
-    guest = {
-      ip = "192.168.60.1";
-      prefix = 24;
-    };
-  };
-
   ### bridges ###
   bridges = {
     lan = {
@@ -28,36 +16,40 @@ let
         "enp7s0f1"
         "enp7s0f2"
       ];
+      address = {
+        ip = "192.168.50.1";
+        prefix = 24;
+      };
     };
     guest = {
       name = "guest-br";
       interfaces = [
         "enp7s0f3"
       ];
+      address = {
+        ip = "192.168.60.1";
+        prefix = 24;
+      };
     };
   };
 in
 
 {
   networking = {
-    interfaces = {
-      lan-br = {
-        ipv4.addresses = [
-          {
-            address = addresses.lan.ip;
-            prefixLength = addresses.lan.prefix;
-          }
-        ];
-      };
-      guest-br = {
-        ipv4.addresses = [
-          {
-            address = addresses.guest.ip;
-            prefixLength = addresses.guest.prefix;
-          }
-        ];
-      };
-    };
+    interfaces = builtins.listToAttrs (
+      map (bridge: {
+        name = bridge.name;
+        value = {
+          ipv4.addresses = [
+            {
+              address = bridge.address.ip;
+              prefixLength = bridge.address.prefix;
+            }
+          ];
+        };
+      }) (builtins.attrValues bridges)
+    );
+
     bridges = builtins.listToAttrs (
       map (bridge: {
         name = bridge.name;
@@ -67,6 +59,7 @@ in
         };
       }) (builtins.attrValues bridges)
     );
+
     networkmanager = {
       unmanaged = 
         (map (iface: "interface-name:${iface}")
