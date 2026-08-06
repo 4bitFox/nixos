@@ -17,13 +17,13 @@ let
         "enp7s0f2"
       ];
       address = {
-        ip = "192.168.50.1";
+        ip = "192.168.6.7";
         prefix = 24;
       };
       dhcpRange = {
-        start = "192.168.50.50";
-        end = "192.168.50.150";
-        lease = "24h";
+        start = "192.168.6.50";
+        end = "192.168.6.154";
+        lease = "48h";
       };
       firewallPorts = {
         tcp = [ 22 53 ];
@@ -31,11 +31,12 @@ let
       };
       firewallAllowOpenHostPorts = true;
       hosts = [
-        { mac = "aa:bb:cc:dd:ee:01"; ip = "192.168.50.10"; name = "EXAMPLE1"; }
-        { mac = "aa:bb:cc:dd:ee:02"; ip = "192.168.50.11"; name = "EXAMPLE2"; }
+        { mac = "aa:bb:cc:dd:ee:01"; ip = "192.168.6.10"; name = "EXAMPLE1"; }
+        { mac = "aa:bb:cc:dd:ee:02"; ip = "192.168.6.11"; name = "EXAMPLE2"; }
       ];
       portForwards = [
-        { wanPort = 25565; lanPort = 25565; lanIp = "192.168.50.10"; proto = "tcp"; }
+        # Ensure that the 'lanIp' is also defined in 'let bridges.*.hosts = [ ... ]; in' so it's static!
+        { wanPort = 25565; lanPort = 25565; lanIp = "192.168.6.10"; proto = "tcp"; }
       ];
     };
     guest = {
@@ -44,13 +45,13 @@ let
         "enp7s0f3"
       ];
       address = {
-        ip = "192.168.60.1";
+        ip = "192.168.4.2";
         prefix = 24;
       };
       dhcpRange = {
-        start = "192.168.60.50";
-        end = "192.168.60.150";
-        lease = "24h";
+        start = "192.168.4.50";
+        end = "192.168.4.154";
+        lease = "6h";
       };
       firewallPorts = {
         tcp = [ 53 ];
