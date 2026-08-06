@@ -71,6 +71,30 @@ in
         (map (bridge: "interface-name:${bridge}") bridgeNames)
       ;
     };
+
+    nftables.enable = true;
+
+    nat = {
+      enable = true;
+      externalInterface = interfaces.wan;
+      internalInterfaces = bridgeNames;
+    };
+
+    firewall = {
+      enable = true;
+      # LAN is fully trusted (can reach the router's services, DNS, SSH, etc)
+      trustedInterfaces = [ bridges.lan.name ];
+      # Guest only gets what it needs: DHCP + DNS from the router
+      interfaces.${bridges.guest.name} = {
+        allowedUDPPorts = [ 53 67 ];
+        allowedTCPPorts = [ 53 ];
+      };
+      # Block guest <-> lan traffic in the forwarding path
+      extraForwardRules = ''
+        iifname "${bridges.guest.name}" oifname "${bridges.lan.name}" drop
+        iifname "${bridges.lan.name}" oifname "${bridges.guest.name}" drop
+      '';
+    };
   };
 
   boot.kernel.sysctl = {
