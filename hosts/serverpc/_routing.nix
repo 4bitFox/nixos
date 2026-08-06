@@ -91,6 +91,13 @@ in
       enable = true;
       externalInterface = interfaces.wan;
       internalInterfaces = bridgeNames;
+      forwardPorts = 
+        map (fw: {
+          sourcePort = fw.wanPort;
+          proto = fw.proto;
+          destination = "${fw.lanIp}:${toString fw.lanPort}";
+        }) allPortForwards
+      ;
     };
 
     firewall = {
@@ -104,10 +111,13 @@ in
           allowedUDPPorts = lib.mkForce [ 53 67 ];
           allowedTCPPorts = lib.mkForce [ 53 ];
         };
-        # Block inbound traffic on all ports on WAN
         ${interfaces.wan} = {
-          allowedTCPPorts = lib.mkForce [ ];
-          allowedUDPPorts = lib.mkForce [ ];
+          allowedTCPPorts = lib.mkForce (
+            map (fw: fw.wanPort) (builtins.filter (fw: fw.proto == "tcp") allPortForwards)
+          );
+          allowedUDPPorts = lib.mkForce (
+            map (fw: fw.wanPort) (builtins.filter (fw: fw.proto == "udp") allPortForwards)
+          );
         };
       };
       # Block guest <-> lan traffic in the forwarding path
