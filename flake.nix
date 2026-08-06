@@ -11,10 +11,13 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     ### declarative-flatpak ###
     declarative-flatpak.url = "github:in-a-dil-emma/declarative-flatpak/latest";
-    # ### impermanence ###
+    ### impermanence ###
     impermanence.url = "github:nix-community/impermanence";
     impermanence.inputs.nixpkgs.follows = "nixpkgs";
     impermanence.inputs.home-manager.follows = "home-manager";
+    ### wl_shimeji ###
+    wl_shimeji.url = "path:./users/alya/home-manager/homefiles/.local/opt/wl_shimeji";
+    wl_shimeji.inputs.nixpkgs.follows = "nixpkgs";
   };
 
 
@@ -50,6 +53,7 @@
         hostModules = [
           ./hosts/tuxedo-sirius-16-gen2/host.nix
           ./hosts/tuxedo-sirius-16-gen2/hardware-configuration.nix
+          ./modules/boot/kernel/linux_zen.nix
           ./modules/boot/efi.nix
           ./modules/graphical/niri.nix
           ./modules/printing.nix
@@ -68,12 +72,33 @@
         hostModules = [
           ./hosts/hp-z600-rev2/host.nix
           ./hosts/hp-z600-rev2/hardware-configuration.nix
+          ./modules/boot/kernel/linux_zen.nix
           ./modules/boot/bios.nix
           ./modules/graphical/niri.nix
           ./modules/packages/steam.nix
           ./modules/declarative-flatpak.nix
           {
             networking.hostName = "wheatley";
+            system.stateVersion = "26.05";
+          }
+        ];
+      };
+      caroline = mkHost {
+        system = "x86_64-linux";
+        hostModules = [
+          ./hosts/serverpc/host.nix
+          ./hosts/serverpc/hardware-configuration.nix
+          ./modules/boot/kernel/linux_latest_zfs.nix
+          ./modules/zfs.nix
+          ./modules/boot/efi.nix
+          ./modules/graphical/niri.nix
+          ./modules/printing.nix
+          ./modules/virtualisation.nix
+          # ./modules/packages/tex.nix
+          # ./modules/packages/steam.nix
+          ./modules/declarative-flatpak.nix
+          {
+            networking.hostName = "caroline";
             system.stateVersion = "26.05";
           }
         ];

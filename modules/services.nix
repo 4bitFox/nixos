@@ -31,5 +31,15 @@
       enable = true;
       interval = "weekly";
     };
+    smartd = {
+      enable = true;
+      autodetect = true;
+      notifications = {
+        wall.enable = true;
+        systembus-notify.enable = true;
+        test = false;
+      };
+    };
+    fwupd.enable = true;
   };
 }

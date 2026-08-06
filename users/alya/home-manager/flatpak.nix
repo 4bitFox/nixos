@@ -65,6 +65,10 @@
       "flathub:app/sh.ppy.osu/x86_64/stable"
       "flathub:app/com.usebottles.bottles/x86_64/stable"
       "flathub:app/io.seamly.seamly2d/x86_64/stable"
+      
+      "flathub:app/uk.co.piggz.amazfish/x86_64/stable"
+      "flathub:app/it.mijorus.whisper/x86_64/stable"
+      "flathub:app/org.tenacityaudio.Tenacity/x86_64/stable"
     ];
   };
 

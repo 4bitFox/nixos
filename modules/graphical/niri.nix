@@ -14,7 +14,6 @@
 
   environment = {
     systemPackages = with pkgs; [
-      # kdePackages.polkit-kde-agent-1
       hyprpolkitagent
       xwayland-satellite
     ];
@@ -59,5 +58,9 @@
       xdg-desktop-portal-gnome
       xdg-desktop-portal-gtk
     ];
+  };
+
+  systemd.user.generators = {
+    systemd-xdg-autostart-generator = "/dev/null";
   };
 }

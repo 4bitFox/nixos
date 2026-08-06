@@ -35,6 +35,7 @@ in
     ./dotfiles.nix
     ./homefiles.nix
     ./packages.nix
+    ./shimeji.nix
   ];
 
   home = {
@@ -120,6 +121,8 @@ in
       color-scheme = "prefer-dark";
     };
   };
+
+  xdg.autostart.enable = false;
 
   home.stateVersion = "25.11";
 }

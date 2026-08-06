@@ -9,4 +9,6 @@
     { domain = "*"; type = "hard"; item = "nofile"; value = "1048576"; }
   ];
   ### fix ulimit 'too many open files' ###
+
+  security.audit.enable = true;
 }

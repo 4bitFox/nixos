@@ -1,6 +1,6 @@
 
 
-{ config, pkgs, lib, home-manager, declarative-flatpak, ... }:
+{ config, pkgs, lib, home-manager, declarative-flatpak, wl_shimeji, ... }:
 
 
 {
@@ -13,6 +13,7 @@
     useUserPackages = true;
     extraSpecialArgs = {
       inherit declarative-flatpak;
+      inherit wl_shimeji;
     };
   };
 }

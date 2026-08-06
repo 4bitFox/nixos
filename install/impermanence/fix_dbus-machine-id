@@ -1,0 +1,6 @@
+#!/usr/env sh
+
+sudo rm /etc/machine-id
+sudo dbus-uuidgen --ensure=/persist/etc/machine-id
+
+exit

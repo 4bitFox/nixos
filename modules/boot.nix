@@ -61,6 +61,7 @@ in
             unitConfig.DefaultDependencies = false;
             serviceConfig.Type = "oneshot";
             script = ''
+              sleep 0.2
               # Clear
               printf "\033[2J" > /dev/console
               # Move cursor to top left
@@ -77,9 +78,6 @@ in
       };
       kernelModules = [   ];
     };
-    # kernelPackages = pkgs.linuxPackages_latest;
-    # kernelPackages = pkgs.linuxPackages_xanmod;
-    kernelPackages = pkgs.linuxPackages_zen;
     kernelModules = [
       "uinput"
     ];

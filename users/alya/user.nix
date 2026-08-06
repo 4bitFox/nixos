@@ -16,6 +16,7 @@
       "docker"
       "adbusers"
     ];
+    uid = 1000;
     packages = with pkgs; [  ];
   };
 

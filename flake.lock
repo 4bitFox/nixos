@@ -2,11 +2,11 @@
   "nodes": {
     "declarative-flatpak": {
       "locked": {
-        "lastModified": 1769601081,
-        "narHash": "sha256-J0n+J/qfU3xTf5iaMcQrEK4dA5GSYQcw8XJuhZsM1Pc=",
+        "lastModified": 1782495309,
+        "narHash": "sha256-VHIqXC5eKeY4fNRMId7F1rg4sJhG/ZIX62TksPkTkVg=",
         "owner": "in-a-dil-emma",
         "repo": "declarative-flatpak",
-        "rev": "aba8c5ca67444cf4bcd0b02df284de1c93533a19",
+        "rev": "841b6e3ff33d73f63555ecca777b81369fe39350",
         "type": "github"
       },
       "original": {
@@ -23,11 +23,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1781319724,
-        "narHash": "sha256-ZGuxexEMo4Xv28KJ0dX/m/PHN4oZIOnxHZpNTyrvx4M=",
+        "lastModified": 1784350909,
+        "narHash": "sha256-ZWyzLbS1yKUTeFJLmdVuWNnHttL333/ldJbEE+KzCrM=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "8355f0a16b2dbb06a97959a918af5b239bbe05ae",
+        "rev": "4ce190229c73d44536caa7072f6308fb2d8feeb3",
         "type": "github"
       },
       "original": {
@@ -62,11 +62,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1781216227,
-        "narHash": "sha256-9mUW6gNwoN2SWc/l0fW4svPNOulXLl8ijqKyeSOGgJE=",
+        "lastModified": 1784707089,
+        "narHash": "sha256-2V/6imsUgB7mPZlHY54oeVBRDoZbPKnvzwkAHUSSufk=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "a0374025a863d007d98e3297f6aa46cc3141c2f0",
+        "rev": "b3fe9581c9061c749abef42b6d4ee7b7c05c33fa",
         "type": "github"
       },
       "original": {
@@ -81,8 +81,25 @@
         "declarative-flatpak": "declarative-flatpak",
         "home-manager": "home-manager",
         "impermanence": "impermanence",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "wl_shimeji": "wl_shimeji"
       }
+    },
+    "wl_shimeji": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "path": "./users/alya/home-manager/homefiles/.local/opt/wl_shimeji",
+        "type": "path"
+      },
+      "original": {
+        "path": "./users/alya/home-manager/homefiles/.local/opt/wl_shimeji",
+        "type": "path"
+      },
+      "parent": []
     }
   },
   "root": "root",

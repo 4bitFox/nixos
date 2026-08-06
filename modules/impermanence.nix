@@ -42,34 +42,46 @@ in
     neededForBoot = true;
   };
 
-  environment.persistence."/persist" = {
-    enable = true;
-    hideMounts = true;
-    directories = [
-      "/etc/nixos"
-      "/var/lib/bluetooth"
-      "/var/lib/nixos"
-      "/var/lib/systemd/coredump"
-      "/etc/NetworkManager/system-connections"
-      "/var/lib/NetworkManager"
-      "/var/lib/docker"
-      "/var/lib/upower"
-      "/var/lib/waydroid"
-      "/var/lib/private/ollama"
-      "/var/lib/libvirt"
-      "/var/lib/flatpak"
-    ];
-    files = [
-      "/etc/machine-id"
-      "/var/lib/systemd/random-seed"
-      "/var/lib/systemd/credential.secret"
-      "/etc/ssh/ssh_host_rsa_key"
-      "/etc/ssh/ssh_host_rsa_key.pub"
-      "/etc/ssh/ssh_host_ed25519_key"
-      "/etc/ssh/ssh_host_ed25519_key.pub"
-      "/var/lib/cups/printers.conf"
-      "/var/lib/logrotate.status"
-    ];
+  environment = {
+    persistence."/persist" = {
+      enable = true;
+      hideMounts = true;
+      directories = [
+        "/etc/nixos"
+        "/var/lib/bluetooth"
+        "/var/lib/nixos"
+        "/var/lib/systemd/coredump"
+        "/etc/NetworkManager/system-connections"
+        "/var/lib/NetworkManager"
+        "/var/lib/docker"
+        "/var/lib/upower"
+        "/var/lib/waydroid"
+        "/var/lib/private"
+        "/var/lib/private/ollama"
+        "/var/lib/private/klipper"
+        "/var/lib/moonraker"
+        "/var/lib/libvirt"
+        "/var/lib/flatpak"
+        "/etc/zfs"
+      ];
+      files = [
+        # "/etc/machine-id"
+        "/var/lib/systemd/random-seed"
+        "/var/lib/systemd/credential.secret"
+        "/etc/ssh/ssh_host_rsa_key"
+        "/etc/ssh/ssh_host_rsa_key.pub"
+        "/etc/ssh/ssh_host_ed25519_key"
+        "/etc/ssh/ssh_host_ed25519_key.pub"
+        "/var/lib/cups/printers.conf"
+      ];
+    };
+    etc = {
+      # Fix for libvirt
+      machine-id = {
+        mode = "symlink";
+        source = "/persist/etc/machine-id";
+      };
+    };
   };
 
   boot = {
@@ -93,6 +105,7 @@ in
             unitConfig.DefaultDependencies = false;
             serviceConfig.Type = "oneshot";
             script = ''
+              sleep 0.1
               # ASCII art
               ${pkgs.coreutils}/bin/echo -e "${wipelogo}" > /dev/console
 
@@ -139,7 +152,6 @@ in
     };
   };
 
-  ### /etc/shadow ### hacky code snippet from thundertheidiot on Sep 30, 2024; thank you! :D : https://github.com/nix-community/impermanence/issues/120#issuecomment-2382674299
   system.activationScripts = {
     etc_shadow = ''
       [ -f "/etc/shadow" ] && cp /etc/shadow /persist/etc/shadow
@@ -187,8 +199,7 @@ in
     };
     tmpfiles.rules = [
       "d /persist/rootfs/etc/ 0755 root root -" # make sure /persist/etc exists
+      "d /persist/var/lib/private 0700 root root -" # Fix permissions for /var/lib/private
     ];
   };
-  ### /etc/shadow (end) ###
-
 }

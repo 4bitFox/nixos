@@ -47,8 +47,9 @@
       enable = true;
       allowedTCPPorts = [ ];
       allowedUDPPorts = [ ];
+      allowPing = true;
     };
-    enableIPv6 = true;
+    enableIPv6 = false;
   };
 
   systemd.services.NetworkManager-wait-online.enable = false;
