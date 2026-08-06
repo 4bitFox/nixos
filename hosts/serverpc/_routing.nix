@@ -53,12 +53,6 @@ in
       }) (builtins.attrValues bridges)
     );
 
-    interfaces = {
-      ${interfaces.wan} = {
-        useDHCP = true;
-      };
-    };
-
     bridges = builtins.listToAttrs (
       map (bridge: {
         name = bridge.name;
