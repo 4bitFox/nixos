@@ -6,10 +6,9 @@
   outputs = { self, nixpkgs }:
     let
       system = "x86_64-linux";
-      # pkgs = import nixpkgs { inherit system; };
-      pkgs = nixpkgs.legacyPackages.${system};
+      pkgs = import nixpkgs { inherit system; };
     in {
-      packages.${stdenv.hostPlatform.system}.default = pkgs.stdenv.mkDerivation {
+      packages.${system}.default = pkgs.stdenv.mkDerivation {
         pname = "wl_shimeji";
         version = "unstable";
 
