@@ -81,7 +81,7 @@ in
             }
           ];
         };
-      }) (builtins.attrValues bridges)
+      }) allBridgeValues
     );
 
     bridges = builtins.listToAttrs (
@@ -89,7 +89,7 @@ in
         name = bridge.name;
         value = {
           interfaces = bridge.interfaces;
-          rstp = false;
+          rstp = true;
         };
       }) (builtins.attrValues bridges)
     );
@@ -149,6 +149,7 @@ in
         };
       };
       extraForwardRules = 
+        # Drop communication between bridge networks.
         lib.concatMapStrings (a:
           lib.concatMapStrings (b:
             if a == b then "" else ''iifname "${a}" oifname "${b}" drop${"\n"}''
@@ -158,9 +159,16 @@ in
     };
   };
 
-  boot.kernel.sysctl = {
-    "net.ipv4.ip_forward" = 1;
-  };
+  boot.kernel.sysctl = 
+    {
+      "net.ipv4.ip_forward" = 1;
+    } // builtins.listToAttrs (
+      map (b: {
+        name = "net.ipv6.conf.${b.name}.disable_ipv6";
+        value = 1;
+      }) allBridgeValues
+    )
+  ;
 
   services = {
     dnsmasq = {
