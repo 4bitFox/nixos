@@ -9,10 +9,7 @@
       useDnsmasqConfig = true;
       settings = {
         # See <https://docs.pi-hole.net/ftldns/configfile/>
-        dns.upstreams = [
-          "1.1.1.1"
-          "1.0.0.1"
-        ];
+        dns.upstreams = [  ]; # driven by dnsmasq.settings below instead. See below
         dhcp.active = false;
       };
       lists = [
@@ -29,6 +26,12 @@
     pihole-web = {
       enable = true;
       ports = [ "5380" ];
+    };
+
+    dnsmasq.settings = {
+      no-resolv = lib.mkDefault false;
+      resolv-file = lib.mkDefault "/run/NetworkManager/resolv.conf";
+      server = lib.mkDefault [ "1.1.1.1" "1.0.0.1" ];
     };
   };
 }
