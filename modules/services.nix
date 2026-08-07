@@ -3,6 +3,10 @@
 
 
 {
+  imports = [
+    ./services/_pihole.nix
+  ];
+
   services = {
     openssh.enable = true;
     dbus.enable = true;
