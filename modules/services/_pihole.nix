@@ -23,6 +23,7 @@
           description = "Steven Black's unified hosts";
         }
       ];
+      openFirewallDNS = true;
     };
     
     pihole-web = {
