@@ -40,6 +40,7 @@ let
         { wanPort = 25565; lanPort = 25565; lanIp = "192.168.6.10"; proto = "tcp"; }
       ];
     };
+
     guest = {
       name = "guest-br";
       interfaces = [
@@ -215,6 +216,8 @@ in
         dhcp-leasefile = lib.mkIf config.services.pihole-ftl.enable "/var/lib/pihole/dnsmasq.leases";
       };
     };
+
+    pihole-ftl.openFirewallDNS = true;
 
     timesyncd.enable = false;
 
