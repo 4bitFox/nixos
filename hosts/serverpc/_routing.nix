@@ -20,6 +20,7 @@ let
         ip = "192.168.6.7";
         prefix = 24;
       };
+      network = "192.168.6.0/24";
       dhcpRange = {
         start = "192.168.6.50";
         end = "192.168.6.154";
@@ -48,6 +49,7 @@ let
         ip = "192.168.4.2";
         prefix = 24;
       };
+      network = "192.168.4.0/24";
       dhcpRange = {
         start = "192.168.4.50";
         end = "192.168.4.154";
@@ -62,6 +64,13 @@ let
       portForwards = [ ];
     };
   };
+
+  ntpServers = [
+    "0.pool.ntp.org"
+    "1.pool.ntp.org"
+    "2.pool.ntp.org"
+    "3.pool.ntp.org"
+  ];
 
   bridgeNames = map (bridge: bridge.name) (builtins.attrValues bridges);
   allBridgeValues = builtins.attrValues bridges;
@@ -201,6 +210,12 @@ in
       };
     };
 
-    timesyncd.enable = true; # NTP
+    timesyncd.enable = false;
+
+    chrony = {
+      enable = true;
+      servers = ntpServers;
+      extraConfig = lib.concatMapStrings (b: "allow ${b.network}\n") allBridgeValues;
+    };
   };
 }

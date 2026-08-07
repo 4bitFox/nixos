@@ -16,7 +16,7 @@
 
   services = {
     pihole-ftl = {
-      enable = true;
+      enable = false;
       settings = {
         # See <https://docs.pi-hole.net/ftldns/configfile/>
         dns.upstreams = [
