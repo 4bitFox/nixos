@@ -172,6 +172,10 @@ in
           ) bridgeNames
         ) bridgeNames
       ;
+      # Drop communication to host on wan, even for allowed ports unless specified in let ... in above.
+      extraInputRules = ''
+        iifname "${interfaces.wan}" drop
+      '';
     };
   };
 
