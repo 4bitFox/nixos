@@ -3,17 +3,6 @@
 
 
 {
-  config.assertions = lib.filter (a:
-    a.message != "pihole-ftl conflicts with dnsmasq. Please disable one of them."
-  ) config.assertions;
-
-  assertions = [
-    {
-      assertion = config.services.dnsmasq.settings.port == 0;
-      message = "dnsmasq must run DHCP-only when used with pihole-ftl.";
-    }
-  ];
-
   services = {
     pihole-ftl = {
       enable = false;
