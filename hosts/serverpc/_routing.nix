@@ -31,12 +31,18 @@ let
         udp = [ 53 67 123 137 138 3702 5353 ];
       };
       hosts = [
-        { mac = "aa:bb:cc:dd:ee:01"; ip = "192.168.6.10"; name = "EXAMPLE1"; }
-        { mac = "aa:bb:cc:dd:ee:02"; ip = "192.168.6.11"; name = "EXAMPLE2"; }
+        { mac = "50:a1:32:52:e2:c0"; ip = "192.168.6.10"; name = "aperture_lan"; }
+        { mac = "56:0f:cb:52:f1:f8"; ip = "192.168.6.11"; name = "aperture_wlan"; }
       ];
       portForwards = [
         # Ensure that the 'lanIp' is also defined in 'let bridges.*.hosts = [ ... ]; in' so it's static!
-        { wanPort = 25565; lanPort = 25565; lanIp = "192.168.6.10"; proto = "tcp"; }
+        { wanPort =   137; lanPort =   137; lanIp = "192.168.6.7"; proto = "udp"; }
+        { wanPort =   138; lanPort =   138; lanIp = "192.168.6.7"; proto = "udp"; }
+        { wanPort =   139; lanPort =   139; lanIp = "192.168.6.7"; proto = "tcp"; }
+        { wanPort =   445; lanPort =   445; lanIp = "192.168.6.7"; proto = "tcp"; }
+        { wanPort = 25565; lanPort = 25565; lanIp = "192.168.6.7"; proto = "tcp"; }
+        { wanPort = 35565; lanPort = 35565; lanIp = "192.168.6.7"; proto = "tcp"; }
+        { wanPort = 35568; lanPort = 35568; lanIp = "192.168.6.7"; proto = "tcp"; }
       ];
     };
 
@@ -56,7 +62,7 @@ let
         lease = "6h";
       };
       firewallPorts = {
-        tcp = [ 53 ];
+        tcp = [ 53 25565 35565 35568 ];
         udp = [ 53 67 123 ];
       };
       hosts = [ ];
@@ -134,6 +140,7 @@ in
 
     firewall = {
       enable = true;
+      # Block general communication on all ports unless allowed
       allowedTCPPorts = lib.mkForce [ ];
       allowedUDPPorts = lib.mkForce [ ];
       interfaces = (
