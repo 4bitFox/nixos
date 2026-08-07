@@ -175,6 +175,7 @@ in
     dnsmasq = {
       enable = true;
       resolveLocalQueries = false;   # don't let dnsmasq touch the host's own /etc/resolv.conf
+      port = 0; # disable DNS, keep DHCP only. DNS will be handled by pihole
       settings = {
         interface = bridgeNames;     # lan-br, guest-br only — never eno1
         bind-interfaces = true;
