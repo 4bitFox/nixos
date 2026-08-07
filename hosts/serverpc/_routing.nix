@@ -65,6 +65,11 @@ let
     };
   };
 
+  dnsServers  = [
+    "1.1.1.1"
+    "1.0.0.1"
+  ];
+
   ntpServers = [
     "0.pool.ntp.org"
     "1.pool.ntp.org"
@@ -189,7 +194,7 @@ in
         interface = bridgeNames;     # lan-br, guest-br only — never eno1
         bind-interfaces = true;
         no-resolv = true;            # don't read /etc/resolv.conf for upstream either
-        server = [ "1.1.1.1" "1.0.0.1" ];   # dnsmasq's own fixed upstream for LAN/guest queries
+        server = dnsServers;
         dhcp-range = 
           map (b: 
             "${b.name},${b.dhcpRange.start},${b.dhcpRange.end},${b.dhcpRange.lease}"
@@ -207,6 +212,7 @@ in
         dhcp-host = lib.flatten (
           map (b: map (h: "${h.mac},${h.ip},${h.name}") (b.hosts or [])) allBridgeValues
         );
+        dhcp-leasefile = lib.mkIf config.services.pihole-ftl.enable "/var/lib/pihole/dnsmasq.leases";
       };
     };
 
