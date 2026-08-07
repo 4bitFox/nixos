@@ -182,10 +182,10 @@ in
 
   services = {
     dnsmasq = {
-      enable = true;
+      # enable = true;
+      enable = lib.mkDefault (!config.services.pihole-ftl.enable); # pihole-ftl replaces the daemon; settings below still apply via useDnsmasqConfig
       resolveLocalQueries = false;   # don't let dnsmasq touch the host's own /etc/resolv.conf
       settings = {
-        port = 0; # disable DNS, keep DHCP only. DNS will be handled by pihole
         interface = bridgeNames;     # lan-br, guest-br only — never eno1
         bind-interfaces = true;
         no-resolv = true;            # don't read /etc/resolv.conf for upstream either
