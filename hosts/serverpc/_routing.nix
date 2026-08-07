@@ -27,10 +27,9 @@ let
         lease = "48h";
       };
       firewallPorts = {
-        tcp = [ 22 53 ];
-        udp = [ 53 67 123 ];
+        tcp = [ 22 53 139 445 5357 7126 25565 35565 35568 ];
+        udp = [ 53 67 123 137 138 3702 5353 ];
       };
-      firewallAllowOpenHostPorts = true;
       hosts = [
         { mac = "aa:bb:cc:dd:ee:01"; ip = "192.168.6.10"; name = "EXAMPLE1"; }
         { mac = "aa:bb:cc:dd:ee:02"; ip = "192.168.6.11"; name = "EXAMPLE2"; }
@@ -60,7 +59,6 @@ let
         tcp = [ 53 ];
         udp = [ 53 67 123 ];
       };
-      firewallAllowOpenHostPorts = false;
       hosts = [ ];
       portForwards = [ ];
     };
@@ -136,21 +134,15 @@ in
 
     firewall = {
       enable = true;
+      allowedTCPPorts = lib.mkForce [ ];
+      allowedUDPPorts = lib.mkForce [ ];
       interfaces = (
         builtins.listToAttrs (
           map (b: {
             name = b.name;
             value = {
-              allowedTCPPorts =
-                if b.firewallAllowOpenHostPorts or false
-                then b.firewallPorts.tcp
-                else lib.mkForce b.firewallPorts.tcp
-              ;
-              allowedUDPPorts =
-                if b.firewallAllowOpenHostPorts or false
-                then b.firewallPorts.udp
-                else lib.mkForce b.firewallPorts.udp
-              ;
+              allowedTCPPorts = lib.mkForce b.firewallPorts.tcp;
+              allowedUDPPorts = lib.mkForce b.firewallPorts.udp;
             };
           }
         ) allBridgeValues)
@@ -172,10 +164,6 @@ in
           ) bridgeNames
         ) bridgeNames
       ;
-      # Drop communication to host on wan, even for allowed ports unless specified in let ... in above.
-      extraInputRules = ''
-        iifname "${interfaces.wan}" drop
-      '';
     };
   };
 
