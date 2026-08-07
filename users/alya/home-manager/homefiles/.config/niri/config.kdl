@@ -42,6 +42,14 @@ output "BOE 0x09E5 Unknown" { // Internal Screen
     focus-at-startup
 }
 
+output "Stargate Technology iMac 5K demoset-1" { // iFeng
+    mode "5120x2880@59.937"
+    scale 2.25
+    transform "normal"
+    position x=0 y=0
+    focus-at-startup
+}
+
 output "Samsung Electric Company SAMSUNG 0x00000001" { // Samsung TV Livingroom
     mode "1920x1080@60.000"
     scale 1.5

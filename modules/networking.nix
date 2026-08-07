@@ -6,7 +6,7 @@
   networking = {
     networkmanager = {
       enable = true;
-      # dns = "none"; # set to "none" for manual dns nameservers
+      dns = "none";
       wifi.powersave = true;
 
       ### EDUROAM ###
@@ -38,11 +38,11 @@
     ### manual DNS nameservers ###
     # useDHCP = false;
     # dhcpcd.enable = false;
-    # nameservers = [
-    #   "1.1.1.1" # Cloudflare
-    #   "1.0.0.1" # Cloudflare
-    #   "192.168.1.1" # home-network fallback
-    # ];
+    nameservers = [
+      "127.0.0.1" # localhost (probably pihole)
+      "1.1.1.1" # Cloudflare
+      "1.0.0.1" # Cloudflare
+    ];
     firewall = {
       enable = true;
       allowedTCPPorts = [ ];
