@@ -33,6 +33,7 @@
       resolv-file = lib.mkDefault "/run/NetworkManager/resolv.conf";
       server = lib.mkDefault [ "1.1.1.1" "1.0.0.1" ];
       except-interface = lib.mkDefault [ "virbr0" ];
+      bind-dynamic = lib.mkDefault true;
     };
   };
 }
