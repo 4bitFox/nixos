@@ -6,7 +6,7 @@
   networking = {
     networkmanager = {
       enable = true;
-      dns = "none";
+      # dns = "none";
       wifi.powersave = true;
 
       ### EDUROAM ###
