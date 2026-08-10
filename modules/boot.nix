@@ -61,7 +61,7 @@ in
             unitConfig.DefaultDependencies = false;
             serviceConfig.Type = "oneshot";
             script = ''
-              sleep 0.2
+              sleep 0.5
               # Clear
               printf "\033[2J" > /dev/console
               # Move cursor to top left
