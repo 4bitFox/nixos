@@ -70,6 +70,7 @@
 
       ### EDUROAM ###
       networking = {
+        nameservers = lib.mkForce [ ]; # let eduroam use it's own DNS.
         networkmanager = {
           dns = lib.mkForce "default"; # let NM manage resolv.conf normally to not fuck with eduroam DNS
           ensureProfiles.profiles = {
@@ -77,7 +78,7 @@
               connection = {
                 id = "eduroam";
                 type = "wifi";
-                autoconnect = true;
+                autoconnect = false;
               };
               wifi = {
                 ssid = "eduroam";
@@ -96,7 +97,6 @@
             };
           };
         };
-        nameservers = lib.mkForce [ ]; # let eduroam use it's own DNS.
       };
       ### EDUROAM (end) ###
       };
