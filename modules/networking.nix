@@ -38,11 +38,11 @@
     ### manual DNS nameservers ###
     # useDHCP = false;
     # dhcpcd.enable = false;
-    nameservers = [
-      "127.0.0.1" # localhost (probably pihole)
-      "1.1.1.1" # Cloudflare
-      "1.0.0.1" # Cloudflare
-    ];
+    #nameservers = [
+    #  "127.0.0.1" # localhost (probably pihole)
+    #  "1.1.1.1" # Cloudflare
+    #  "1.0.0.1" # Cloudflare
+    #];
     firewall = {
       enable = true;
       allowedTCPPorts = [ ];
