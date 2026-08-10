@@ -5,7 +5,7 @@
 {
   imports = [
     ./_partitions.nix
-    ./specialisations/_gpu-passthrough.nix
+    ./specialisations/_fhnw.nix
   ];
 
   nix = {

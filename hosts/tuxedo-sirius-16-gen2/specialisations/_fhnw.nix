@@ -7,8 +7,9 @@
     gpu-passthrough = {
       inheritParentConfig = true;
       configuration = {
-        system.nixos.tags = [ "gpu-passthrough" ];
+        system.nixos.tags = [ "fhnw" ];
 
+        ### GPU-Passthrough ###
         boot = {
           kernelPatches = [
             {
@@ -65,6 +66,39 @@
             looking-glass-client
           ];
         };
+      ### GPU-Passthrough (end) ###
+
+      ### EDUROAM ###
+      networking = {
+        networkmanager = {
+          dns = lib.mkForce "default"; # let NM manage resolv.conf normally to not fuck with eduroam DNS
+          ensureProfiles.profiles = {
+            eduroam = {
+              connection = {
+                id = "eduroam";
+                type = "wifi";
+                autoconnect = true;
+              };
+              wifi = {
+                ssid = "eduroam";
+                mode = "infrastructure";
+              };
+              wifi-security = {
+                key-mgmt = "wpa-eap";
+              };
+              "802-1x" = {
+                eap = "peap";
+                phase2-auth = "mschapv2";
+                ca-cert = "/etc/ssl/certs/ca-bundle.crt";
+              };
+              ipv4.method = "auto";
+              ipv6.method = "auto";
+            };
+          };
+        };
+        nameservers = lib.mkForce [ ]; # let eduroam use it's own DNS.
+      };
+      ### EDUROAM (end) ###
       };
     };
   };
