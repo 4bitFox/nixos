@@ -16,6 +16,24 @@
         "type": "github"
       }
     },
+    "flake-parts": {
+      "inputs": {
+        "nixpkgs-lib": "nixpkgs-lib"
+      },
+      "locked": {
+        "lastModified": 1785627969,
+        "narHash": "sha256-4dtXQk/NMePegK/nWp5NSeuZKLATItOq61lpEvmXqGw=",
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "rev": "427bf4bd9435fdf21321c8cc628c24efc14c0f7a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -76,6 +94,21 @@
         "type": "github"
       }
     },
+    "nixpkgs-lib": {
+      "locked": {
+        "lastModified": 1785031560,
+        "narHash": "sha256-OmshNvn2vupOFpYinLUu+1Dnpu4n7Q5N3ggGVNHpkUI=",
+        "owner": "nix-community",
+        "repo": "nixpkgs.lib",
+        "rev": "0e79af5e3d4dcfcd676ab5ba3f95d2e3352e078c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "nixpkgs.lib",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "declarative-flatpak": "declarative-flatpak",
@@ -87,19 +120,26 @@
     },
     "wl_shimeji": {
       "inputs": {
+        "flake-parts": "flake-parts",
         "nixpkgs": [
           "nixpkgs"
         ]
       },
       "locked": {
-        "path": "./users/alya/home-manager/homefiles/.local/opt/wl_shimeji",
-        "type": "path"
+        "lastModified": 1786380242,
+        "narHash": "sha256-luy25Zxr6f7p2eraVjZ6vfYatIAHnoAs16noV0A3S5w=",
+        "ref": "refs/heads/main",
+        "rev": "6b5884c9454ac10d135a873740438e20e032910a",
+        "revCount": 246,
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/CluelessCatBurger/wl_shimeji"
       },
       "original": {
-        "path": "./users/alya/home-manager/homefiles/.local/opt/wl_shimeji",
-        "type": "path"
-      },
-      "parent": []
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/CluelessCatBurger/wl_shimeji"
+      }
     }
   },
   "root": "root",
