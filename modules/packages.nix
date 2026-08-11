@@ -54,6 +54,7 @@ in
       nix-output-monitor
       simple-scan
       smartmontools
+      wl_shimeji.packages.${system}.default
     ];
   };
 

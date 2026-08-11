@@ -4,8 +4,7 @@
 {  
   home = {
     packages = with pkgs; [
-      # wl_shimeji.packages.${stdenv.hostPlatform.system}.default
-      wl_shimeji.packages.${system}.default
+      wl_shimeji.packages.${stdenv.hostPlatform.system}.default
     ];
     activation.wl_shimeji = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       rm -rf "$HOME/.local/share/wl_shimeji"
