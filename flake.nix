@@ -16,7 +16,8 @@
     impermanence.inputs.nixpkgs.follows = "nixpkgs";
     impermanence.inputs.home-manager.follows = "home-manager";
     ### wl_shimeji ###
-    wl_shimeji.url = "path:./users/alya/home-manager/homefiles/.local/opt/wl_shimeji";
+    # wl_shimeji.url = "path:./users/alya/home-manager/homefiles/.local/opt/wl_shimeji";
+    wl_shimeji.url = "git+https://github.com/CluelessCatBurger/wl_shimeji?submodules=1";
     wl_shimeji.inputs.nixpkgs.follows = "nixpkgs";
   };
 
