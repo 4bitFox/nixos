@@ -53,5 +53,17 @@
     variables = {
       RUSTICL_ENABLE = "radeonsi";
     };
-  };  
+  };
+
+  security.sudo.extraRules = [
+    {
+      users = [ "alya" ];
+      commands = [
+        { command = "/run/current-system/sw/bin/modprobe -r i2c_hid_acpi"; options = [ "NOPASSWD" ]; }
+        { command = "/run/current-system/sw/bin/modprobe -r i2c_hid"; options = [ "NOPASSWD" ]; }
+        { command = "/run/current-system/sw/bin/modprobe i2c_hid"; options = [ "NOPASSWD" ]; }
+        { command = "/run/current-system/sw/bin/modprobe i2c_hid_acpi"; options = [ "NOPASSWD" ]; }
+      ];
+    }
+  ];
 }
