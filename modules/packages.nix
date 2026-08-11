@@ -1,5 +1,5 @@
 
-{ config, pkgs, lib, wl_shimeji, ... }:
+{ config, pkgs, lib, ... }:
 
 
 let
@@ -54,7 +54,6 @@ in
       nix-output-monitor
       simple-scan
       smartmontools
-      wl_shimeji.packages.${system}.default
     ];
   };
 
