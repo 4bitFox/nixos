@@ -118,6 +118,7 @@
     bash = {
       shellAliases = {
         nextcloud-log = "journalctl -f -t Nextcloud -o json-pretty";
+        nextcloud-apps-paths = "P=$(readlink -f $(which nextcloud-occ) | xargs grep -o '/nix/store/[a-z0-9]*-nextcloud-[0-9.]*-with-apps'); echo \"$P/apps\"; echo \"$P/store-apps\"";
       };
     };
   };
