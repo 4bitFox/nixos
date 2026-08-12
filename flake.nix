@@ -42,7 +42,6 @@
         ./modules/hardware.nix
         ./modules/audio.nix
         ./modules/home-manager.nix
-        ./modules/impermanence.nix
         ./modules/security.nix
       ] ++ hostModules;
     };
@@ -56,6 +55,7 @@
           ./hosts/tuxedo-sirius-16-gen2/hardware-configuration.nix
           ./modules/boot/kernel/linux_zen.nix
           ./modules/boot/efi.nix
+          ./modules/impermanence.nix
           ./modules/graphical/niri.nix
           ./modules/printing.nix
           ./modules/virtualisation.nix
@@ -75,6 +75,7 @@
           ./hosts/hp-z600-rev2/hardware-configuration.nix
           ./modules/boot/kernel/linux_zen.nix
           ./modules/boot/bios.nix
+          ./modules/impermanence.nix
           ./modules/graphical/niri.nix
           ./modules/packages/steam.nix
           ./modules/declarative-flatpak.nix
@@ -92,6 +93,7 @@
           ./modules/boot/kernel/linux_latest_zfs.nix
           ./modules/zfs.nix
           ./modules/boot/efi.nix
+          ./modules/impermanence.nix
           ./modules/graphical/niri.nix
           ./modules/printing.nix
           ./modules/virtualisation.nix
