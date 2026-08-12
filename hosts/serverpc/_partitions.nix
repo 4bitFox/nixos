@@ -38,5 +38,13 @@
         "gid=100"
       ];
     };
+    "/danger" = {
+      device = "/dev/disk/by-uuid/a2ae99f4-a133-4fde-81d8-d6acdfc6cf6b";
+      fsType = "ext4";
+      options = [
+        "nofail"
+        "x-systemd.automount"
+      ];
+    };
   };
 }
