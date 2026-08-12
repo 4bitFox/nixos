@@ -193,7 +193,7 @@ in
       settings = {
         interface = bridgeNames;     # lan-br, guest-br only — never eno1
         bind-interfaces = true;
-        bind-dynamic = lib.mkForce true; # override pihole default in my config so i can bind interfaces
+        bind-dynamic = false; # override pihole default in my config so i can bind interfaces
         no-resolv = true;            # don't read /etc/resolv.conf for upstream either
         server = dnsServers;
         dhcp-range = 
