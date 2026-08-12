@@ -10,6 +10,7 @@
       hostName = "nextcloud.tschudibacon.com";
 #      https = true;
       appstoreEnable = true;
+      extraAppsEnable = false;
       maxUploadSize = "100G";
       database.createLocally = true;
       config = {
